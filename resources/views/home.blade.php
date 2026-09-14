@@ -59,7 +59,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-reveal="stagger">
             @foreach($benefits as $benefit)
-                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition group" data-reveal-child>
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition group" data-reveal-child data-hover-lift>
                     <div class="w-12 h-12 rounded-xl bg-brand-teal-100 flex items-center justify-center mb-5 group-hover:bg-brand-teal-600 transition">
                         <i data-lucide="{{ $benefit->icon ?? 'leaf' }}" class="w-6 h-6 text-brand-teal-700 group-hover:text-white transition"></i>
                     </div>
@@ -79,7 +79,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div data-reveal-text>
                 <p class="text-brand-teal-600 text-sm font-medium tracking-widest uppercase mb-4">Sustainability</p>
-                <h2 class="font-display text-4xl lg:text-5xl text-brand-900 mb-6">{{ $homepage->sustainability_heading ?? '100% Renewable Energy' }}</h2>
+                <h2 class="font-display text-4xl lg:text-5xl text-brand-900 mb-6">{{ $homepage->sustainability_heading ?? 'Engineered for Uptime' }}</h2>
                 <div class="prose-content text-brand-600 text-lg mb-8">{!! rich_content($homepage->sustainability_description) !!}</div>
                 @if($homepage->sustainability_cta_text)
                     <a href="{{ $homepage->sustainability_cta_url ?? route('about.index') }}" class="inline-flex items-center gap-2 text-brand-teal-700 font-medium hover:text-brand-teal-600 transition">
@@ -178,7 +178,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-reveal="stagger">
             @foreach($services as $service)
-                <a href="{{ route('services.show', $service) }}" class="group bg-white rounded-2xl border border-brand-200 overflow-hidden hover:shadow-xl transition" data-reveal-child>
+                <a href="{{ route('services.show', $service) }}" class="group bg-white rounded-2xl border border-brand-200 overflow-hidden hover:shadow-xl transition" data-reveal-child data-hover-lift>
                     @if($service->featured_image)
                         <img src="{{ hero_image_url($service->featured_image) }}" alt="{{ $service->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
                     @else
@@ -212,7 +212,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-reveal="stagger">
             @foreach($solutions as $solution)
-                <a href="{{ route('solutions.show', $solution) }}" class="group bg-white rounded-2xl p-8 hover:shadow-xl transition" data-reveal-child>
+                <a href="{{ route('solutions.show', $solution) }}" class="group bg-white rounded-2xl p-8 hover:shadow-xl transition" data-reveal-child data-hover-lift>
                     <div class="w-12 h-12 rounded-xl bg-brand-teal-100 flex items-center justify-center mb-5 group-hover:bg-brand-teal-600 transition">
                         <i data-lucide="{{ $solution->icon ?? 'layers' }}" class="w-6 h-6 text-brand-teal-700 group-hover:text-white transition"></i>
                     </div>
@@ -241,7 +241,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" data-reveal="stagger">
             @foreach($latestPosts as $post)
-                <article class="group bg-white rounded-2xl border border-brand-200 overflow-hidden hover:shadow-xl hover:border-brand-teal-200 transition flex flex-col" data-reveal-child>
+                <article class="group bg-white rounded-2xl border border-brand-200 overflow-hidden hover:shadow-xl hover:border-brand-teal-200 transition flex flex-col" data-reveal-child data-hover-lift>
                     <a href="{{ route('blog.show', $post) }}" class="block overflow-hidden">
                         <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
                     </a>
@@ -279,10 +279,10 @@
 <section class="py-10 lg:py-12 border-t border-brand-200/60">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-reveal="scale">
         <h2 class="font-display text-3xl lg:text-4xl text-brand-900 mb-3">
-            {{ $homepage->final_cta_heading ?? 'Ready to build sustainably?' }}
+            {{ $homepage->final_cta_heading ?? 'Ready to power your next chapter?' }}
         </h2>
         <p class="text-base text-brand-600 mb-5 max-w-2xl mx-auto leading-relaxed">
-            {{ $homepage->final_cta_description ?? 'Partner with VDC800 for Nordic data centre excellence powered by renewable energy.' }}
+            {{ $homepage->final_cta_description ?? 'Partner with VDC800 for Nordic data centre excellence.' }}
         </p>
         <a href="{{ $homepage->final_cta_button_url ?? route('contact.index') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-red-500 hover:bg-brand-red-600 text-white text-sm font-medium rounded-full transition shadow-md">
             {{ $homepage->final_cta_button_text ?? 'Get in Touch' }}

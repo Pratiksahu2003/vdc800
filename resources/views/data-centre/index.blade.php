@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('title', 'Data Centres — ' . (settings('company.company_name') ?? 'VDC800'))
-@section('meta_description', 'Explore VDC800 sustainable Nordic data centre facilities — renewable-powered colocation across Northern Europe.')
+@section('meta_description', 'Explore VDC800 Nordic data centre facilities — Tier III+ colocation across Northern Europe.')
 
 @section('content')
 <x-page-hero fallback="images/data-centre-facility.jpg" alt="Our Data Centres" size="md">
     <p class="text-brand-teal-400 text-sm font-medium tracking-widest uppercase mb-3">Our Facilities</p>
     <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl mb-4 max-w-3xl">Nordic Data Centres</h1>
-    <p class="text-brand-200 text-base sm:text-lg max-w-2xl leading-relaxed">Tier III+ facilities powered by 100% renewable energy across Scandinavia.</p>
+    <p class="text-brand-200 text-base sm:text-lg max-w-2xl leading-relaxed">Tier III+ facilities engineered for 99.999% uptime across Scandinavia.</p>
 </x-page-hero>
 
 <section class="py-16 lg:py-24">

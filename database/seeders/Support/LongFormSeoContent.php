@@ -22,10 +22,10 @@ class LongFormSeoContent
         $html .= self::section(
             "Why enterprises choose VDC800 for {$title}",
             self::paragraphs($title, $category, [
-                "Organisations across Northern Europe select VDC800 when {$title} must combine predictable performance with verifiable sustainability. Our Nordic facilities deliver carrier-neutral connectivity, concurrent maintainability, and transparent environmental reporting that satisfies both technical stakeholders and ESG committees.",
+                "Organisations across Northern Europe select VDC800 when {$title} must combine predictable performance with verifiable SLAs. Our Nordic facilities deliver carrier-neutral connectivity, concurrent maintainability, and transparent operational reporting that satisfies both technical stakeholders and executive committees.",
                 "Unlike generic hosting providers, we engineer {$category} offerings around measurable outcomes: latency budgets, recovery time objectives, power density headroom, and audit-ready documentation. Every deployment includes a structured onboarding workshop, architecture review, and runbook aligned to your internal change-management process.",
                 "Clients migrating from legacy facilities frequently cite three drivers: lower PUE in cool-climate sites, direct cloud on-ramps that remove unpredictable internet transit, and remote hands teams who understand enterprise change windows. {$title} at VDC800 is designed to compress time-to-production without sacrificing governance.",
-                "Our account teams publish quarterly business reviews covering capacity utilisation, incident trends, carbon intensity per workload, and roadmap items such as liquid cooling or additional cross-connects. This operating rhythm keeps {$title} aligned with growth plans rather than reactive ticket queues.",
+                "Our account teams publish quarterly business reviews covering capacity utilisation, incident trends, availability per workload, and roadmap items such as liquid cooling or additional cross-connects. This operating rhythm keeps {$title} aligned with growth plans rather than reactive ticket queues.",
             ])
         );
         $html .= self::slaTable($title);
@@ -47,7 +47,7 @@ class LongFormSeoContent
                 "Supply chain integrity covers hardware receiving, anti-tamper seals, secure staging, and documented chain-of-custody when equipment moves between loading bays and production halls.",
             ])
         );
-        $html .= self::sustainabilitySection($title);
+        $html .= self::operationsSection($title);
         $html .= self::deploymentPlaybook($title, $category);
         $html .= self::faqSection($title, $focusKeywords);
         $html .= self::conclusion($title, $slug, 'services');
@@ -80,7 +80,7 @@ class LongFormSeoContent
             self::paragraphs($title, 'vertical solutions', [
                 "Digital leaders in {$title} face simultaneous pressure to innovate faster, protect sensitive data, and report environmental impact with the same rigour as financial metrics. VDC800 vertical solutions translate these pressures into an infrastructure blueprint with clear SLAs, compliance pathways, and scalability milestones.",
                 "Regulatory evolution across the EU continues to raise expectations for data residency, breach notification, and third-party risk management. Our {$title} reference architectures document how workloads map to geographic zones, encryption standards, and retention policies without creating operational silos.",
-                "Buyer committees increasingly include sustainability officers who require proof that compute growth does not equate to unchecked emissions. 100% renewable matching and published PUE data allow {$title} organisations to align infrastructure decisions with science-based targets.",
+                "Buyer committees increasingly include operations and risk officers who require proof that compute growth does not equate to unchecked downtime. Published PUE data and 99.999% availability targets allow {$title} organisations to align infrastructure decisions with board-level SLAs.",
                 "Talent shortages in specialised IT roles make managed capabilities attractive: remote hands, observability integration, and vendor coordination become extensions of your team rather than ad hoc escalations.",
             ])
         );
@@ -102,7 +102,7 @@ class LongFormSeoContent
                 "Privacy-by-design workshops identify data minimisation opportunities, pseudonymisation strategies, and retention schedules that reduce long-term liability while preserving analytical value.",
             ])
         );
-        $html .= self::sustainabilitySection($title);
+        $html .= self::operationsSection($title);
         $html .= self::section(
             'Commercial models and engagement options',
             self::paragraphs($title, 'vertical solutions', [
@@ -129,7 +129,7 @@ class LongFormSeoContent
     public static function metaDescription(string $title, string $type, array $keywords): string
     {
         $base = "Explore {$title} with VDC800: ".implode(', ', array_slice($keywords, 0, 3))
-            .". Nordic Tier III+ facilities, 100% renewable energy, 99.999% uptime SLA, and expert {$type} support across Europe.";
+            .". Nordic Tier III+ facilities, 99.999% uptime SLA, and expert {$type} support across Europe.";
 
         return mb_strlen($base) > 158 ? mb_substr($base, 0, 155).'...' : $base;
     }
@@ -147,8 +147,8 @@ class LongFormSeoContent
     private static function serviceIntro(string $title, string $category, string $keywords): string
     {
         return <<<HTML
-<p><strong>{$title}</strong> from VDC800 delivers enterprise-grade {$category} from sustainable Nordic data centres engineered for 99.999% availability, enterprise-grade security controls, and 100% renewable power matching. This comprehensive guide explains how we design, deploy, and operate {$title} for organisations that cannot compromise on resilience, compliance, or climate accountability.</p>
-<p>Whether you are consolidating legacy footprints, launching latency-sensitive platforms, or expanding hybrid cloud estates, our specialists align {$keywords} with measurable business outcomes. The following sections cover architecture, SLAs, security controls, sustainability metrics, and a practical deployment playbook you can share with technical and executive stakeholders.</p>
+<p><strong>{$title}</strong> from VDC800 delivers enterprise-grade {$category} from Nordic data centres engineered for 99.999% availability, enterprise-grade security controls, and 24/7 operational coverage. This comprehensive guide explains how we design, deploy, and operate {$title} for organisations that cannot compromise on resilience, compliance, or performance.</p>
+<p>Whether you are consolidating legacy footprints, launching latency-sensitive platforms, or expanding hybrid cloud estates, our specialists align {$keywords} with measurable business outcomes. The following sections cover architecture, SLAs, security controls, operational metrics, and a practical deployment playbook you can share with technical and executive stakeholders.</p>
 HTML;
     }
 
@@ -157,8 +157,8 @@ HTML;
         $benefitText = implode(', ', array_slice($benefits, 0, 4));
 
         return <<<HTML
-<p>VDC800's <strong>{$title}</strong> solution combines colocation, connectivity, and managed capabilities into a vertical blueprint tuned for regulated, high-growth, and data-intensive organisations. Built on 100% renewable Nordic infrastructure, the solution addresses {$keywords} while delivering {$benefitText}.</p>
-<p>This page documents reference architectures, compliance alignment, operational models, and sustainability advantages so your team can evaluate fit, prepare internal business cases, and plan phased adoption with confidence.</p>
+<p>VDC800's <strong>{$title}</strong> solution combines colocation, connectivity, and managed capabilities into a vertical blueprint tuned for regulated, high-growth, and data-intensive organisations. Built on Nordic Tier III+ infrastructure, the solution addresses {$keywords} while delivering {$benefitText}.</p>
+<p>This page documents reference architectures, compliance alignment, operational models, and availability advantages so your team can evaluate fit, prepare internal business cases, and plan phased adoption with confidence.</p>
 HTML;
     }
 
@@ -243,10 +243,10 @@ HTML;
             <td>Continuous optimisation programme</td>
         </tr>
         <tr>
-            <td>Renewable energy matching</td>
-            <td>100%</td>
-            <td>Annual</td>
-            <td>Guarantees of origin / RECs published</td>
+            <td>Power redundancy</td>
+            <td>N+1</td>
+            <td>Continuous</td>
+            <td>Dual utility and UPS paths</td>
         </tr>
         <tr>
             <td>Change success rate</td>
@@ -266,13 +266,13 @@ HTML;
         return "<h2>Core benefits</h2><ul>{$items}</ul>";
     }
 
-    private static function sustainabilitySection(string $title): string
+    private static function operationsSection(string $title): string
     {
         return <<<HTML
-<h2>Sustainability and environmental accountability</h2>
-<p>{$title} workloads hosted at VDC800 consume electricity matched hour-for-hour with certified renewable generation, predominantly hydro and wind across Scandinavia. Customers receive sustainability statements suitable for CDP disclosures, science-based target reporting, and customer RFP questionnaires.</p>
-<p>Cool-climate siting reduces mechanical cooling demand, lowering scope 2 emissions intensity per kWh of IT load. We publish facility PUE, water usage effectiveness where applicable, and heat reuse initiatives that benefit district heating partners in urban campuses.</p>
-<p>Choosing Nordic colocation can materially reduce the carbon footprint of unchanged application code—an advantage for organisations prioritising quick sustainability wins while longer software optimisation programmes mature.</p>
+<h2>Operations and availability</h2>
+<p>{$title} workloads hosted at VDC800 run in Tier III+ Nordic facilities with concurrent maintainability, 24/7 NOC coverage, and published availability metrics. Customers receive operational reports suitable for internal audits, board reporting, and customer RFP questionnaires.</p>
+<p>Cool-climate siting reduces mechanical cooling demand and helps hold facility PUE near 1.12. We publish facility PUE, capacity utilisation, and incident trends so stakeholders can plan growth with confidence.</p>
+<p>Choosing Nordic colocation can materially improve latency to European markets and reduce operational risk—an advantage for organisations that need predictable infrastructure while application teams continue to scale.</p>
 HTML;
     }
 
@@ -286,7 +286,7 @@ HTML;
     <li><strong>Procurement:</strong> Coordinate hardware delivery, customs clearance when needed, and secure staging in designated build rooms.</li>
     <li><strong>Installation:</strong> Execute cabling, power-up, burn-in, and logical turn-up with change tickets aligned to your maintenance windows.</li>
     <li><strong>Test:</strong> Run failover tests, latency baselines, backup restores, and monitoring integrations before production cutover.</li>
-    <li><strong>Operate:</strong> Transition to steady-state with quarterly reviews, capacity alerts, and sustainability reporting for {$category} stakeholders.</li>
+    <li><strong>Operate:</strong> Transition to steady-state with quarterly reviews, capacity alerts, and SLA reporting for {$category} stakeholders.</li>
 </ol>
 HTML;
     }
@@ -305,8 +305,8 @@ HTML;
 <p>Customers receive SOC reports, compliance certificates, control matrices, and sub-processor documentation. Tailored packs for GDPR, PCI DSS, or sector regulators can be assembled with professional services.</p>
 <h3>Can we scale power without migrating sites?</h3>
 <p>Modular hall design and reserved busway capacity enable in-place upgrades for many deployments, preserving operational familiarity and avoiding costly relocation projects.</p>
-<h3>How is environmental impact reported?</h3>
-<p>Quarterly sustainability summaries include renewable matching certificates, PUE trends, and optional allocation of emissions per kW provisioned to your organisation.</p>
+<h3>How is operational performance reported?</h3>
+<p>Quarterly operations summaries include PUE trends, capacity utilisation, incident metrics, and optional allocation of power per kW provisioned to your organisation.</p>
 HTML;
     }
 
@@ -346,7 +346,7 @@ HTML;
 
         return <<<HTML
 <h2>Next steps</h2>
-<p>VDC800 partners with enterprises, public institutions, and digital natives who require {$title} without trading away sustainability or compliance readiness. Speak with our solutions team for a tailored workshop, site tour, or proof-of-concept architecture review.</p>
+<p>VDC800 partners with enterprises, public institutions, and digital natives who require {$title} without trading away availability or compliance readiness. Speak with our solutions team for a tailored workshop, site tour, or proof-of-concept architecture review.</p>
 <p>Explore related offerings across our portfolio, review case studies on our blog, or <a href="/contact">contact us</a> to request pricing for <a href="/{$path}/{$slug}">{$title}</a>. We respond to qualified enquiries within one business day.</p>
 HTML;
     }
@@ -359,7 +359,7 @@ HTML;
                 "Capacity planning for {$title} incorporates seasonal demand, hardware refresh cycles, and licence true-ups. VDC800 provides forward-looking power and port utilisation forecasts so finance and engineering teams share a single source of truth.",
                 "Integration with ITSM tools allows change records, work orders, and asset tags to synchronise between your CMDB and our operations platform. This reduces manual reconciliation during audits and accelerates mean time to repair when incidents occur.",
                 "For multinational programmes, we coordinate staging windows across time zones, ensuring remote hands coverage aligns with your release trains. Escalation paths are documented in bilingual runbooks where required.",
-                "Benchmarking studies show Nordic {$context} deployments often achieve lower total cost of ownership over five years when cooling advantages and renewable energy economics are modelled honestly alongside list colocation rates.",
+                "Benchmarking studies show Nordic {$context} deployments often achieve lower total cost of ownership over five years when cooling advantages and power economics are modelled honestly alongside list colocation rates.",
             ],
             [
                 "Observability for {$title} should span environmental sensors, power draw, network optics, and application golden signals. We provide facility feeds that complement your existing dashboards rather than forcing proprietary silos.",
@@ -369,7 +369,7 @@ HTML;
             ],
             [
                 "Business continuity exercises validate failover assumptions for {$title}, including simulated utility loss and fibre path withdrawal. Findings feed into continuous improvement plans tracked at executive review cadences.",
-                "Contract structures may include sustainability-linked incentives tying service credits to published environmental KPIs, reinforcing shared responsibility for efficient resource use.",
+                "Contract structures may include availability-linked incentives tying service credits to published operational KPIs, reinforcing shared responsibility for efficient resource use.",
                 "Edge cases—such as delayed shipments, customs holds, or emergency power transfers—are handled through playbooks tested during onboarding. Customers receive single points of contact for cross-functional issues.",
                 "Long-term partnerships often evolve from single-site colocation to multi-facility active/active designs; VDC800 documents latency and replication guidance when {$title} expands across campuses.",
             ],

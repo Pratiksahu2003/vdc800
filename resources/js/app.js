@@ -3,7 +3,7 @@ import Alpine from 'alpinejs';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { createIcons, icons } from 'lucide';
-import { initHomeScrollAnimations } from './home-scroll';
+import { initScrollAnimations } from './scroll-animations';
 
 window.Alpine = Alpine;
 window.gsap = gsap;
@@ -365,7 +365,7 @@ Alpine.start();
 
 document.addEventListener('DOMContentLoaded', () => {
     createIcons({ icons });
-    initHomeScrollAnimations();
+    initScrollAnimations();
 
     document.querySelectorAll('.cms-content table').forEach((table) => {
         if (table.closest('.cms-table-wrap')) {

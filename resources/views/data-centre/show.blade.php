@@ -81,7 +81,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <h2 class="font-display text-4xl text-brand-900 mb-4">Facility Features</h2>
-            <p class="text-brand-600">Enterprise-grade infrastructure designed for reliability, security, and sustainability.</p>
+            <p class="text-brand-600">Enterprise-grade infrastructure designed for reliability, security, and scale.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($features as $feature)

@@ -59,17 +59,38 @@
     padding-top: var(--site-header-height);
 }
 
-/* Apple-like homepage scroll reveals */
-[data-home-scroll] [data-parallax-wrap] {
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+[data-site-nav].nav-scrolled {
+    background-color: rgb(255 255 255 / 0.97);
+    border-color: var(--color-brand-200);
+    box-shadow: 0 8px 30px rgb(45 52 54 / 0.08);
+}
+
+[data-parallax-wrap],
+.page-hero-section .absolute.inset-0 {
     overflow: hidden;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    [data-home-scroll] [data-reveal],
-    [data-home-scroll] [data-reveal-child],
-    [data-home-scroll] [data-reveal-text],
-    [data-home-scroll] [data-reveal-media] {
+    [data-reveal],
+    [data-reveal-child],
+    [data-reveal-text],
+    [data-reveal-media],
+    [data-page-hero-content] > * {
         will-change: transform, opacity;
+    }
+
+    [data-hover-lift] {
+        will-change: transform;
     }
 }
 

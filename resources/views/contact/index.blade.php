@@ -17,7 +17,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20">
             {{-- Contact Info --}}
-            <div class="lg:col-span-2 space-y-8">
+            <div class="lg:col-span-2 space-y-8" data-reveal="fade-up">
                 <div>
                     <h2 class="font-display text-3xl text-brand-900 mb-6">Let's talk</h2>
                     <p class="text-brand-600 leading-relaxed">Whether you're planning a new deployment or exploring colocation options, we'd love to hear from you.</p>
@@ -83,7 +83,7 @@
                 </div>
 
                 {{-- Form --}}
-                <form x-show="!submitted" method="POST" action="{{ route('contact.store') }}" @submit="submitting = true" class="bg-white rounded-2xl border border-brand-200 p-8 lg:p-10 space-y-6">
+                <form x-show="!submitted" method="POST" action="{{ route('contact.store') }}" @submit="submitting = true" class="bg-white rounded-2xl border border-brand-200 p-8 lg:p-10 space-y-6" data-reveal="scale">
                     @csrf
 
                     @if($errors->any())

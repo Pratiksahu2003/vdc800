@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
             'company_name' => 'VDC800 Data Centres',
             'short_name' => 'VDC800',
             'tagline' => 'IS FUTURE OF DCs',
-            'description' => 'VDC800 designs, builds, and operates premium data centre facilities powered entirely by renewable energy across Northern Europe.',
-            'about_company' => 'Founded with a vision to deliver world-class digital infrastructure without compromising the environment, VDC800 combines Nordic engineering excellence with cutting-edge sustainability practices. Our facilities serve enterprises, cloud providers, and research institutions who demand reliability, security, and a net-zero carbon footprint.',
+            'description' => 'VDC800 designs, builds, and operates premium data centre facilities across Northern Europe.',
+            'about_company' => 'Founded with a vision to deliver world-class digital infrastructure, VDC800 combines Nordic engineering excellence with enterprise-grade operations. Our facilities serve enterprises, cloud providers, and research institutions who demand reliability, security, and predictable performance.',
             'email' => 'hello@VDC800.com',
             'phone' => '+47 22 00 00 00',
             'secondary_phone' => '+46 8 00 00 00',
@@ -57,9 +57,9 @@ class DatabaseSeeder extends Seeder
         SiteSetting::create([
             'website_name' => 'VDC800',
             'website_url' => 'http://localhost',
-            'default_page_title' => 'VDC800 — Sustainable Nordic Data Centres',
-            'default_meta_description' => 'Premium renewable-powered data centre infrastructure in Northern Europe. Colocation, cloud connectivity, and enterprise hosting with 100% green energy.',
-            'default_keywords' => 'data centre, nordic, sustainable, colocation, renewable energy, green hosting',
+            'default_page_title' => 'VDC800 — Nordic Data Centres',
+            'default_meta_description' => 'Premium data centre infrastructure in Northern Europe. Colocation, cloud connectivity, and enterprise hosting with 99.999% uptime.',
+            'default_keywords' => 'data centre, nordic, colocation, cloud connectivity, enterprise hosting',
             'timezone' => 'Europe/Oslo',
             'default_language' => 'en',
         ]);
@@ -80,16 +80,16 @@ class DatabaseSeeder extends Seeder
         HomepageSetting::create([
             'hero_heading' => 'VDC800',
             'hero_subtitle' => 'IS FUTURE OF DCs',
-            'hero_description' => 'VDC800 delivers enterprise-grade colocation and cloud connectivity from facilities powered entirely by renewable energy — where Nordic precision meets environmental responsibility.',
+            'hero_description' => 'VDC800 delivers enterprise-grade colocation and cloud connectivity from Nordic facilities engineered for uptime, security, and scale.',
             'hero_cta_text' => 'Explore Our Data Centre',
             'hero_cta_url' => '/data-centre',
             'hero_secondary_cta_text' => 'View Services',
             'hero_secondary_cta_url' => '/services',
-            'intro_heading' => 'Where reliability meets responsibility',
-            'intro_description' => 'Our facilities are engineered for 99.999% uptime while maintaining a PUE below 1.2. Every watt consumed is matched by certified renewable generation, making VDC800 the preferred partner for organisations committed to digital growth and climate action.',
-            'sustainability_heading' => '100% renewable. Zero compromise.',
-            'sustainability_description' => 'From hydroelectric power in Norway to wind energy in Sweden, every VDC800 facility runs on certified green electricity. We publish real-time sustainability metrics and hold ourselves accountable to the highest environmental standards in the industry.',
-            'sustainability_cta_text' => 'Our Sustainability Commitment',
+            'intro_heading' => 'Where reliability meets precision',
+            'intro_description' => 'Our facilities are engineered for 99.999% uptime while maintaining a PUE below 1.2. Carrier-neutral connectivity, concurrent maintainability, and 24/7 NOC coverage make VDC800 the preferred partner for organisations committed to digital growth.',
+            'sustainability_heading' => 'Engineered for uptime. Built for scale.',
+            'sustainability_description' => 'From Oslo to Stockholm, every VDC800 facility is designed for high-density workloads, efficient cooling, and operational transparency. We publish real-time availability metrics and hold ourselves accountable to enterprise SLAs.',
+            'sustainability_cta_text' => 'Our Operational Commitment',
             'sustainability_cta_url' => '/about',
             'infrastructure_heading' => 'Built for scale, designed for security',
             'infrastructure_description' => 'Tier III+ architecture, biometric access controls, 24/7 NOC monitoring, and carrier-neutral connectivity to 40+ networks ensure your critical workloads are protected and always reachable.',
@@ -102,8 +102,8 @@ class DatabaseSeeder extends Seeder
         $heroSlides = [
             [
                 'category' => 'Data Centre',
-                'title' => 'VDC800 Oslo DC-1 Delivers 45MW of Sustainable Power',
-                'description' => 'Our flagship Nordic facility runs on 100% renewable energy with a PUE of 1.12 — enterprise-grade colocation built for the future of digital infrastructure.',
+                'title' => 'VDC800 Oslo DC-1 Delivers 45MW of Enterprise Power',
+                'description' => 'Our flagship Nordic facility delivers 45MW with a PUE of 1.12 — enterprise-grade colocation built for the future of digital infrastructure.',
                 'image' => 'images/hero-slide-1.jpg',
                 'cta_text' => 'Read More',
                 'cta_url' => '/data-centre',
@@ -119,9 +119,9 @@ class DatabaseSeeder extends Seeder
                 'sort_order' => 2,
             ],
             [
-                'category' => 'Sustainability',
-                'title' => '100% Renewable Energy Across All Nordic Facilities',
-                'description' => 'Every kilowatt-hour matched by certified green generation. Real-time carbon reporting and industry-leading environmental accountability.',
+                'category' => 'Operations',
+                'title' => 'Tier III+ Design Across All Nordic Facilities',
+                'description' => 'Concurrent maintainability, 24/7 NOC monitoring, and published availability metrics for mission-critical workloads.',
                 'image' => 'images/hero-slide-3.jpg',
                 'cta_text' => 'Read More',
                 'cta_url' => '/about',
@@ -152,7 +152,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $benefits = [
-            ['title' => 'Renewable Energy', 'description' => 'Every facility powered by certified hydro, wind, and solar generation.', 'icon' => 'leaf', 'sort_order' => 1],
+            ['title' => 'High Availability', 'description' => 'Tier III+ design with concurrent maintainability and 99.999% uptime SLA.', 'icon' => 'activity', 'sort_order' => 1],
             ['title' => 'Nordic Reliability', 'description' => 'Cool climate reduces cooling costs and enables industry-leading PUE ratings.', 'icon' => 'snowflake', 'sort_order' => 2],
             ['title' => 'Carrier Neutral', 'description' => 'Connect to 40+ carriers and cloud on-ramps from a single cross-connect.', 'icon' => 'network', 'sort_order' => 3],
             ['title' => 'Enterprise Security', 'description' => 'Multi-layer physical and cyber security protecting your most critical workloads.', 'icon' => 'shield-check', 'sort_order' => 4],
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
 
         $statistics = [
             ['number' => '165+', 'label' => 'MW Capacity', 'description' => 'Total power across Nordic facilities', 'sort_order' => 1],
-            ['number' => '100%', 'label' => 'Renewable Energy', 'description' => 'Certified green energy supply', 'sort_order' => 2],
+            ['number' => '24/7', 'label' => 'NOC Coverage', 'description' => 'Always-on operations support', 'sort_order' => 2],
             ['number' => '99.999%', 'label' => 'Uptime SLA', 'description' => 'Tier III+ availability guarantee', 'sort_order' => 3],
             ['number' => '1.12', 'label' => 'Average PUE', 'description' => 'Industry-leading efficiency', 'sort_order' => 4],
         ];
@@ -183,10 +183,10 @@ class DatabaseSeeder extends Seeder
             'address' => 'Lørenfaret 1C, 0580 Oslo',
             'latitude' => 59.9311,
             'longitude' => 10.7979,
-            'short_description' => 'Our flagship 45MW facility in the heart of Oslo, powered entirely by Norwegian hydroelectric energy.',
-            'full_description' => '<p>VDC800 Oslo DC-1 represents the pinnacle of sustainable data centre design. Located in the Løren industrial district with direct access to Norway\'s robust power grid, this facility combines 45MW of available capacity with a PUE of 1.12 — among the lowest in Europe.</p><p>The building features free-air cooling for 70% of the year, advanced fire suppression, and biometric access at every security zone. Carrier-neutral connectivity reaches 42 networks including direct cloud on-ramps to AWS, Azure, and Google Cloud.</p>',
+            'short_description' => 'Our flagship 45MW facility in the heart of Oslo, engineered for high-density enterprise colocation.',
+            'full_description' => '<p>VDC800 Oslo DC-1 represents the pinnacle of Nordic data centre design. Located in the Løren industrial district with direct access to Norway\'s robust power grid, this facility combines 45MW of available capacity with a PUE of 1.12 — among the lowest in Europe.</p><p>The building features free-air cooling for 70% of the year, advanced fire suppression, and biometric access at every security zone. Carrier-neutral connectivity reaches 42 networks including direct cloud on-ramps to AWS, Azure, and Google Cloud.</p>',
             'meta_title' => 'Oslo Data Centre — VDC800 DC-1',
-            'meta_description' => 'Explore VDC800\'s flagship 45MW sustainable data centre in Oslo, Norway. 100% renewable energy, Tier III+ design.',
+            'meta_description' => 'Explore VDC800\'s flagship 45MW data centre in Oslo, Norway. Tier III+ design, 99.999% uptime SLA.',
             'cta_heading' => 'Schedule a facility tour',
             'cta_description' => 'Visit our Oslo campus and see how Nordic engineering delivers world-class digital infrastructure.',
             'cta_button_text' => 'Book a Tour',
@@ -205,9 +205,9 @@ class DatabaseSeeder extends Seeder
             'latitude' => 59.4029,
             'longitude' => 17.9436,
             'short_description' => 'A 28MW carrier-neutral campus in Kista serving cloud providers and enterprises across Scandinavia.',
-            'full_description' => '<p>VDC800 Stockholm DC-2 extends our Nordic footprint into Sweden\'s premier technology district. The facility delivers 28MW of renewable-powered capacity with direct fibre paths to major European internet exchanges and cloud regions.</p><p>Designed for hybrid cloud workloads, the campus offers high-density colocation, meet-me room services, and 24/7 remote hands support for regional enterprises.</p>',
+            'full_description' => '<p>VDC800 Stockholm DC-2 extends our Nordic footprint into Sweden\'s premier technology district. The facility delivers 28MW of capacity with direct fibre paths to major European internet exchanges and cloud regions.</p><p>Designed for hybrid cloud workloads, the campus offers high-density colocation, meet-me room services, and 24/7 remote hands support for regional enterprises.</p>',
             'meta_title' => 'Stockholm Data Centre — VDC800 DC-2',
-            'meta_description' => 'Explore VDC800\'s 28MW sustainable data centre in Stockholm, Sweden. Carrier-neutral connectivity and 100% renewable energy.',
+            'meta_description' => 'Explore VDC800\'s 28MW data centre in Stockholm, Sweden. Carrier-neutral connectivity and Tier III+ design.',
             'cta_heading' => 'Plan your deployment',
             'cta_description' => 'Speak with our Stockholm team about colocation and cross-connect options.',
             'cta_button_text' => 'Contact Us',
@@ -220,7 +220,7 @@ class DatabaseSeeder extends Seeder
         $specs = [
             ['label' => 'Power Capacity', 'value' => '45', 'unit' => 'MW', 'icon' => 'zap', 'sort_order' => 1],
             ['label' => 'Available Capacity', 'value' => '12', 'unit' => 'MW', 'icon' => 'battery-charging', 'sort_order' => 2],
-            ['label' => 'Renewable Energy', 'value' => '100', 'unit' => '%', 'icon' => 'leaf', 'sort_order' => 3],
+            ['label' => 'Uptime SLA', 'value' => '99.999', 'unit' => '%', 'icon' => 'activity', 'sort_order' => 3],
             ['label' => 'PUE Rating', 'value' => '1.12', 'unit' => '', 'icon' => 'gauge', 'sort_order' => 4],
             ['label' => 'Facility Size', 'value' => '18,500', 'unit' => 'm²', 'icon' => 'building', 'sort_order' => 5],
             ['label' => 'Rack Capacity', 'value' => '3,200', 'unit' => 'racks', 'icon' => 'server', 'sort_order' => 6],
@@ -238,7 +238,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $features = [
-            ['title' => 'Energy', 'slug' => 'energy', 'description' => '100% certified hydroelectric power with real-time carbon reporting and renewable energy certificates for every kWh consumed.', 'icon' => 'zap', 'sort_order' => 1],
+            ['title' => 'Energy', 'slug' => 'energy', 'description' => 'Dual utility feeds, UPS and generator backup, with real-time power monitoring for every kWh consumed.', 'icon' => 'zap', 'sort_order' => 1],
             ['title' => 'Cooling', 'slug' => 'cooling', 'description' => 'Hybrid free-air and chilled water cooling systems optimised for Nordic climate, achieving PUE as low as 1.12.', 'icon' => 'snowflake', 'sort_order' => 2],
             ['title' => 'Connectivity', 'slug' => 'connectivity', 'description' => 'Carrier-neutral meet-me room with 42 network providers, direct cloud on-ramps, and sub-5ms latency to major European hubs.', 'icon' => 'network', 'sort_order' => 3],
             ['title' => 'Security', 'slug' => 'security', 'description' => 'Multi-layer physical security with biometric access, 24/7 CCTV, mantrap entries, and on-site security personnel.', 'icon' => 'shield-check', 'sort_order' => 4],
@@ -274,17 +274,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         AboutSection::create([
-            'hero_heading' => 'Building the sustainable backbone of digital Europe',
-            'hero_description' => 'VDC800 was founded on a simple belief: the world\'s digital infrastructure should strengthen, not weaken, our planet. From our headquarters in Oslo, we design and operate data centres that prove sustainability and performance are not opposing forces.',
-            'mission' => 'To deliver world-class digital infrastructure powered entirely by renewable energy, enabling organisations to grow their digital capabilities while achieving their sustainability goals.',
-            'vision' => 'A future where every byte processed in Europe runs on clean energy, hosted in facilities that set the global standard for efficiency and environmental responsibility.',
-            'story' => '<p>VDC800 began in 2018 when a team of Nordic engineers and sustainability advocates recognised that the explosive growth of cloud computing was creating an equally explosive growth in energy demand. Rather than accept the status quo, they set out to prove that data centres could be both powerful and pristine.</p><p>Our first facility in Oslo opened in 2020, immediately achieving a PUE of 1.15 — well below the industry average. Today, we operate across Scandinavia with a pipeline of new facilities, each designed to push the boundaries of what sustainable infrastructure can achieve.</p>',
-            'sustainability' => 'Sustainability is not a feature at VDC800 — it is our foundation. We source 100% renewable energy, publish quarterly sustainability reports, and design every facility to minimise waste heat, water consumption, and embodied carbon in construction materials.',
-            'cta_heading' => 'Join us in building a greener digital future',
+            'hero_heading' => 'Building the backbone of digital Europe',
+            'hero_description' => 'VDC800 was founded on a simple belief: digital infrastructure should be reliable, secure, and ready to scale. From our headquarters in Oslo, we design and operate data centres that prove performance and operational excellence go hand in hand.',
+            'mission' => 'To deliver world-class digital infrastructure, enabling organisations to grow their digital capabilities with predictable uptime, security, and connectivity.',
+            'vision' => 'A future where every byte processed in Europe is hosted in facilities that set the global standard for availability, efficiency, and operational discipline.',
+            'story' => '<p>VDC800 began in 2018 when a team of Nordic engineers recognised that the explosive growth of cloud computing demanded a new class of data centre operations. Rather than accept the status quo, they set out to prove that facilities could be both powerful and precise.</p><p>Our first facility in Oslo opened in 2020, immediately achieving a PUE of 1.15 — well below the industry average. Today, we operate across Scandinavia with a pipeline of new facilities, each designed to push the boundaries of what enterprise infrastructure can achieve.</p>',
+            'sustainability' => 'Operational excellence is not a feature at VDC800 — it is our foundation. We publish availability metrics, run 24/7 NOC coverage, and design every facility for concurrent maintainability, efficient cooling, and disciplined change control.',
+            'cta_heading' => 'Join us in building the next chapter of digital infrastructure',
             'cta_description' => 'Whether you need colocation, cloud connectivity, or a custom enterprise solution, our team is ready to help.',
             'cta_button_text' => 'Contact Our Team',
             'cta_button_url' => '/contact',
-            'meta_title' => 'About VDC800 — Sustainable Nordic Data Centres',
+            'meta_title' => 'About VDC800 — Nordic Data Centres',
         ]);
 
         $values = [
@@ -333,7 +333,7 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Head of Infrastructure',
                 'company' => 'CloudScale India',
                 'location' => 'Bengaluru, India',
-                'quote' => 'We needed carrier-neutral connectivity and renewable energy credentials for our SaaS platform. VDC800 delivered both — our PUE reporting to enterprise clients has never looked better.',
+                'quote' => 'We needed carrier-neutral connectivity and enterprise SLAs for our SaaS platform. VDC800 delivered both — our uptime reporting to enterprise clients has never looked better.',
                 'rating' => 5,
                 'sort_order' => 2,
             ],
@@ -369,7 +369,7 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Chief Information Officer',
                 'company' => 'Pune Manufacturing Group',
                 'location' => 'Pune, India',
-                'quote' => 'We evaluated facilities across Europe and chose VDC800 for their sustainability credentials and biometric security. Our board was impressed by the quarterly carbon reporting they provide.',
+                'quote' => 'We evaluated facilities across Europe and chose VDC800 for their operational transparency and biometric security. Our board was impressed by the quarterly SLA reporting they provide.',
                 'rating' => 5,
                 'sort_order' => 6,
             ],

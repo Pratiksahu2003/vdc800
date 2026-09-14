@@ -21,11 +21,11 @@
 </x-page-hero>
 
 {{-- Mission & Vision --}}
-<section class="py-24 lg:py-32">
+<section class="py-24 lg:py-32" data-reveal="split">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             @if($about->mission)
-                <div class="bg-brand-100 rounded-2xl p-8 lg:p-10">
+                <div class="bg-brand-100 rounded-2xl p-8 lg:p-10" data-reveal-text data-hover-lift>
                     <div class="w-12 h-12 rounded-xl bg-brand-teal-600 flex items-center justify-center mb-6">
                         <i data-lucide="target" class="w-6 h-6 text-white"></i>
                     </div>
@@ -34,7 +34,7 @@
                 </div>
             @endif
             @if($about->vision)
-                <div class="bg-brand-900 text-white rounded-2xl p-8 lg:p-10">
+                <div class="bg-brand-900 text-white rounded-2xl p-8 lg:p-10" data-reveal-media data-hover-lift>
                     <div class="w-12 h-12 rounded-xl bg-brand-teal-600 flex items-center justify-center mb-6">
                         <i data-lucide="eye" class="w-6 h-6 text-white"></i>
                     </div>
@@ -85,14 +85,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-                <p class="text-brand-teal-400 text-sm font-medium tracking-widest uppercase mb-4">Sustainability</p>
-                <h2 class="font-display text-4xl mb-6">Committed to a Greener Future</h2>
+                <p class="text-brand-teal-400 text-sm font-medium tracking-widest uppercase mb-4">Operations</p>
+                <h2 class="font-display text-4xl mb-6">Committed to Operational Excellence</h2>
                 <div class="prose-content text-brand-300 text-lg">{!! rich_content($about->sustainability) !!}</div>
             </div>
             <div class="grid grid-cols-2 gap-4">
                 <div class="bg-brand-800 rounded-2xl p-6 text-center">
-                    <i data-lucide="leaf" class="w-8 h-8 text-brand-teal-400 mx-auto mb-3"></i>
-                    <p class="font-medium">100% Renewable</p>
+                    <i data-lucide="activity" class="w-8 h-8 text-brand-teal-400 mx-auto mb-3"></i>
+                    <p class="font-medium">99.999% Uptime</p>
                 </div>
                 <div class="bg-brand-800 rounded-2xl p-6 text-center">
                     <i data-lucide="thermometer" class="w-8 h-8 text-brand-teal-400 mx-auto mb-3"></i>

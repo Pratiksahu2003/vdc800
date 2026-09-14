@@ -1,8 +1,9 @@
 <nav
     x-data="siteNav"
+    data-site-nav
     @keydown.escape.window="open = false; closeMenus()"
     @resize.window.debounce.150ms="servicesMenu && positionDropdown($refs.servicesPanel); solutionsMenu && positionDropdown($refs.solutionsPanel); blogMenu && positionDropdown($refs.blogPanel)"
-    class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-brand-200 shadow-sm"
+    class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand-200/80 shadow-sm transition-[background-color,box-shadow,border-color] duration-300"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-[var(--site-header-height)]">

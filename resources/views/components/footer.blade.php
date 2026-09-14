@@ -1,8 +1,8 @@
-<footer class="bg-white border-t border-brand-200">
+<footer class="bg-white border-t border-brand-200" data-site-footer>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {{-- Brand + CTA --}}
         <div class="pb-10 lg:pb-12 border-b border-brand-100">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch" data-footer-brand>
                 <div class="min-w-0 flex flex-col h-full">
                     <x-logo class="h-12 lg:h-14 w-auto max-w-none mb-4" />
                     <p class="text-brand-teal-600 font-medium text-sm lg:text-base">{{ settings('company.tagline') ?? 'IS FUTURE OF DCs' }}</p>
@@ -22,7 +22,7 @@
 
                     <div class="mt-8 grid grid-cols-2 gap-3 flex-1 content-start">
                         @foreach([
-                            ['icon' => 'leaf', 'title' => '100% Renewable', 'desc' => 'Sustainably powered facilities'],
+                            ['icon' => 'activity', 'title' => '24/7 NOC', 'desc' => 'Always-on operations support'],
                             ['icon' => 'shield-check', 'title' => 'Tier III+ Design', 'desc' => 'Enterprise-grade infrastructure'],
                             ['icon' => 'compass', 'title' => 'Advisory Expertise', 'desc' => 'Strategy through delivery'],
                             ['icon' => 'zap', 'title' => '99.999% Uptime', 'desc' => 'Mission-critical reliability'],
@@ -129,7 +129,7 @@
         </div>
 
         {{-- Link columns --}}
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pt-10 lg:pt-12">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pt-10 lg:pt-12" data-footer-links>
             <div>
                 <h4 class="text-brand-900 font-bold text-sm lg:text-base mb-3">Company</h4>
                 <ul class="space-y-2">

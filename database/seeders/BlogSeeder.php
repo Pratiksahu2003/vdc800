@@ -15,7 +15,7 @@ class BlogSeeder extends Seeder
 
         $categories = [
             ['name' => 'Data Centre Insights', 'slug' => 'data-centre-insights', 'description' => 'Facility design, operations, and Nordic infrastructure trends.', 'sort_order' => 1],
-            ['name' => 'Sustainability', 'slug' => 'sustainability', 'description' => 'Renewable energy, PUE optimisation, and green data centre practices.', 'sort_order' => 2],
+            ['name' => 'Operations', 'slug' => 'operations', 'description' => 'Facility operations, PUE optimisation, and data centre best practices.', 'sort_order' => 2],
             ['name' => 'Cloud & Connectivity', 'slug' => 'cloud-connectivity', 'description' => 'Hybrid cloud, cross-connects, and carrier-neutral networking.', 'sort_order' => 3],
             ['name' => 'Security & Compliance', 'slug' => 'security-compliance', 'description' => 'Security frameworks, physical security, and regulatory readiness.', 'sort_order' => 4],
             ['name' => 'Industry News', 'slug' => 'industry-news', 'description' => 'Market updates and VDC800 announcements from across Northern Europe.', 'sort_order' => 5],
@@ -31,16 +31,16 @@ class BlogSeeder extends Seeder
             ['How Free-Air Cooling Cuts Data Centre Energy Use', 0],
             ['Direct Cloud On-Ramps: AWS, Azure and Google Cloud', 2],
             ['Security Compliance: What It Means for Your Workloads', 3],
-            ['Oslo DC-1 Expansion Adds 15MW Renewable Capacity', 4],
+            ['Oslo DC-1 Expansion Adds 15MW Capacity', 4],
             ['PUE Benchmarks: Comparing Nordic vs European Averages', 0],
-            ['100% Renewable Energy Matching Explained', 1],
+            ['How We Deliver 99.999% Uptime SLAs', 1],
             ['Building Carrier-Neutral Meet-Me Rooms', 2],
             ['Biometric Access Control Best Practices', 3],
             ['Liquid Cooling for High-Density AI Racks', 0],
-            ['Carbon Reporting for Enterprise Colocation Clients', 1],
+            ['Capacity Reporting for Enterprise Colocation Clients', 1],
             ['Multi-Cloud Networking Without Internet Transit', 2],
             ['GDPR-Ready Infrastructure for Financial Services', 3],
-            ['VDC800 Partners with Scandinavian Wind Farms', 4],
+            ['VDC800 Expands Nordic Interconnect Footprint', 4],
             ['Remote Hands Support: What to Expect 24/7', 0],
             ['Heat Recovery Systems in Urban Data Centres', 1],
             ['Latency Optimisation for Trading Platforms', 2],
@@ -92,13 +92,13 @@ class BlogSeeder extends Seeder
 
     private function excerpt(string $title): string
     {
-        return "Explore {$title} with practical guidance from VDC800 infrastructure specialists operating sustainable Nordic data centres.";
+        return "Explore {$title} with practical guidance from VDC800 infrastructure specialists operating Nordic data centres.";
     }
 
     private function body(string $title, string $category): string
     {
         return <<<HTML
-<p>{$title} is a critical topic for organisations deploying mission-critical workloads across Northern Europe. At VDC800, we combine engineering discipline with sustainability leadership to help enterprises make informed infrastructure decisions that balance performance, compliance, and environmental responsibility.</p>
+<p>{$title} is a critical topic for organisations deploying mission-critical workloads across Northern Europe. At VDC800, we combine engineering discipline with operational excellence to help enterprises make informed infrastructure decisions that balance performance, compliance, and reliability.</p>
 <p>Modern data centre strategy requires more than rack space — it demands transparent metrics, resilient design, and partnerships that scale with your business. The following overview summarises key benchmarks our clients evaluate when planning colocation, cloud connectivity, and managed services in the {$category} space.</p>
 <h3>Key Metrics at a Glance</h3>
 <table>
@@ -118,10 +118,10 @@ class BlogSeeder extends Seeder
             <td>Nordic climate enables free-air cooling</td>
         </tr>
         <tr>
-            <td>Renewable Energy</td>
-            <td>45%</td>
-            <td>100%</td>
-            <td>Certified hydro and wind matching</td>
+            <td>NOC Coverage</td>
+            <td>Business hours</td>
+            <td>24/7</td>
+            <td>On-site operations and remote hands</td>
         </tr>
         <tr>
             <td>Uptime SLA</td>
@@ -137,7 +137,7 @@ class BlogSeeder extends Seeder
         </tr>
     </tbody>
 </table>
-<p>Organisations adopting these standards report improved operational predictability, lower total cost of ownership, and stronger alignment with corporate sustainability goals. VDC800 publishes real-time environmental data so stakeholders can audit energy consumption alongside traditional availability metrics.</p>
+<p>Organisations adopting these standards report improved operational predictability, lower total cost of ownership, and stronger alignment with enterprise SLAs. VDC800 publishes real-time operational data so stakeholders can audit capacity and availability alongside traditional performance metrics.</p>
 <p>Whether you are evaluating a first colocation deployment or optimising an existing hybrid cloud architecture, our team provides architecture reviews, capacity planning, and hands-on support from our Oslo NOC. Contact VDC800 to discuss how these principles apply to your specific requirements.</p>
 HTML;
     }

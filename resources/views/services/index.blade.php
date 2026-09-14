@@ -24,6 +24,7 @@
                 <article
                     x-data="{ expanded: false }"
                     class="group bg-white rounded-2xl border border-brand-200 overflow-hidden hover:shadow-xl hover:border-brand-teal-200 transition flex flex-col h-full"
+                    data-hover-lift
                     :class="expanded && 'ring-2 ring-brand-teal-500/20 border-brand-teal-200 shadow-lg'"
                 >
                     @if($service->featured_image)

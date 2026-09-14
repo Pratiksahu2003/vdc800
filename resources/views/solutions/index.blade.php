@@ -14,7 +14,7 @@
         @if($solutions->count())
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @foreach($solutions as $solution)
-                    <a href="{{ route('solutions.show', $solution) }}" class="group bg-white rounded-2xl border border-brand-200 p-8 lg:p-10 hover:shadow-xl transition flex gap-6">
+                    <a href="{{ route('solutions.show', $solution) }}" class="group bg-white rounded-2xl border border-brand-200 p-8 lg:p-10 hover:shadow-xl transition flex gap-6" data-hover-lift>
                         <div class="w-14 h-14 rounded-xl bg-brand-teal-100 flex items-center justify-center shrink-0 group-hover:bg-brand-teal-600 transition">
                             <i data-lucide="{{ $solution->icon ?? 'layers' }}" class="w-7 h-7 text-brand-teal-700 group-hover:text-white transition"></i>
                         </div>
