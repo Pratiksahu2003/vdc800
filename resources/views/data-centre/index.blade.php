@@ -4,49 +4,70 @@
 @section('meta_description', 'Explore VDC800 projects and case studies — strategy, design, and infrastructure advisory.')
 
 @section('content')
-<div class="relative bg-[#0b1211]">
-    {{-- Background image + layered gradients --}}
+<div class="relative bg-[#08100f] overflow-hidden">
+
+    {{-- Background image --}}
     <div class="absolute inset-0">
-        <img src="/images/hero-datacenter.jpg" alt="Projects" class="w-full h-full object-cover object-center opacity-25">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0b1211] via-[#0b1211]/90 to-[#0b1211]/40"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0b1211]/80 via-transparent to-transparent"></div>
+        <img src="/images/hero-datacenter.jpg" alt="Projects" class="w-full h-full object-cover object-center opacity-20">
+        {{-- Strong left fade so text always has a dark base --}}
+        <div class="absolute inset-0" style="background: linear-gradient(105deg, #08100f 0%, #08100f 35%, rgba(8,16,15,0.85) 60%, rgba(8,16,15,0.45) 100%);"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(to top, #08100f 0%, transparent 50%);"></div>
     </div>
 
-    {{-- Subtle glowing orb accent --}}
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-teal-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+    {{-- Glowing accent orbs --}}
+    <div class="absolute top-[-80px] right-[10%] w-[420px] h-[420px] bg-brand-teal-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-[20%] w-[300px] h-[200px] bg-brand-mint-400/8 rounded-full blur-[80px] pointer-events-none"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 py-20 lg:py-24">
-            {{-- Left: text --}}
-            <div class="max-w-2xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-teal-500/10 border border-brand-teal-500/30 mb-5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-mint-400 animate-pulse"></span>
-                    <span class="text-brand-mint-400 text-[11px] font-bold tracking-[0.18em] uppercase">Projects & Case Studies</span>
+    {{-- Bottom border accent --}}
+    <div class="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brand-teal-500/40 to-transparent"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-16">
+
+            {{-- Left: text content --}}
+            <div class="flex-1 min-w-0">
+                {{-- Badge --}}
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal-500/10 border border-brand-teal-500/25 mb-6">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-mint-400 animate-pulse flex-shrink-0"></span>
+                    <span class="text-brand-mint-400 text-[11px] font-bold tracking-[0.2em] uppercase">Projects &amp; Case Studies</span>
                 </div>
-                <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.5rem] text-white leading-[1.15] tracking-tight mb-4 pb-1">
-                    Work that moves <br class="hidden sm:block"><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal-400 to-brand-mint-300 inline-block">infrastructure forward.</span>
+
+                {{-- Headline — inline style avoids Tailwind bg-clip-text clipping bug --}}
+                <h1 class="font-display text-white tracking-tight mb-6" style="font-size: clamp(2.25rem, 5vw, 3.5rem); line-height: 1.15;">
+                    Work that moves<br>
+                    <span style="background: linear-gradient(90deg, #4ecca3 0%, #a7f3d0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; padding-bottom: 4px; display: inline-block;">infrastructure forward.</span>
                 </h1>
-                <p class="text-brand-300 text-base sm:text-lg leading-relaxed max-w-xl">
+
+                <p class="text-white/60 text-lg leading-relaxed max-w-lg mb-8">
                     Real-world solutions across critical power, capacity planning, and data centre advisory.
                 </p>
+
+                {{-- Decorative divider --}}
+                <div class="w-16 h-0.5 bg-gradient-to-r from-brand-teal-400 to-transparent rounded-full"></div>
             </div>
 
-            {{-- Right: stat strip --}}
-            <div class="flex flex-row lg:flex-col gap-px lg:gap-0 shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md">
+            {{-- Right: stat cards --}}
+            <div class="flex flex-row lg:flex-col gap-3 shrink-0">
                 @php
                     $stats = [
-                        ['value' => '3+', 'label' => 'Active Projects'],
-                        ['value' => '100%', 'label' => 'Client Satisfaction'],
-                        ['value' => 'MVA', 'label' => 'Scale Delivered'],
+                        ['value' => '3+',   'label' => 'Active Projects',    'icon' => 'folder-open'],
+                        ['value' => '100%', 'label' => 'Client Satisfaction','icon' => 'star'],
+                        ['value' => 'MVA',  'label' => 'Scale Delivered',    'icon' => 'zap'],
                     ];
                 @endphp
                 @foreach($stats as $stat)
-                    <div class="px-6 py-4 lg:border-b border-white/10 last:border-0 text-center lg:text-left min-w-[120px]">
-                        <p class="font-display text-2xl text-white leading-none">{{ $stat['value'] }}</p>
-                        <p class="text-white/50 text-[11px] font-medium tracking-wide uppercase mt-1">{{ $stat['label'] }}</p>
+                    <div class="flex items-center gap-4 px-5 py-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md min-w-[160px] lg:min-w-[180px]">
+                        <div class="w-9 h-9 rounded-lg bg-brand-teal-500/15 border border-brand-teal-500/20 flex items-center justify-center shrink-0">
+                            <i data-lucide="{{ $stat['icon'] }}" class="w-4 h-4 text-brand-mint-400"></i>
+                        </div>
+                        <div>
+                            <p class="font-display text-2xl text-white leading-none font-bold">{{ $stat['value'] }}</p>
+                            <p class="text-white/45 text-[10px] font-semibold tracking-[0.15em] uppercase mt-1">{{ $stat['label'] }}</p>
+                        </div>
                     </div>
                 @endforeach
             </div>
+
         </div>
     </div>
 </div>
