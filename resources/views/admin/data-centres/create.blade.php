@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Add Data Centre')
+@section('title', 'Add Project')
 
 @section('content')
 <div class="max-w-3xl space-y-6">
@@ -9,7 +9,7 @@
             <i data-lucide="arrow-left" class="w-5 h-5"></i>
         </a>
         <div>
-            <h1 class="text-2xl font-semibold text-brand-900">Add Data Centre</h1>
+            <h1 class="text-2xl font-semibold text-brand-900">Add Project</h1>
             <p class="text-sm text-brand-500 mt-1">Create a new facility. You can add specifications and features after saving.</p>
         </div>
     </div>
@@ -17,7 +17,7 @@
     <form method="POST" action="{{ route('admin.data-centres.store') }}" class="bg-white rounded-xl border border-brand-200 p-6 space-y-6">
         @csrf
 
-        @include('admin.components.input', ['name' => 'name', 'label' => 'Facility Name', 'value' => old('name'), 'required' => true])
+        @include('admin.components.input', ['name' => 'name', 'label' => 'Project Name', 'value' => old('name'), 'required' => true])
         @include('admin.components.input', ['name' => 'location', 'label' => 'Location', 'value' => old('location'), 'placeholder' => 'Oslo, Norway'])
         @include('admin.components.input', ['name' => 'country', 'label' => 'Country', 'value' => old('country'), 'placeholder' => 'Norway'])
         @include('admin.components.textarea', ['name' => 'short_description', 'label' => 'Short Description', 'value' => old('short_description'), 'rows' => 3])
@@ -41,7 +41,7 @@
 
         <div class="flex justify-end pt-4 border-t border-brand-200">
             <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-teal-600 hover:bg-brand-teal-700 text-white text-sm font-medium rounded-lg transition">
-                <i data-lucide="plus" class="w-4 h-4"></i> Create Data Centre
+                <i data-lucide="plus" class="w-4 h-4"></i> Create Project
             </button>
         </div>
     </form>

@@ -60,7 +60,7 @@
                     <i data-lucide="layers" class="w-4 h-4"></i> Solutions
                 </a>
                 <a href="{{ route('admin.data-centres.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.data-centres.*')) }}">
-                    <i data-lucide="database" class="w-4 h-4"></i> Data Centre
+                    <i data-lucide="database" class="w-4 h-4"></i> Projects
                 </a>
                 <a href="{{ route('admin.content.about') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.content.about')) }}">
                     <i data-lucide="users" class="w-4 h-4"></i> About Us

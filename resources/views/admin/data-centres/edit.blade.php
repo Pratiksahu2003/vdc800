@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', $dataCentre->name ?? 'Edit Data Centre')
+@section('title', $dataCentre->name ?? 'Edit Project')
 
 @section('content')
 <div class="space-y-6" x-data="{ tab: 'info', specModal: false, featureModal: false, editingSpec: null, editingFeature: null }">
@@ -10,7 +10,7 @@
                 <i data-lucide="arrow-left" class="w-5 h-5"></i>
             </a>
             <div>
-                <h1 class="text-2xl font-semibold text-brand-900">{{ $dataCentre->name ?? 'Data Centre' }}</h1>
+                <h1 class="text-2xl font-semibold text-brand-900">{{ $dataCentre->name ?? 'Project' }}</h1>
                 <p class="text-sm text-brand-500 mt-1">Manage facility information, specifications, and features.</p>
             </div>
         </div>
@@ -35,7 +35,7 @@
         @method('PUT')
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            @include('admin.components.input', ['name' => 'name', 'label' => 'Data Centre Name', 'value' => $dataCentre->name])
+            @include('admin.components.input', ['name' => 'name', 'label' => 'Project Name', 'value' => $dataCentre->name])
             @include('admin.components.input', ['name' => 'slug', 'label' => 'URL Slug', 'value' => $dataCentre->slug])
             @include('admin.components.input', ['name' => 'location', 'label' => 'Location', 'value' => $dataCentre->location])
             @include('admin.components.input', ['name' => 'country', 'label' => 'Country', 'value' => $dataCentre->country])
@@ -91,7 +91,7 @@
 
         <div class="flex justify-end pt-4 border-t border-brand-200">
             <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-teal-600 hover:bg-brand-teal-700 text-white text-sm font-medium rounded-lg transition">
-                <i data-lucide="save" class="w-4 h-4"></i> Save Data Centre
+                <i data-lucide="save" class="w-4 h-4"></i> Save Project
             </button>
         </div>
     </form>

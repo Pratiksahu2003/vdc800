@@ -31,8 +31,8 @@ Route::get('/services', [ServiceController::class, 'index'])->name('services.ind
 Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name('services.show');
 Route::get('/solutions', [SolutionController::class, 'index'])->name('solutions.index');
 Route::get('/solutions/{solution:slug}', [SolutionController::class, 'show'])->name('solutions.show');
-Route::get('/data-centre', [DataCentreController::class, 'index'])->name('data-centre.index');
-Route::get('/data-centre/{dataCentre:slug}', [DataCentreController::class, 'show'])->name('data-centre.show');
+Route::get('/projects', [DataCentreController::class, 'index'])->name('data-centre.index');
+Route::get('/projects/{dataCentre:slug}', [DataCentreController::class, 'show'])->name('data-centre.show');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');

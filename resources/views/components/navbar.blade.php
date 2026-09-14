@@ -198,7 +198,7 @@
                     </x-nav-dropdown-panel>
                 </div>
 
-                <a href="{{ route('data-centre.index') }}" class="text-sm font-medium whitespace-nowrap {{ request()->routeIs('data-centre.*') ? 'text-brand-red-500' : 'text-brand-600 hover:text-brand-teal-600' }} transition">Data Centre</a>
+                <a href="{{ route('data-centre.index') }}" class="text-sm font-medium whitespace-nowrap {{ request()->routeIs('data-centre.*') ? 'text-brand-red-500' : 'text-brand-600 hover:text-brand-teal-600' }} transition">Projects</a>
                 <a href="{{ route('about.index') }}" class="text-sm font-medium whitespace-nowrap {{ request()->routeIs('about.*') ? 'text-brand-red-500' : 'text-brand-600 hover:text-brand-teal-600' }} transition">About</a>
                 <a href="{{ route('contact.index') }}" class="px-4 2xl:px-5 py-2.5 bg-brand-red-500 text-white text-sm font-semibold rounded-sm hover:bg-brand-red-600 transition shadow-sm whitespace-nowrap shrink-0">Contact</a>
             </div>
@@ -310,7 +310,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('data-centre.index') }}" class="block text-brand-700 font-medium py-2.5 hover:text-brand-red-500">Data Centre</a>
+            <a href="{{ route('data-centre.index') }}" class="block text-brand-700 font-medium py-2.5 hover:text-brand-red-500">Projects</a>
             <a href="{{ route('about.index') }}" class="block text-brand-700 font-medium py-2.5 hover:text-brand-red-500">About</a>
             <a href="{{ route('contact.index') }}" class="block text-center mt-4 px-5 py-3 bg-brand-red-500 text-white font-semibold rounded-sm">Contact</a>
         </div>

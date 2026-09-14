@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Centres')
+@section('title', 'Projects')
 
 @section('content')
 <div class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-semibold text-brand-900">Data Centres</h1>
+            <h1 class="text-2xl font-semibold text-brand-900">Projects</h1>
             <p class="text-sm text-brand-500 mt-1">Manage multiple facility pages, specifications, and galleries.</p>
         </div>
         <a href="{{ route('admin.data-centres.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-teal-600 hover:bg-brand-teal-700 text-white text-sm font-medium rounded-lg transition">
-            <i data-lucide="plus" class="w-4 h-4"></i> Add Data Centre
+            <i data-lucide="plus" class="w-4 h-4"></i> Add Project
         </a>
     </div>
 
@@ -81,7 +81,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-12 text-center text-brand-500">No data centres yet. Add your first facility.</td>
+                        <td colspan="5" class="px-6 py-12 text-center text-brand-500">No projects yet. Add your first project.</td>
                     </tr>
                 @endforelse
             </tbody>

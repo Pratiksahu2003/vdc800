@@ -13,7 +13,7 @@
         @foreach([
             ['label' => 'Services', 'value' => $stats['services'], 'icon' => 'server', 'color' => 'bg-brand-teal-500'],
             ['label' => 'Solutions', 'value' => $stats['solutions'], 'icon' => 'layers', 'color' => 'bg-blue-500'],
-            ['label' => 'Data Centres', 'value' => $stats['data_centres'], 'icon' => 'database', 'color' => 'bg-violet-500'],
+            ['label' => 'Projects', 'value' => $stats['data_centres'], 'icon' => 'database', 'color' => 'bg-violet-500'],
             ['label' => 'Contact Enquiries', 'value' => $stats['contact_enquiries'], 'icon' => 'mail', 'color' => 'bg-amber-500'],
         ] as $stat)
             <div class="bg-white rounded-xl border border-brand-200 p-5 flex items-start gap-4">

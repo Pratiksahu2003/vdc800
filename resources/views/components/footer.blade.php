@@ -43,8 +43,8 @@
                             Our Services
                         </a>
                         <a href="{{ route('data-centre.index') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-brand-200 bg-white text-xs font-medium text-brand-700 hover:border-brand-teal-300 hover:text-brand-teal-700 transition">
-                            <i data-lucide="server" class="w-3.5 h-3.5"></i>
-                            Data Centre
+                            <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+                            Projects
                         </a>
                         <a href="{{ route('about.index') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-brand-200 bg-white text-xs font-medium text-brand-700 hover:border-brand-teal-300 hover:text-brand-teal-700 transition">
                             <i data-lucide="building-2" class="w-3.5 h-3.5"></i>
@@ -136,7 +136,7 @@
                     @foreach([
                         ['label' => 'Home', 'url' => route('home')],
                         ['label' => 'About Us', 'url' => route('about.index')],
-                        ['label' => 'Our Data Centre', 'url' => route('data-centre.index')],
+                        ['label' => 'Our Projects', 'url' => route('data-centre.index')],
                         ['label' => 'Blog', 'url' => route('blog.index')],
                         ['label' => 'Contact Us', 'url' => route('contact.index')],
                         ['label' => 'All Services', 'url' => route('services.index')],
@@ -232,7 +232,7 @@
                 <span class="text-brand-300 select-none">·</span>
                 <a href="{{ route('about.index') }}" class="text-brand-500 hover:text-brand-red-500 transition">About</a>
                 <span class="text-brand-300 select-none">·</span>
-                <a href="{{ route('data-centre.index') }}" class="text-brand-500 hover:text-brand-red-500 transition">Data Centre</a>
+                <a href="{{ route('data-centre.index') }}" class="text-brand-500 hover:text-brand-red-500 transition">Projects</a>
                 <span class="text-brand-300 select-none">·</span>
                 <a href="{{ route('blog.index') }}" class="text-brand-500 hover:text-brand-red-500 transition">Blog</a>
                 <span class="text-brand-300 select-none">·</span>
