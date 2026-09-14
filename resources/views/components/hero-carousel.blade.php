@@ -3,10 +3,10 @@
         'category' => $s->category,
         'title' => $s->title,
         'description' => $s->description,
-        'image' => $s->imageUrl(),
         'cta_text' => $s->cta_text,
         'cta_url' => $s->cta_url,
     ])->values();
+    $heroVideo = asset('Video/home-hero.mp4');
 @endphp
 
 <section
@@ -15,33 +15,24 @@
     @mouseenter="stopAutoplay()"
     @mouseleave="slides.length > 1 && startAutoplay()"
 >
-    {{-- Full-bleed premium background images --}}
     <div class="absolute inset-0 z-0 bg-brand-950">
-        <template x-if="slides.length">
-            <template x-for="(slide, index) in slides" :key="'bg-' + index">
-                <div
-                    class="absolute inset-0 transition-opacity duration-[1400ms] ease-in-out"
-                    :class="active === index ? 'opacity-100 z-10' : 'opacity-0 z-0'"
-                >
-                    <img
-                        :src="slide.image"
-                        :alt="slide.title"
-                        class="hero-slide-image absolute inset-0 w-full h-full object-cover"
-                        :class="active === index ? 'hero-slide-image--active' : ''"
-                        :fetchpriority="index === 0 ? 'high' : 'low'"
-                        :loading="index === 0 ? 'eager' : 'lazy'"
-                        decoding="async"
-                    >
-                </div>
-            </template>
-        </template>
-        {{-- Cinematic overlays for text readability --}}
+        <video
+            x-ref="heroVideo"
+            class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            disablepictureinpicture
+        >
+            <source src="{{ $heroVideo }}" type="video/mp4">
+        </video>
         <div class="absolute inset-0 z-20 bg-gradient-to-r from-black/90 via-black/60 to-black/20"></div>
         <div class="absolute inset-0 z-20 bg-gradient-to-t from-black/75 via-black/10 to-black/35"></div>
         <div class="absolute inset-0 z-20 hero-vignette"></div>
     </div>
 
-    {{-- Hero content overlay --}}
     <div class="relative z-30 flex-1 flex items-center pt-6 lg:pt-8 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <template x-if="slides.length">
@@ -86,7 +77,6 @@
         </div>
     </div>
 
-    {{-- Bottom tab navigation --}}
     <div class="relative z-30 border-t border-white/10 bg-black/60 backdrop-blur-sm" x-show="slides.length > 1">
         <div class="max-w-7xl mx-auto">
             <div class="flex overflow-x-auto scrollbar-hide">
@@ -97,7 +87,6 @@
                         class="relative flex-shrink-0 w-1/2 sm:w-1/3 lg:flex-1 min-w-[180px] text-left px-4 lg:px-5 py-4 lg:py-5 border-r border-white/10 last:border-r-0 group transition-colors hover:bg-white/5"
                         :class="active === index ? 'bg-white/5' : ''"
                     >
-                        {{-- Progress bar --}}
                         <div class="absolute top-0 left-0 right-0 h-[3px] bg-white/10 overflow-hidden">
                             <div
                                 class="h-full bg-brand-teal-500 transition-none"

@@ -44,16 +44,7 @@ class UpdateContentCopySeeder extends Seeder
             'sustainability_cta_text' => 'Our Operational Commitment',
         ]);
 
-        HomepageHeroSlide::query()->where('sort_order', 1)->update([
-            'title' => 'VDC800 Oslo DC-1 Delivers 45MW of Enterprise Power',
-            'description' => 'Our flagship Nordic facility delivers 45MW with a PUE of 1.12 — enterprise-grade colocation built for the future of digital infrastructure.',
-        ]);
-
-        HomepageHeroSlide::query()->where('sort_order', 3)->update([
-            'category' => 'Operations',
-            'title' => 'Tier III+ Design Across All Nordic Facilities',
-            'description' => 'Concurrent maintainability, 24/7 NOC monitoring, and published availability metrics for mission-critical workloads.',
-        ]);
+        $this->call(HeroSlideSeeder::class);
 
         HomepageBenefit::query()->where('title', 'Renewable Energy')->update([
             'title' => 'High Availability',

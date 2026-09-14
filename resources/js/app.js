@@ -189,9 +189,22 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
         } catch {
             this.slides = [];
         }
+        this.$nextTick(() => this.ensureMutedPlayback());
         if (this.slides.length > 1) {
             this.startAutoplay();
         }
+    },
+    ensureMutedPlayback() {
+        const video = this.$refs.heroVideo;
+        if (!video) {
+            return;
+        }
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        const play = () => video.play().catch(() => {});
+        play();
+        video.addEventListener('canplay', play, { once: true });
     },
     destroy() {
         this.stopAutoplay();
