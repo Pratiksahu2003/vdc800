@@ -4,46 +4,62 @@
 @section('meta_description', $dataCentre->meta_description ?? $dataCentre->short_description)
 
 @section('content')
-<div class="relative bg-[#0b1211] overflow-hidden min-h-[70vh] flex flex-col justify-end pb-24 pt-40">
+<div class="relative bg-[#0b1211] overflow-hidden">
+    {{-- Background image --}}
     <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-[#0b1211]/60 to-transparent z-10"></div>
-        <img src="{{ hero_image_url($dataCentre->hero_image, 'images/hero-datacenter.jpg') }}" alt="{{ $dataCentre->name }}" class="w-full h-full object-cover opacity-60">
+        <img src="{{ hero_image_url($dataCentre->hero_image, 'images/hero-datacenter.jpg') }}" alt="{{ $dataCentre->name }}" class="w-full h-full object-cover object-center opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0b1211] via-[#0b1211]/85 to-[#0b1211]/50"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0b1211] via-transparent to-transparent"></div>
     </div>
-    
-    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <a href="{{ route('data-centre.index') }}" class="inline-flex items-center gap-2 text-brand-mint-400 hover:text-white text-sm mb-8 transition font-semibold tracking-wide uppercase group">
-            <i data-lucide="arrow-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i> Back to Projects
-        </a>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div class="lg:col-span-8">
+    {{-- Teal glow accent --}}
+    <div class="absolute -top-40 right-20 w-[400px] h-[400px] bg-brand-teal-600/15 rounded-full blur-[90px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Breadcrumb bar --}}
+        <div class="pt-8 pb-0 border-b border-white/10">
+            <a href="{{ route('data-centre.index') }}" class="inline-flex items-center gap-1.5 text-white/50 hover:text-brand-mint-400 text-xs font-semibold tracking-widest uppercase transition group pb-4">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5 transform group-hover:-translate-x-0.5 transition-transform"></i>
+                All Projects
+            </a>
+        </div>
+
+        {{-- Main hero content --}}
+        <div class="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-16 py-14 lg:py-16">
+            {{-- Left: title block --}}
+            <div class="flex-1 min-w-0">
                 @if($dataCentre->location)
-                    <p class="text-white/70 text-sm font-bold tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-                        <span class="w-6 h-[1px] bg-brand-mint-400"></span>
+                    <p class="text-brand-teal-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
                         {{ $dataCentre->location }}@if($dataCentre->country), {{ $dataCentre->country }}@endif
                     </p>
                 @endif
-                <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl mb-6 text-white leading-tight drop-shadow-lg">
-                    {{ $dataCentre->name ?? 'Project Case Study' }}
+                <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.25rem] text-white leading-[1.1] tracking-tight mb-4 max-w-2xl">
+                    {{ $dataCentre->name ?? 'Project Overview' }}
                 </h1>
-                <p class="text-brand-100 text-lg sm:text-2xl max-w-2xl leading-relaxed font-light drop-shadow-md">
+                <p class="text-brand-300 text-base sm:text-lg leading-relaxed max-w-xl font-light">
                     {{ $dataCentre->short_description }}
                 </p>
             </div>
-            
-            <div class="lg:col-span-4 lg:flex lg:flex-col lg:justify-end">
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl">
-                    <p class="text-brand-mint-300 text-xs font-bold uppercase tracking-widest mb-4">Project Highlights</p>
-                    <ul class="space-y-3">
-                        @foreach($specifications->take(3) as $spec)
-                            <li class="flex items-center justify-between text-white border-b border-white/10 pb-2 last:border-0 last:pb-0">
-                                <span class="text-sm opacity-80">{{ $spec->label }}</span>
-                                <span class="font-semibold">{{ $spec->value }}@if($spec->unit) <span class="text-brand-mint-300">{{ $spec->unit }}</span>@endif</span>
-                            </li>
+
+            {{-- Right: specs card --}}
+            @if($specifications->count())
+            <div class="shrink-0 w-full lg:w-72 xl:w-80">
+                <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden">
+                    <div class="px-5 py-3 border-b border-white/10 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-mint-400 animate-pulse"></span>
+                        <p class="text-brand-mint-400 text-[10px] font-bold uppercase tracking-[0.18em]">Key Metrics</p>
+                    </div>
+                    <div class="divide-y divide-white/10">
+                        @foreach($specifications->take(4) as $spec)
+                        <div class="flex items-center justify-between px-5 py-3">
+                            <span class="text-white/55 text-sm">{{ $spec->label }}</span>
+                            <span class="text-white font-semibold text-sm">{{ $spec->value }}@if($spec->unit)<span class="text-brand-mint-300 ml-0.5 text-xs">{{ $spec->unit }}</span>@endif</span>
+                        </div>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

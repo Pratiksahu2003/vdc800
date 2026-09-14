@@ -33,6 +33,10 @@ Route::get('/solutions', [SolutionController::class, 'index'])->name('solutions.
 Route::get('/solutions/{solution:slug}', [SolutionController::class, 'show'])->name('solutions.show');
 Route::get('/projects', [DataCentreController::class, 'index'])->name('data-centre.index');
 Route::get('/projects/{dataCentre:slug}', [DataCentreController::class, 'show'])->name('data-centre.show');
+
+// Legacy redirects — /data-centre → /projects
+Route::redirect('/data-centre', '/projects', 301);
+Route::get('/data-centre/{slug}', fn (string $slug) => redirect("/projects/{$slug}", 301));
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');

@@ -19,7 +19,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.vdc800.com/data-centre</loc>
+    <loc>https://www.vdc800.com/projects</loc>
     <lastmod>2026-09-14T10:08:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -169,13 +169,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.vdc800.com/data-centre/vdc800-oslo-dc-1</loc>
+    <loc>https://www.vdc800.com/projects/vdc800-oslo-dc-1</loc>
     <lastmod>2026-09-14T10:08:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.vdc800.com/data-centre/vdc800-stockholm-dc-2</loc>
+    <loc>https://www.vdc800.com/projects/vdc800-stockholm-dc-2</loc>
     <lastmod>2026-09-14T10:08:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
