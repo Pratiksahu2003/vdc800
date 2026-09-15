@@ -72,6 +72,7 @@
                     </x-nav-dropdown-panel>
                 </div>
 
+                @if(($navSolutionsByCategory ?? collect())->isNotEmpty())
                 {{-- Solutions dropdown --}}
                 <div
                     class="relative shrink-0"
@@ -115,8 +116,6 @@
                                     </ul>
                                 </div>
                             @endforeach
-                        @else
-                            <p class="text-sm text-brand-500">No solutions published yet.</p>
                         @endif
 
                         <x-slot:footer>
@@ -131,7 +130,9 @@
                         </x-slot:footer>
                     </x-nav-dropdown-panel>
                 </div>
+                @endif
 
+                @if(($navBlogByCategory ?? collect())->isNotEmpty())
                 {{-- Blog dropdown --}}
                 <div
                     class="relative shrink-0"
@@ -181,8 +182,6 @@
                                     </ul>
                                 </div>
                             @endforeach
-                        @else
-                            <p class="text-sm text-brand-500">No blog posts published yet.</p>
                         @endif
 
                         <x-slot:footer>
@@ -197,6 +196,7 @@
                         </x-slot:footer>
                     </x-nav-dropdown-panel>
                 </div>
+                @endif
 
                 <a href="{{ route('data-centre.index') }}" class="text-sm font-medium whitespace-nowrap {{ request()->routeIs('data-centre.*') ? 'text-brand-red-500' : 'text-brand-600 hover:text-brand-teal-600' }} transition">Projects</a>
                 <a href="{{ route('about.index') }}" class="text-sm font-medium whitespace-nowrap {{ request()->routeIs('about.*') ? 'text-brand-red-500' : 'text-brand-600 hover:text-brand-teal-600' }} transition">About</a>
@@ -246,6 +246,7 @@
                 </div>
             </div>
 
+            @if(($navSolutionsByCategory ?? collect())->isNotEmpty())
             {{-- Mobile Solutions --}}
             <div class="border-b border-brand-100 pb-2">
                 <button
@@ -268,15 +269,15 @@
                                 @endforeach
                             </div>
                         </div>
-                    @empty
-                        <p class="text-sm text-brand-500">No solutions published yet.</p>
                     @endforelse
                     <a href="{{ route('solutions.index') }}" @click="open = false" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red-500 pt-1">
                         View All Solutions <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
             </div>
+            @endif
 
+            @if(($navBlogByCategory ?? collect())->isNotEmpty())
             {{-- Mobile Blog --}}
             <div class="border-b border-brand-100 pb-2">
                 <button
@@ -301,14 +302,13 @@
                                 @endforeach
                             </div>
                         </div>
-                    @empty
-                        <p class="text-sm text-brand-500">No blog posts published yet.</p>
                     @endforelse
                     <a href="{{ route('blog.index') }}" @click="open = false" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red-500 pt-1">
                         View All Articles <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
             </div>
+            @endif
 
             <a href="{{ route('data-centre.index') }}" class="block text-brand-700 font-medium py-2.5 hover:text-brand-red-500">Projects</a>
             <a href="{{ route('about.index') }}" class="block text-brand-700 font-medium py-2.5 hover:text-brand-red-500">About</a>
