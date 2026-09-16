@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
 
         $benefits = [
             ['title' => 'High Availability', 'description' => 'Tier III+ design with concurrent maintainability and 99.999% uptime SLA.', 'icon' => 'activity', 'sort_order' => 1],
-            ['title' => 'Nordic Reliability', 'description' => 'Cool climate reduces cooling costs and enables industry-leading PUE ratings.', 'icon' => 'snowflake', 'sort_order' => 2],
+            ['title' => 'Ready for AI at Scale', 'description' => 'Power, connectivity, and infrastructure designed to support the next generation of AI and high-performance computing.', 'icon' => 'brain-circuit', 'sort_order' => 2],
             ['title' => 'Carrier Neutral', 'description' => 'Connect to 40+ carriers and cloud on-ramps from a single cross-connect.', 'icon' => 'network', 'sort_order' => 3],
             ['title' => 'Enterprise Security', 'description' => 'Multi-layer physical and cyber security protecting your most critical workloads.', 'icon' => 'shield-check', 'sort_order' => 4],
         ];

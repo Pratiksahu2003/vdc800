@@ -258,7 +258,7 @@
                     <i data-lucide="chevron-down" class="w-4 h-4 transition-transform" :class="mobileSolutionsOpen && 'rotate-180'"></i>
                 </button>
                 <div x-show="mobileSolutionsOpen" x-cloak x-transition class="mt-2 space-y-4 pl-1">
-                    @forelse($navSolutionsByCategory ?? [] as $category => $categorySolutions)
+                    @foreach($navSolutionsByCategory as $category => $categorySolutions)
                         <div>
                             <p class="text-xs font-bold text-brand-900 uppercase tracking-wide mb-2">{{ $category }}</p>
                             <div class="space-y-1.5 pl-2 border-l-2 border-brand-teal-100">
@@ -269,7 +269,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforelse
+                    @endforeach
                     <a href="{{ route('solutions.index') }}" @click="open = false" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red-500 pt-1">
                         View All Solutions <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </a>
@@ -289,7 +289,7 @@
                     <i data-lucide="chevron-down" class="w-4 h-4 transition-transform" :class="mobileBlogOpen && 'rotate-180'"></i>
                 </button>
                 <div x-show="mobileBlogOpen" x-cloak x-transition class="mt-2 space-y-4 pl-1">
-                    @forelse($navBlogByCategory ?? [] as $group)
+                    @foreach($navBlogByCategory as $group)
                         <div>
                             <a href="{{ route('blog.index', ['category' => $group['slug']]) }}" @click="open = false" class="text-xs font-bold text-brand-900 uppercase tracking-wide mb-2 block hover:text-brand-teal-700">
                                 {{ $group['name'] }}
@@ -302,7 +302,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforelse
+                    @endforeach
                     <a href="{{ route('blog.index') }}" @click="open = false" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red-500 pt-1">
                         View All Articles <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </a>

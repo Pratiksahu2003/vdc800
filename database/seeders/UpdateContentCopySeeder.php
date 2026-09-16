@@ -52,6 +52,16 @@ class UpdateContentCopySeeder extends Seeder
             'icon' => 'activity',
         ]);
 
+        HomepageBenefit::query()->where('title', 'Nordic Reliability')->update([
+            'title' => 'Ready for AI at Scale',
+            'description' => 'Power, connectivity, and infrastructure designed to support the next generation of AI and high-performance computing.',
+            'icon' => 'brain-circuit',
+        ]);
+
+        HomepageBenefit::query()->where('icon', 'AI')->update([
+            'icon' => 'brain-circuit',
+        ]);
+
         HomepageStatistic::query()->where('label', 'Renewable Energy')->update([
             'number' => '24/7',
             'label' => 'NOC Coverage',
