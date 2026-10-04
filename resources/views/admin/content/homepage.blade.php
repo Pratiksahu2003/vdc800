@@ -59,7 +59,8 @@
                 @include('admin.components.input', ['name' => 'infrastructure_cta_text', 'label' => 'Link text', 'value' => $homepage->infrastructure_cta_text])
                 @include('admin.components.input', ['name' => 'infrastructure_cta_url', 'label' => 'Link URL', 'value' => $homepage->infrastructure_cta_url])
             </div>
-            @include('admin.components.image-upload', ['name' => 'infrastructure_image', 'label' => 'Feature image (left)', 'existing' => $homepage->infrastructure_image])
+            @include('admin.components.image-upload', ['name' => 'infrastructure_image', 'label' => 'Video poster (optional)', 'existing' => $homepage->infrastructure_image])
+            <p class="text-xs text-brand-500 -mt-2 mb-4">The colocation band plays <code class="text-brand-700">Video/d3-sec.mp4</code> on the left; upload a poster image shown before the video loads.</p>
         </div>
 
         <div x-show="tab === 'cta'" x-cloak class="space-y-4">

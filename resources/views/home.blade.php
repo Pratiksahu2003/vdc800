@@ -5,8 +5,9 @@
 
 @section('content')
 <div>
-    @include('components.equinix-hero', ['heroSlides' => $heroSlides, 'homepage' => $homepage])
+    @include('components.equinix-hero', ['heroSlides' => $heroSlides, 'homepage' => $homepage, 'statistics' => $statistics])
 
+    <div id="home-continue" class="scroll-mt-0" tabindex="-1"></div>
     @include('components.equinix-promo-strip')
 
     @include('components.equinix-tab-showcase', ['benefits' => $benefits, 'homepage' => $homepage])

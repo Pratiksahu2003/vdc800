@@ -25,10 +25,14 @@ export function initPublicUi() {
         const ctas = hero.querySelectorAll('[data-eq-hero-cta]');
         const media = hero.querySelector('[data-eq-hero-media]');
         gsap.timeline({ defaults: { ease: 'power4.out' } })
-            .from(lines, { y: 72, autoAlpha: 0, duration: 1.05, stagger: 0.12 })
-            .from(ctas, { y: 24, autoAlpha: 0, duration: 0.75, stagger: 0.08 }, '-=0.55');
+            .from(lines, { y: 56, autoAlpha: 0, duration: 1.1, stagger: 0.1 })
+            .from(ctas, { y: 20, autoAlpha: 0, duration: 0.8, stagger: 0.06 }, '-=0.5');
         if (media) {
-            gsap.fromTo(media, { scale: 1.08 }, { scale: 1, duration: 2.4, ease: 'power2.out' });
+            const video = media.querySelector('video');
+            gsap.fromTo(media, { scale: 1.06 }, { scale: 1, duration: 2.8, ease: 'power2.out' });
+            if (video) {
+                gsap.fromTo(video, { scale: 1.12 }, { scale: 1.02, duration: 3.2, ease: 'power2.out' });
+            }
         }
     }
 

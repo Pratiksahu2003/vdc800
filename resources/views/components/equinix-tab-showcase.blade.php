@@ -8,7 +8,7 @@
             (object) ['title' => 'Intelligence can\'t wait', 'description' => 'Nordic-grade proximity puts critical workloads within milliseconds of the compute they need to scale.', 'icon' => 'zap'],
         ]);
     }
-    $image = $homepage->intro_image ? Storage::url($homepage->intro_image) : asset('images/data-centre-facility.jpg');
+    $image = asset('images/home-insights-panel.png');
 @endphp
 
 <section class="py-20 lg:py-28 bg-white" data-eq-reveal x-data="{ active: 0 }">
@@ -25,7 +25,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div class="lg:col-span-5 relative overflow-hidden min-h-[280px] lg:min-h-[420px]" data-eq-parallax>
-                <img src="{{ $image }}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+                <img src="{{ $image }}" alt="Data centre infrastructure" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-brand-950/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
                     @foreach($tabs as $index => $tab)
