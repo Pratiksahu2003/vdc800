@@ -159,36 +159,17 @@
                         <i data-lucide="chevron-down" class="admin-sidebar__module-chevron" :class="open['{{ $section['id'] }}'] && 'is-open'"></i>
                     </button>
                     <div x-show="open['{{ $section['id'] }}']" x-cloak class="admin-sidebar__module-body">
-                        @if(isset($section['groups']))
-                            @foreach($section['groups'] as $group)
-                                <div class="admin-sidebar__subgroup">
-                                    <p class="admin-sidebar__group-label">{{ $group['label'] }}</p>
-                                    <div class="admin-sidebar__links">
-                                        @foreach($group['items'] as $item)
-                                            <x-admin.nav-link
-                                                :href="$item['href']"
-                                                :icon="$item['icon']"
-                                                :label="$item['label']"
-                                                :active="$item['active']"
-                                                nested
-                                            />
-                                        @endforeach
-                                    </div>
-                                </div>
+                        <div class="admin-sidebar__links admin-sidebar__links--nested">
+                            @foreach($section['items'] as $item)
+                                <x-admin.nav-link
+                                    :href="$item['href']"
+                                    :icon="$item['icon']"
+                                    :label="$item['label']"
+                                    :active="$item['active']"
+                                    nested
+                                />
                             @endforeach
-                        @else
-                            <div class="admin-sidebar__links admin-sidebar__links--nested">
-                                @foreach($section['items'] as $item)
-                                    <x-admin.nav-link
-                                        :href="$item['href']"
-                                        :icon="$item['icon']"
-                                        :label="$item['label']"
-                                        :active="$item['active']"
-                                        nested
-                                    />
-                                @endforeach
-                            </div>
-                        @endif
+                        </div>
                     </div>
                 @else
                     @if(count($section['items']) === 1 && ($section['id'] ?? '') === 'overview')

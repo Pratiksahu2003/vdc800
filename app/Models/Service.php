@@ -34,12 +34,4 @@ class Service extends Model
     {
         return $query->where('status', 'published')->orderBy('sort_order');
     }
-
-    public static function groupedForNav()
-    {
-        return static::published()
-            ->get(['id', 'title', 'slug', 'category', 'sort_order'])
-            ->groupBy(fn (self $service) => $service->category ?: 'Other Services')
-            ->sortKeys();
-    }
 }

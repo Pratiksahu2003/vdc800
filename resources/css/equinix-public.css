@@ -228,11 +228,6 @@
     box-shadow: 0 4px 24px rgb(15 23 42 / 0.06);
 }
 
-.equinix-public .eq-nav-cta {
-    border-radius: var(--eq-radius);
-    @apply px-5 py-2.5 bg-brand-teal-600 text-white text-sm font-semibold hover:bg-brand-teal-700 transition;
-}
-
 .equinix-public .eq-nav-link {
     @apply relative inline-flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-medium text-brand-800 rounded-lg transition-colors whitespace-nowrap;
 }
@@ -495,18 +490,6 @@
 
 html.eq-menu-open {
     overflow: hidden;
-}
-
-.eq-fullmenu {
-    -webkit-overflow-scrolling: touch;
-}
-
-.eq-menu-link {
-    @apply text-lg font-bold text-brand-900 hover:text-brand-teal-700 transition block;
-}
-
-.eq-menu-sublink {
-    @apply text-base text-brand-600 hover:text-brand-teal-700 transition block;
 }
 
 .eq-promo-cell {

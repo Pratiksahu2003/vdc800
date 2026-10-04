@@ -80,14 +80,6 @@
     @apply mt-0.5 ml-2 pl-3 border-l-2 border-brand-200/70 space-y-2 pb-1;
 }
 
-.admin-sidebar__subgroup {
-    @apply pt-1;
-}
-
-.admin-sidebar__group-label {
-    @apply px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-brand-400;
-}
-
 .admin-sidebar__links {
     @apply space-y-0.5;
 }

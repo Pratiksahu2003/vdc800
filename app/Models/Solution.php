@@ -31,28 +31,4 @@ class Solution extends Model
     {
         return $query->where('status', 'published')->orderBy('sort_order');
     }
-
-    public static function groupedForNav()
-    {
-        $solutions = static::published()->get(['id', 'title', 'slug', 'sort_order']);
-
-        if ($solutions->isEmpty()) {
-            return collect();
-        }
-
-        $labels = [
-            'Regulated Industries',
-            'Digital & Media',
-            'Enterprise & Research',
-        ];
-
-        $perColumn = (int) max(1, ceil($solutions->count() / count($labels)));
-
-        return $solutions
-            ->chunk($perColumn)
-            ->values()
-            ->mapWithKeys(fn ($chunk, $index) => [
-                $labels[$index] ?? 'More Solutions' => $chunk->values(),
-            ]);
-    }
 }

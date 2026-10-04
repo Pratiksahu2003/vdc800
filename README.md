@@ -229,7 +229,7 @@ D³ DataCenters/
 │   └── helpers.php           # settings(), logo_url(), favicon_url(), etc.
 ├── database/
 │   ├── migrations/
-│   └── seeders/              # DatabaseSeeder, BlogSeeder, ServiceSolutionSeeder
+│   └── seeders/              # DatabaseSeeder, ContentSeeder, Service/Solution seeders
 ├── public/
 │   ├── Logo/                 # Static logo & favicon.ico
 │   ├── images/               # Hero, service, solution, blog images

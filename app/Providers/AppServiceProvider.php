@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\BlogCategory;
 use App\Models\NavMenuItem;
 use App\Models\Service;
 use App\Models\Solution;
@@ -30,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-        View::composer(['components.footer', 'layouts.app', 'components.navbar'], function ($view) {
+        View::composer(['components.footer', 'layouts.app'], function ($view) {
             $view->with([
                 'footerServices' => Service::where('status', 'published')
                     ->orderByDesc('updated_at')
@@ -42,9 +41,6 @@ class AppServiceProvider extends ServiceProvider
                     ->get(['id', 'title', 'slug']),
                 'sitemapServices' => Service::published()->get(['id', 'title', 'slug']),
                 'sitemapSolutions' => Solution::published()->get(['id', 'title', 'slug']),
-                'navServicesByCategory' => Service::groupedForNav(),
-                'navSolutionsByCategory' => Solution::groupedForNav(),
-                'navBlogByCategory' => BlogCategory::groupedForNav(),
             ]);
         });
     }
