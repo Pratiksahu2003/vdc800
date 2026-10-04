@@ -1,100 +1,181 @@
+@php
+    $sections = [
+        [
+            'id' => 'overview',
+            'title' => 'Overview',
+            'collapsible' => false,
+            'items' => [
+                [
+                    'href' => route('admin.dashboard'),
+                    'label' => 'Dashboard',
+                    'icon' => 'layout-dashboard',
+                    'active' => request()->routeIs('admin.dashboard'),
+                ],
+            ],
+        ],
+        [
+            'id' => 'settings',
+            'title' => 'Site settings',
+            'collapsible' => true,
+            'defaultOpen' => request()->routeIs('admin.settings.*'),
+            'items' => [
+                ['href' => route('admin.settings.company'), 'label' => 'Company', 'icon' => 'building-2', 'active' => request()->routeIs('admin.settings.company')],
+                ['href' => route('admin.settings.branding'), 'label' => 'Branding', 'icon' => 'palette', 'active' => request()->routeIs('admin.settings.branding')],
+                ['href' => route('admin.settings.website'), 'label' => 'Website SEO', 'icon' => 'globe', 'active' => request()->routeIs('admin.settings.website')],
+                ['href' => route('admin.settings.social-links'), 'label' => 'Social links', 'icon' => 'share-2', 'active' => request()->routeIs('admin.settings.social-links')],
+            ],
+        ],
+        [
+            'id' => 'content',
+            'title' => 'Content',
+            'collapsible' => true,
+            'defaultOpen' => request()->routeIs(
+                'admin.content.*',
+                'admin.services.*',
+                'admin.solutions.*',
+                'admin.data-centres.*',
+                'admin.blog-*'
+            ),
+            'groups' => [
+                [
+                    'label' => 'Pages',
+                    'items' => [
+                        ['href' => route('admin.content.homepage'), 'label' => 'Homepage', 'icon' => 'home', 'active' => request()->routeIs('admin.content.homepage')],
+                        ['href' => route('admin.content.about'), 'label' => 'About us', 'icon' => 'users', 'active' => request()->routeIs('admin.content.about')],
+                    ],
+                ],
+                [
+                    'label' => 'Catalog',
+                    'items' => [
+                        ['href' => route('admin.services.index'), 'label' => 'Services', 'icon' => 'server', 'active' => request()->routeIs('admin.services.*')],
+                        ['href' => route('admin.solutions.index'), 'label' => 'Solutions', 'icon' => 'layers', 'active' => request()->routeIs('admin.solutions.*')],
+                        ['href' => route('admin.data-centres.index'), 'label' => 'Data centers', 'icon' => 'database', 'active' => request()->routeIs('admin.data-centres.*')],
+                    ],
+                ],
+                [
+                    'label' => 'Blog',
+                    'items' => [
+                        ['href' => route('admin.blog-posts.index'), 'label' => 'Blog posts', 'icon' => 'newspaper', 'active' => request()->routeIs('admin.blog-posts.*')],
+                        ['href' => route('admin.blog-categories.index'), 'label' => 'Categories', 'icon' => 'folder-open', 'active' => request()->routeIs('admin.blog-categories.*')],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'id' => 'engagement',
+            'title' => 'Engagement',
+            'collapsible' => false,
+            'items' => [
+                [
+                    'href' => route('admin.contact-submissions.index'),
+                    'label' => 'Contact submissions',
+                    'icon' => 'inbox',
+                    'active' => request()->routeIs('admin.contact-submissions.*'),
+                ],
+            ],
+        ],
+        [
+            'id' => 'system',
+            'title' => 'System',
+            'collapsible' => false,
+            'items' => [
+                ['href' => route('admin.media.index'), 'label' => 'Media library', 'icon' => 'image', 'active' => request()->routeIs('admin.media.*')],
+                ['href' => route('admin.profile'), 'label' => 'Profile', 'icon' => 'user-circle', 'active' => request()->routeIs('admin.profile')],
+            ],
+        ],
+    ];
+
+    $initialOpen = collect($sections)
+        ->filter(fn ($s) => $s['collapsible'] ?? false)
+        ->mapWithKeys(fn ($s) => [$s['id'] => $s['defaultOpen'] ?? false])
+        ->all();
+@endphp
+
 <aside
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-    class="fixed inset-y-0 left-0 z-50 w-72 bg-white text-brand-700 border-r border-brand-200 shadow-sm transform transition-transform duration-200 ease-in-out lg:translate-x-0 flex flex-col"
+    class="admin-sidebar fixed inset-y-0 left-0 z-50 w-[17.5rem] flex flex-col transform transition-transform duration-200 ease-out lg:translate-x-0"
 >
-    <div class="flex items-center justify-between h-16 px-4 border-b border-brand-200 bg-white">
-        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2 min-w-0">
-            <x-logo :link="false" class="h-7 w-auto" />
+    <div class="admin-sidebar__head">
+        <a href="{{ route('admin.dashboard') }}" class="admin-sidebar__brand min-w-0">
+            <x-logo :link="false" class="h-7 w-auto brightness-0 invert opacity-95" />
         </a>
-        <button @click="sidebarOpen = false" class="lg:hidden text-brand-500 hover:text-brand-900 shrink-0">
+        <span class="admin-sidebar__badge">Admin</span>
+        <button type="button" @click="sidebarOpen = false" class="admin-sidebar__close lg:hidden" aria-label="Close menu">
             <i data-lucide="x" class="w-5 h-5"></i>
         </button>
     </div>
 
-    @php
-        $navLink = fn (bool $active, string $activeStyle = 'teal') => $active
-            ? ($activeStyle === 'red' ? 'bg-brand-red-50 text-brand-red-600 font-medium' : 'bg-brand-teal-50 text-brand-teal-700 font-medium')
-            : 'text-brand-600 hover:bg-brand-50 hover:text-brand-900';
-    @endphp
-
-    <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-6" x-data="{ website: {{ request()->routeIs('admin.settings.*') ? 'true' : 'false' }}, content: {{ request()->routeIs('admin.content.*', 'admin.services.*', 'admin.solutions.*', 'admin.data-centres.*', 'admin.blog-*') ? 'true' : 'false' }} }">
-        <div>
-            <p class="px-3 text-xs font-semibold text-brand-teal-600 uppercase tracking-wider mb-2">Main</p>
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.dashboard'), 'red') }}">
-                <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
-            </a>
-        </div>
-
-        <div>
-            <button @click="website = !website" class="flex items-center justify-between w-full px-3 text-xs font-semibold text-brand-teal-600 uppercase tracking-wider mb-2">
-                Website <i data-lucide="chevron-down" class="w-3 h-3 transition-transform" :class="website && 'rotate-180'"></i>
-            </button>
-            <div x-show="website" class="space-y-1">
-                <a href="{{ route('admin.settings.company') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.settings.company')) }}">
-                    <i data-lucide="building-2" class="w-4 h-4"></i> Company
-                </a>
-                <a href="{{ route('admin.settings.branding') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.settings.branding')) }}">
-                    <i data-lucide="palette" class="w-4 h-4"></i> Branding
-                </a>
-                <a href="{{ route('admin.settings.website') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.settings.website')) }}">
-                    <i data-lucide="globe" class="w-4 h-4"></i> Website SEO
-                </a>
-                <a href="{{ route('admin.settings.social-links') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.settings.social-links')) }}">
-                    <i data-lucide="share-2" class="w-4 h-4"></i> Social Links
-                </a>
+    <nav
+        class="admin-sidebar__nav flex-1 overflow-y-auto overscroll-contain"
+        x-data="{ open: @js($initialOpen) }"
+        aria-label="Admin navigation"
+    >
+        @foreach($sections as $section)
+            <div class="admin-sidebar__section">
+                @if($section['collapsible'] ?? false)
+                    <button
+                        type="button"
+                        class="admin-sidebar__section-toggle"
+                        @click="open['{{ $section['id'] }}'] = !open['{{ $section['id'] }}']"
+                        :aria-expanded="open['{{ $section['id'] }}']"
+                    >
+                        <span>{{ $section['title'] }}</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200" :class="open['{{ $section['id'] }}'] && 'rotate-180'"></i>
+                    </button>
+                    <div x-show="open['{{ $section['id'] }}']" x-cloak class="admin-sidebar__section-body">
+                        @if(isset($section['groups']))
+                            @foreach($section['groups'] as $group)
+                                <p class="admin-sidebar__group-label">{{ $group['label'] }}</p>
+                                <div class="admin-sidebar__links">
+                                    @foreach($group['items'] as $item)
+                                        <x-admin.nav-link
+                                            :href="$item['href']"
+                                            :icon="$item['icon']"
+                                            :label="$item['label']"
+                                            :active="$item['active']"
+                                            nested
+                                        />
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="admin-sidebar__links">
+                                @foreach($section['items'] as $item)
+                                    <x-admin.nav-link
+                                        :href="$item['href']"
+                                        :icon="$item['icon']"
+                                        :label="$item['label']"
+                                        :active="$item['active']"
+                                        nested
+                                    />
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @else
+                    <p class="admin-sidebar__section-label">{{ $section['title'] }}</p>
+                    <div class="admin-sidebar__links">
+                        @foreach($section['items'] as $item)
+                            <x-admin.nav-link
+                                :href="$item['href']"
+                                :icon="$item['icon']"
+                                :label="$item['label']"
+                                :active="$item['active']"
+                            />
+                        @endforeach
+                    </div>
+                @endif
             </div>
-        </div>
-
-        <div>
-            <button @click="content = !content" class="flex items-center justify-between w-full px-3 text-xs font-semibold text-brand-teal-600 uppercase tracking-wider mb-2">
-                Content <i data-lucide="chevron-down" class="w-3 h-3 transition-transform" :class="content && 'rotate-180'"></i>
-            </button>
-            <div x-show="content" class="space-y-1">
-                <a href="{{ route('admin.content.homepage') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.content.homepage')) }}">
-                    <i data-lucide="home" class="w-4 h-4"></i> Homepage
-                </a>
-                <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.services.*')) }}">
-                    <i data-lucide="server" class="w-4 h-4"></i> Services
-                </a>
-                <a href="{{ route('admin.solutions.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.solutions.*')) }}">
-                    <i data-lucide="layers" class="w-4 h-4"></i> Solutions
-                </a>
-                <a href="{{ route('admin.data-centres.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.data-centres.*')) }}">
-                    <i data-lucide="database" class="w-4 h-4"></i> Projects
-                </a>
-                <a href="{{ route('admin.content.about') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.content.about')) }}">
-                    <i data-lucide="users" class="w-4 h-4"></i> About Us
-                </a>
-                <a href="{{ route('admin.blog-posts.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.blog-posts.*')) }}">
-                    <i data-lucide="newspaper" class="w-4 h-4"></i> Blog Posts
-                </a>
-                <a href="{{ route('admin.blog-categories.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.blog-categories.*')) }}">
-                    <i data-lucide="folder-open" class="w-4 h-4"></i> Blog Categories
-                </a>
-            </div>
-        </div>
-
-        <div>
-            <p class="px-3 text-xs font-semibold text-brand-teal-600 uppercase tracking-wider mb-2">Leads</p>
-            <a href="{{ route('admin.contact-submissions.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.contact-submissions.*'), 'red') }}">
-                <i data-lucide="mail" class="w-4 h-4"></i> Contact Submissions
-            </a>
-        </div>
-
-        <div>
-            <p class="px-3 text-xs font-semibold text-brand-teal-600 uppercase tracking-wider mb-2">System</p>
-            <a href="{{ route('admin.media.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.media.*')) }}">
-                <i data-lucide="image" class="w-4 h-4"></i> Media
-            </a>
-            <a href="{{ route('admin.profile') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm {{ $navLink(request()->routeIs('admin.profile')) }}">
-                <i data-lucide="user" class="w-4 h-4"></i> Profile
-            </a>
-        </div>
+        @endforeach
     </nav>
 
-    <div class="p-4 border-t border-brand-200 bg-brand-50/50">
-        <p class="text-xs text-brand-500 text-center">VDC800 CMS</p>
+    <div class="admin-sidebar__foot">
+        <a href="{{ route('home') }}" target="_blank" rel="noopener noreferrer" class="admin-sidebar__foot-link">
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+            View website
+        </a>
+        <p class="admin-sidebar__foot-meta">{{ settings('company.company_name') ?? 'D³ DataCenters' }} CMS</p>
     </div>
 </aside>
 
-<div x-show="sidebarOpen" x-cloak @click="sidebarOpen = false" class="fixed inset-0 bg-black/30 z-40 lg:hidden"></div>
+<div x-show="sidebarOpen" x-cloak @click="sidebarOpen = false" class="fixed inset-0 z-40 bg-brand-950/60 backdrop-blur-sm lg:hidden" aria-hidden="true"></div>

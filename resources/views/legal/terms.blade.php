@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Terms of Service — ' . (settings('company.company_name') ?? 'VDC800'))
-@section('meta_description', 'Read the VDC800 website terms of service covering acceptable use, intellectual property, liability, and governing law.')
+@section('title', 'Terms of Service — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
+@section('meta_description', 'Read the D³ DataCenters website terms of service covering acceptable use, intellectual property, liability, and governing law.')
 
 @section('content')
 @php
-    $company = settings('company.company_name') ?? 'VDC800';
-    $email = settings('company.email') ?? 'hello@vdc800.com';
+    $company = settings('company.company_name') ?? 'D³ DataCenters';
+    $email = settings('company.email') ?? 'hello@d3.vedmint.com';
 @endphp
 
 <x-legal-page
     title="Terms of Service"
-    description="The terms and conditions governing your access to and use of the VDC800 website and related digital services."
+    description="The terms and conditions governing your access to and use of the D³ DataCenters website and related digital services."
     :last-updated="$lastUpdated"
 >
     <section id="acceptance">
@@ -59,7 +59,7 @@
             All content on this website — including text, graphics, logos, images, software, and design elements — is owned by or licensed to {{ $company }} and protected by intellectual property laws.
             You may view and download content for personal or internal business reference only. You may not copy, modify, distribute, sell, or create derivative works without our prior written consent.
         </p>
-        <p>The VDC800 name, logo, and related branding may not be used without express permission.</p>
+        <p>The D³ DataCenters name, logo, and related branding may not be used without express permission.</p>
     </section>
 
     <section id="third-party-links">

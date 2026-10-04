@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#8cc63f">
-    <title>@yield('title', 'Admin') — {{ settings('company.company_name') ?? 'VDC800' }} CMS</title>
+    <title>@yield('title', 'Admin') — {{ settings('company.company_name') ?? 'D³ DataCenters' }} CMS</title>
     @include('components.favicon')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans bg-white text-brand-800 antialiased" x-data="{ sidebarOpen: false }" @keydown.escape.window="sidebarOpen = false">
+<body class="font-sans bg-brand-50 text-brand-800 antialiased" x-data="{ sidebarOpen: false }" @keydown.escape.window="sidebarOpen = false">
     @include('admin.components.sidebar')
     @include('admin.components.header')
 
-    <div class="lg:pl-72 min-h-screen bg-white">
-        <main class="p-4 sm:p-6 lg:p-8 bg-white">
+    <div class="admin-main-shell">
+        <main class="p-4 sm:p-6 lg:p-8">
             @if(session('success'))
                 <div data-flash="success" class="hidden">{{ session('success') }}</div>
             @endif

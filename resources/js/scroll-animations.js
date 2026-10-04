@@ -247,7 +247,7 @@ function initStatCounters(root) {
             duration: 1.5,
             ease: 'power2.out',
             scrollTrigger: {
-                trigger: el.closest('[data-reveal-child]') ?? el,
+                trigger: el,
                 start: 'top 90%',
                 toggleActions: 'play none none none',
                 once: true,
@@ -323,12 +323,7 @@ export function initScrollAnimations() {
 
     initNavbarScroll();
     initHeroEntrances(root);
-    initRevealElements(root);
-    initAutoGridStaggers(root);
-    initParallax(root);
     initStatCounters(root);
-    initHoverLift(root);
-    initFooterReveals();
 
     ScrollTrigger.refresh();
 }

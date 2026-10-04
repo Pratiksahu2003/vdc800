@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Cookie Policy — ' . (settings('company.company_name') ?? 'VDC800'))
-@section('meta_description', 'Understand how VDC800 uses cookies and similar technologies on our website, and how you can manage your preferences.')
+@section('title', 'Cookie Policy — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
+@section('meta_description', 'Understand how D³ DataCenters uses cookies and similar technologies on our website, and how you can manage your preferences.')
 
 @section('content')
 @php
-    $company = settings('company.company_name') ?? 'VDC800';
-    $email = settings('company.email') ?? 'hello@vdc800.com';
+    $company = settings('company.company_name') ?? 'D³ DataCenters';
+    $email = settings('company.email') ?? 'hello@d3.vedmint.com';
 @endphp
 
 <x-legal-page

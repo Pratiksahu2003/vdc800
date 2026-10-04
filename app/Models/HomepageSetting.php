@@ -12,7 +12,8 @@ class HomepageSetting extends Model
         'intro_heading', 'intro_description', 'intro_image',
         'sustainability_heading', 'sustainability_description', 'sustainability_image',
         'sustainability_cta_text', 'sustainability_cta_url',
-        'infrastructure_heading', 'infrastructure_description', 'infrastructure_image',
+        'infrastructure_heading', 'infrastructure_heading_emphasis', 'infrastructure_description',
+        'infrastructure_image', 'infrastructure_cta_text', 'infrastructure_cta_url',
         'final_cta_heading', 'final_cta_description', 'final_cta_button_text', 'final_cta_button_url',
     ];
 

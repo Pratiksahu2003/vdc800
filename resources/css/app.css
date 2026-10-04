@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import './equinix-public.css';
+@import './admin.css';
 @plugin '@tailwindcss/forms';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -7,11 +9,11 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
     --site-header-height: 4.75rem;
 
-    /* VDC800 brand — from logo */
+    /* D³ DataCenters brand — from logo */
     --color-brand-red-50: #f4fae8;
     --color-brand-red-100: #e6f3cf;
     --color-brand-red-200: #cce7a0;
@@ -81,16 +83,8 @@ html {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    [data-reveal],
-    [data-reveal-child],
-    [data-reveal-text],
-    [data-reveal-media],
     [data-page-hero-content] > * {
         will-change: transform, opacity;
-    }
-
-    [data-hover-lift] {
-        will-change: transform;
     }
 }
 
@@ -284,38 +278,6 @@ html {
 .legal-content th { background: var(--color-brand-100); font-weight: 600; color: var(--color-brand-900); }
 .legal-content tr:nth-child(even) td { background: var(--color-brand-50); }
 
-/* Brand utilities */
-.brand-gradient {
-    background: linear-gradient(135deg, var(--color-brand-teal-700) 0%, var(--color-brand-teal-500) 40%, var(--color-brand-red-500) 100%);
-}
-
-.brand-gradient-subtle {
-    background: linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-brand-red-50) 100%);
-}
-
-.brand-text-gradient {
-    background: linear-gradient(90deg, var(--color-brand-teal-600), var(--color-brand-red-500));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.btn-brand-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-red-500 hover:bg-brand-red-600 text-white font-medium rounded-full transition shadow-sm hover:shadow-md;
-}
-
-.btn-brand-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-teal-500 hover:bg-brand-teal-600 text-white font-medium rounded-full transition shadow-sm hover:shadow-md;
-}
-
-.btn-brand-outline {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-brand-teal-500 text-brand-teal-600 hover:bg-brand-teal-50 font-medium rounded-full transition;
-}
-
-.section-label {
-    @apply text-brand-teal-500 text-sm font-semibold tracking-widest uppercase;
-}
-
 .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -324,30 +286,3 @@ html {
     display: none;
 }
 
-/* Hero carousel — premium full-bleed imagery */
-.hero-slide-image {
-    transform: scale(1.08);
-    filter: saturate(1.08) contrast(1.04);
-    will-change: transform, opacity;
-}
-
-.hero-slide-image--active {
-    animation: heroKenBurns 8s ease-out forwards;
-}
-
-@keyframes heroKenBurns {
-    from { transform: scale(1.08); }
-    to { transform: scale(1); }
-}
-
-.hero-vignette {
-    background: radial-gradient(ellipse at center, transparent 40%, rgb(0 0 0 / 0.35) 100%);
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .hero-slide-image--active {
-        animation: none;
-        transform: scale(1);
-    }
-}

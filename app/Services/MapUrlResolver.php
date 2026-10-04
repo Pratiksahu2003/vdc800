@@ -140,7 +140,7 @@ class MapUrlResolver
     {
         try {
             $response = Http::timeout(8)
-                ->withHeaders(['User-Agent' => 'Mozilla/5.0 (compatible; VDC800/1.0)'])
+                ->withHeaders(['User-Agent' => 'Mozilla/5.0 (compatible; D³ DataCenters/1.0)'])
                 ->get($url);
 
             if ($response->failed()) {

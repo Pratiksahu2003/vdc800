@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Privacy Policy — ' . (settings('company.company_name') ?? 'VDC800'))
-@section('meta_description', 'Learn how VDC800 collects, uses, and protects your personal data in accordance with GDPR and applicable privacy laws.')
+@section('title', 'Privacy Policy — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
+@section('meta_description', 'Learn how D³ DataCenters collects, uses, and protects your personal data in accordance with GDPR and applicable privacy laws.')
 
 @section('content')
 @php
-    $company = settings('company.company_name') ?? 'VDC800';
-    $email = settings('company.email') ?? 'hello@vdc800.com';
+    $company = settings('company.company_name') ?? 'D³ DataCenters';
+    $email = settings('company.email') ?? 'hello@d3.vedmint.com';
 @endphp
 
 <x-legal-page

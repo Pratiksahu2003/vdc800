@@ -54,10 +54,17 @@ class ServiceSolutionSeeder extends Seeder
 
     public function run(): void
     {
-        $this->seedImages();
+        $this->call([
+            ServiceSeeder::class,
+            SolutionSeeder::class,
+        ]);
+    }
+
+    public function seedServicesOnly(): void
+    {
+        $this->seedImages(false);
 
         Service::query()->delete();
-        Solution::query()->delete();
 
         foreach ($this->services() as $index => $service) {
             $num = $index + 1;
@@ -80,6 +87,13 @@ class ServiceSolutionSeeder extends Seeder
                 'meta_description' => LongFormSeoContent::metaDescription($service['title'], 'service', $keywords),
             ]));
         }
+    }
+
+    public function seedSolutionsOnly(): void
+    {
+        $this->seedImages(false);
+
+        Solution::query()->delete();
 
         foreach ($this->solutions() as $index => $solution) {
             $num = $index + 1;
@@ -122,11 +136,11 @@ class ServiceSolutionSeeder extends Seeder
         }
 
         $serviceSeeds = [
-            'VDC800-svc-strategy-advisory-01',
-            'VDC800-svc-investment-diligence-02',
-            'VDC800-svc-engineering-design-03',
-            'VDC800-svc-procurement-execution-04',
-            'VDC800-svc-demand-generation-05',
+            'd3-svc-strategy-advisory-01',
+            'd3-svc-investment-diligence-02',
+            'd3-svc-engineering-design-03',
+            'd3-svc-procurement-execution-04',
+            'd3-svc-demand-generation-05',
         ];
 
         foreach ($serviceSeeds as $i => $seed) {
@@ -138,18 +152,18 @@ class ServiceSolutionSeeder extends Seeder
         }
 
         $solutionSeeds = [
-            'VDC800-sol-financial-01',
-            'VDC800-sol-healthcare-02',
-            'VDC800-sol-media-streaming-03',
-            'VDC800-sol-government-04',
-            'VDC800-sol-ecommerce-05',
-            'VDC800-sol-gaming-06',
-            'VDC800-sol-telecom-07',
-            'VDC800-sol-energy-utilities-08',
-            'VDC800-sol-education-09',
-            'VDC800-sol-manufacturing-iot-10',
-            'VDC800-sol-saas-scale-11',
-            'VDC800-sol-research-hpc-12',
+            'd3-sol-financial-01',
+            'd3-sol-healthcare-02',
+            'd3-sol-media-streaming-03',
+            'd3-sol-government-04',
+            'd3-sol-ecommerce-05',
+            'd3-sol-gaming-06',
+            'd3-sol-telecom-07',
+            'd3-sol-energy-utilities-08',
+            'd3-sol-education-09',
+            'd3-sol-manufacturing-iot-10',
+            'd3-sol-saas-scale-11',
+            'd3-sol-research-hpc-12',
         ];
 
         $allUrls = self::UNIQUE_IMAGE_URLS;
@@ -169,7 +183,7 @@ class ServiceSolutionSeeder extends Seeder
             $context = stream_context_create([
                 'http' => [
                     'method' => 'GET',
-                    'header' => "User-Agent: VDC800-CMS-Seeder/1.0\r\n",
+                    'header' => "User-Agent: d3-CMS-Seeder/1.0\r\n",
                     'timeout' => 60,
                     'ignore_errors' => true,
                 ],

@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { createIcons, icons } from 'lucide';
 import { initScrollAnimations } from './scroll-animations';
+import { initPublicUi } from './public-ui';
 
 window.Alpine = Alpine;
 window.gsap = gsap;
@@ -247,79 +248,48 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
 }));
 
 Alpine.data('siteNav', () => ({
-    open: false,
-    servicesMenu: false,
-    solutionsMenu: false,
-    blogMenu: false,
-    mobileServicesOpen: false,
-    mobileSolutionsOpen: false,
-    mobileBlogOpen: false,
+    activeMenu: null,
+    mobileOpen: false,
+    navScrolled: false,
+    init() {
+        const onScroll = () => {
+            this.navScrolled = window.scrollY > 8;
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        const onResize = () => {
+            if (window.matchMedia('(min-width: 1280px)').matches) {
+                this.mobileOpen = false;
+                document.documentElement.classList.remove('eq-menu-open');
+            } else {
+                this.activeMenu = null;
+            }
+        };
+        window.addEventListener('resize', onResize, { passive: true });
+    },
+    openMenu(key) {
+        this.activeMenu = key;
+        this.mobileOpen = false;
+        document.documentElement.classList.remove('eq-menu-open');
+    },
+    toggleMenu(key) {
+        this.activeMenu = this.activeMenu === key ? null : key;
+    },
     closeMenus() {
-        this.servicesMenu = false;
-        this.solutionsMenu = false;
-        this.blogMenu = false;
+        this.activeMenu = null;
     },
-    openServicesMenu() {
-        this.solutionsMenu = false;
-        this.blogMenu = false;
-        this.servicesMenu = true;
-        this.positionDropdown(this.$refs.servicesPanel);
-    },
-    openSolutionsMenu() {
-        this.servicesMenu = false;
-        this.blogMenu = false;
-        this.solutionsMenu = true;
-        this.positionDropdown(this.$refs.solutionsPanel);
-    },
-    openBlogMenu() {
-        this.servicesMenu = false;
-        this.solutionsMenu = false;
-        this.blogMenu = true;
-        this.positionDropdown(this.$refs.blogPanel);
-    },
-    positionDropdown(panel) {
-        if (!panel) {
-            return;
+    toggleMobileMenu() {
+        this.mobileOpen = !this.mobileOpen;
+        document.documentElement.classList.toggle('eq-menu-open', this.mobileOpen);
+        if (!this.mobileOpen) {
+            this.closeMenus();
         }
-
-        this.$nextTick(() => {
-            requestAnimationFrame(() => {
-                const trigger = panel.closest('[data-nav-dropdown]');
-                if (!trigger) {
-                    return;
-                }
-
-                panel.style.left = '0px';
-                panel.style.right = 'auto';
-                panel.style.transform = '';
-
-                const padding = 16;
-                const viewportWidth = document.documentElement.clientWidth;
-                const triggerRect = trigger.getBoundingClientRect();
-                const panelWidth = panel.getBoundingClientRect().width;
-
-                if (!panelWidth) {
-                    return;
-                }
-
-                // Center the panel under its trigger, then clamp inside the viewport.
-                let left = (triggerRect.width - panelWidth) / 2;
-                let absoluteLeft = triggerRect.left + left;
-                let absoluteRight = absoluteLeft + panelWidth;
-
-                if (absoluteLeft < padding) {
-                    left += padding - absoluteLeft;
-                    absoluteLeft = triggerRect.left + left;
-                    absoluteRight = absoluteLeft + panelWidth;
-                }
-
-                if (absoluteRight > viewportWidth - padding) {
-                    left -= absoluteRight - (viewportWidth - padding);
-                }
-
-                panel.style.left = `${left}px`;
-            });
-        });
+    },
+    closeAllMenus() {
+        this.activeMenu = null;
+        this.mobileOpen = false;
+        document.documentElement.classList.remove('eq-menu-open');
     },
 }));
 
@@ -379,6 +349,7 @@ Alpine.start();
 document.addEventListener('DOMContentLoaded', () => {
     createIcons({ icons });
     initScrollAnimations();
+    initPublicUi();
 
     document.querySelectorAll('.cms-content table').forEach((table) => {
         if (table.closest('.cms-table-wrap')) {

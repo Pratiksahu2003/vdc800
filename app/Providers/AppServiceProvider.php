@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\BlogCategory;
+use App\Models\NavMenuItem;
 use App\Models\Service;
 use App\Models\Solution;
 use App\Services\SiteSettingsService;
@@ -20,6 +21,13 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             $view->with('siteSettings', settings());
+        });
+
+        View::composer(['components.navbar'], function ($view) {
+            $view->with([
+                'navMainItems' => NavMenuItem::treeForZone('main'),
+                'navUtilityItems' => NavMenuItem::treeForZone('utility'),
+            ]);
         });
 
         View::composer(['components.footer', 'layouts.app', 'components.navbar'], function ($view) {

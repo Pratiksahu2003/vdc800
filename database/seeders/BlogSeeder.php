@@ -11,6 +11,9 @@ class BlogSeeder extends Seeder
 {
     public function run(): void
     {
+        BlogPost::query()->delete();
+        BlogCategory::query()->delete();
+
         $this->seedImages();
 
         $categories = [
@@ -18,7 +21,7 @@ class BlogSeeder extends Seeder
             ['name' => 'Operations', 'slug' => 'operations', 'description' => 'Facility operations, PUE optimisation, and data centre best practices.', 'sort_order' => 2],
             ['name' => 'Cloud & Connectivity', 'slug' => 'cloud-connectivity', 'description' => 'Hybrid cloud, cross-connects, and carrier-neutral networking.', 'sort_order' => 3],
             ['name' => 'Security & Compliance', 'slug' => 'security-compliance', 'description' => 'Security frameworks, physical security, and regulatory readiness.', 'sort_order' => 4],
-            ['name' => 'Industry News', 'slug' => 'industry-news', 'description' => 'Market updates and VDC800 announcements from across Northern Europe.', 'sort_order' => 5],
+            ['name' => 'Industry News', 'slug' => 'industry-news', 'description' => 'Market updates and D³ DataCenters announcements from across Northern Europe.', 'sort_order' => 5],
         ];
 
         $categoryIds = [];
@@ -40,7 +43,7 @@ class BlogSeeder extends Seeder
             ['Capacity Reporting for Enterprise Colocation Clients', 1],
             ['Multi-Cloud Networking Without Internet Transit', 2],
             ['GDPR-Ready Infrastructure for Financial Services', 3],
-            ['VDC800 Expands Nordic Interconnect Footprint', 4],
+            ['D³ DataCenters Expands Nordic Interconnect Footprint', 4],
             ['Remote Hands Support: What to Expect 24/7', 0],
             ['Heat Recovery Systems in Urban Data Centres', 1],
             ['Latency Optimisation for Trading Platforms', 2],
@@ -58,8 +61,8 @@ class BlogSeeder extends Seeder
                 'excerpt' => $this->excerpt($title),
                 'body' => $this->body($title, $categories[$catIndex]['name']),
                 'featured_image' => "images/blog/blog-{$num}.jpg",
-                'author' => 'VDC800 Team',
-                'meta_title' => $title . ' — VDC800 Blog',
+                'author' => 'D³ DataCenters Team',
+                'meta_title' => $title . ' — D³ DataCenters Blog',
                 'meta_description' => $this->excerpt($title),
                 'published_at' => now()->subDays(20 - $index),
                 'sort_order' => $num,
@@ -92,13 +95,13 @@ class BlogSeeder extends Seeder
 
     private function excerpt(string $title): string
     {
-        return "Explore {$title} with practical guidance from VDC800 infrastructure specialists operating Nordic data centres.";
+        return "Explore {$title} with practical guidance from D³ DataCenters infrastructure specialists operating Nordic data centres.";
     }
 
     private function body(string $title, string $category): string
     {
         return <<<HTML
-<p>{$title} is a critical topic for organisations deploying mission-critical workloads across Northern Europe. At VDC800, we combine engineering discipline with operational excellence to help enterprises make informed infrastructure decisions that balance performance, compliance, and reliability.</p>
+<p>{$title} is a critical topic for organisations deploying mission-critical workloads across Northern Europe. At D³ DataCenters, we combine engineering discipline with operational excellence to help enterprises make informed infrastructure decisions that balance performance, compliance, and reliability.</p>
 <p>Modern data centre strategy requires more than rack space — it demands transparent metrics, resilient design, and partnerships that scale with your business. The following overview summarises key benchmarks our clients evaluate when planning colocation, cloud connectivity, and managed services in the {$category} space.</p>
 <h3>Key Metrics at a Glance</h3>
 <table>
@@ -106,7 +109,7 @@ class BlogSeeder extends Seeder
         <tr>
             <th>Metric</th>
             <th>Industry Average</th>
-            <th>VDC800 Target</th>
+            <th>D³ DataCenters Target</th>
             <th>Notes</th>
         </tr>
     </thead>
@@ -137,8 +140,8 @@ class BlogSeeder extends Seeder
         </tr>
     </tbody>
 </table>
-<p>Organisations adopting these standards report improved operational predictability, lower total cost of ownership, and stronger alignment with enterprise SLAs. VDC800 publishes real-time operational data so stakeholders can audit capacity and availability alongside traditional performance metrics.</p>
-<p>Whether you are evaluating a first colocation deployment or optimising an existing hybrid cloud architecture, our team provides architecture reviews, capacity planning, and hands-on support from our Oslo NOC. Contact VDC800 to discuss how these principles apply to your specific requirements.</p>
+<p>Organisations adopting these standards report improved operational predictability, lower total cost of ownership, and stronger alignment with enterprise SLAs. D³ DataCenters publishes real-time operational data so stakeholders can audit capacity and availability alongside traditional performance metrics.</p>
+<p>Whether you are evaluating a first colocation deployment or optimising an existing hybrid cloud architecture, our team provides architecture reviews, capacity planning, and hands-on support from our Oslo NOC. Contact D³ DataCenters to discuss how these principles apply to your specific requirements.</p>
 HTML;
     }
 }

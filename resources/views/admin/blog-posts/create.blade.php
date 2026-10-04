@@ -24,7 +24,7 @@
         @include('admin.components.textarea', ['name' => 'excerpt', 'label' => 'Excerpt', 'value' => old('excerpt'), 'rows' => 2])
         @include('admin.components.ckeditor', ['name' => 'body', 'label' => 'Content', 'value' => old('body'), 'required' => true])
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            @include('admin.components.input', ['name' => 'author', 'label' => 'Author', 'value' => old('author', 'VDC800 Team')])
+            @include('admin.components.input', ['name' => 'author', 'label' => 'Author', 'value' => old('author', 'D³ DataCenters Team')])
             @include('admin.components.input', ['name' => 'published_at', 'label' => 'Published At', 'type' => 'datetime-local', 'value' => old('published_at')])
         </div>
         @include('admin.components.image-upload', ['name' => 'featured_image', 'label' => 'Featured Image', 'existing' => null])

@@ -6,7 +6,7 @@
 
 @php
     $url = logo_url($variant);
-    $alt = settings('company.company_name') ?? 'VDC800';
+    $alt = settings('company.company_name') ?? 'D³ DataCenters';
     $tagline = settings('company.tagline');
 @endphp
 

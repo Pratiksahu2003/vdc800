@@ -102,7 +102,7 @@ class SitemapGenerator
         $sitemapUrl = $baseUrl.'/sitemap.xml';
 
         return implode(PHP_EOL, [
-            '# VDC800 — robots.txt',
+            '# D³ DataCenters — robots.txt',
             '# Generated for search engine crawlers. Regenerate with: php artisan sitemap:generate',
             '',
             'User-agent: *',

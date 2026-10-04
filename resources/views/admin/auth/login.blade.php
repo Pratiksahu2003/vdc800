@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
-    <title>Admin Login — VDC800 CMS</title>
+    <title>Admin Login — D³ DataCenters CMS</title>
     @include('components.favicon')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -66,7 +66,7 @@
             </form>
         </div>
 
-        <p class="text-center text-brand-500 text-xs mt-6">&copy; {{ date('Y') }} VDC800. All rights reserved.</p>
+        <p class="text-center text-brand-500 text-xs mt-6">&copy; {{ date('Y') }} D³ DataCenters. All rights reserved.</p>
     </div>
 </body>
 </html>

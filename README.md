@@ -1,6 +1,6 @@
-# VDC800 — Sustainable Nordic Data Centres
+# D³ DataCenters — Sustainable Nordic Data Centres
 
-A full-stack marketing website and content management system for **VDC800 Data Centres**. Built with Laravel 13, Tailwind CSS 4, Alpine.js, and GSAP. Includes a public-facing site with mega-menu navigation, blog, data centre listings, contact forms with maps, and a complete admin panel to manage all content.
+A full-stack marketing website and content management system for **D³ DataCenters**. Built with Laravel 13, Tailwind CSS 4, Alpine.js, and GSAP. Includes a public-facing site with mega-menu navigation, blog, data centre listings, contact forms with maps, and a complete admin panel to manage all content.
 
 **Copyright © [VedMint](https://vedmint.com). All rights reserved.**
 
@@ -58,7 +58,7 @@ This project is proprietary software. Unauthorized copying, distribution, or mod
 - **Git**
 
 Optional for local development:
-- [Laravel Herd](https://herd.laravel.com) (Windows/macOS) — serves `https://VDC800.test` automatically
+- [Laravel Herd](https://herd.laravel.com) (Windows/macOS) — serves `https://d3.vedmint.com` automatically
 - Or `php artisan serve` for `http://localhost:8000`
 
 ---
@@ -68,8 +68,8 @@ Optional for local development:
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url> VDC800
-cd VDC800
+git clone <repository-url> D³ DataCenters
+cd D³ DataCenters
 ```
 
 ### 2. Install PHP dependencies
@@ -88,8 +88,8 @@ php artisan key:generate
 Edit `.env` and set at minimum:
 
 ```env
-APP_NAME=VDC800
-APP_URL=https://VDC800.test
+APP_NAME=D³ DataCenters
+APP_URL=https://d3.vedmint.com
 ADMIN_PASSWORD=your-secure-password
 ```
 
@@ -145,7 +145,7 @@ npm run dev
 Place the project in your Herd sites folder. Visit:
 
 ```
-https://VDC800.test
+https://d3.vedmint.com
 ```
 
 **Option B — Artisan serve**
@@ -195,7 +195,7 @@ Change the admin password immediately after first login via **Admin → Profile*
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `APP_NAME` | Application name | `VDC800` |
+| `APP_NAME` | Application name | `D³ DataCenters` |
 | `APP_URL` | Public site URL (used in sitemap) | `http://localhost` |
 | `APP_DEBUG` | Debug mode — set `false` in production | `true` |
 | `DB_CONNECTION` | Database driver | `sqlite` |
@@ -209,7 +209,7 @@ For **MySQL**, update `.env`:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=VDC800
+DB_DATABASE=d3_vedmint
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -221,7 +221,7 @@ Then run `php artisan migrate:fresh --seed`.
 ## Project structure
 
 ```
-VDC800/
+D³ DataCenters/
 ├── app/
 │   ├── Http/Controllers/     # Public & admin controllers
 │   ├── Models/               # Eloquent models

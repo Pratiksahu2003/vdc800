@@ -10,17 +10,17 @@
     ])->values();
 @endphp
 
-<section class="py-20 lg:py-28 bg-brand-100 border-y border-brand-200" x-data="reviewsSlider(@js($reviewsData))" @mouseenter="stopAutoplay()" @mouseleave="reviews.length > 1 && startAutoplay()">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <p class="text-brand-teal-600 text-sm font-medium tracking-widest uppercase mb-2">Client Stories</p>
-            <h2 class="font-display text-4xl text-brand-900 mb-3">Trusted Across India &amp; Europe</h2>
-            <p class="text-brand-600">What technology leaders say about partnering with VDC800 for sustainable Nordic infrastructure.</p>
-        </div>
-
+<section class="py-20 lg:py-28 bg-white" data-eq-reveal x-data="reviewsSlider(@js($reviewsData))" @mouseenter="stopAutoplay()" @mouseleave="reviews.length > 1 && startAutoplay()">
+    <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
         <template x-if="reviews.length">
-            <div class="relative max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl border border-brand-200 shadow-lg p-8 lg:p-12 min-h-[280px] flex flex-col justify-center">
+            <div class="relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch mb-8">
+                <div class="eq-case-study min-h-[320px] lg:min-h-[400px] bg-brand-200">
+                    <img src="{{ asset('images/hero-datacenter.jpg') }}" alt="" class="w-full h-full object-cover min-h-[320px]">
+                </div>
+                <div class="eq-case-study p-8 lg:p-12 min-h-[320px] flex flex-col justify-center">
+                    <p class="text-xs font-bold uppercase tracking-widest text-brand-teal-600 mb-3">Customer story</p>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-brand-900 mb-4 tracking-tight" x-text="current().company ? current().company + ' on D³' : 'Client success'"></h2>
                     <div class="flex gap-1 mb-6">
                         <template x-for="star in 5" :key="'star-' + star">
                             <i
@@ -51,6 +51,7 @@
                             <p class="text-xs text-brand-teal-600 mt-0.5" x-show="current().location" x-text="current().location"></p>
                         </div>
                     </div>
+                </div>
                 </div>
 
                 <div class="flex items-center justify-center gap-4 mt-8">

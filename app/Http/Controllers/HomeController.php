@@ -22,7 +22,7 @@ class HomeController extends Controller
             'statistics' => HomepageStatistic::where('is_active', true)->orderBy('sort_order')->get(),
             'testimonials' => HomepageTestimonial::active()->get(),
             'services' => Service::published()->take(3)->get(),
-            'solutions' => Solution::published()->take(3)->get(),
+            'solutions' => Solution::published()->take(4)->get(),
             'latestPosts' => BlogPost::published()
                 ->with('category')
                 ->take(6)

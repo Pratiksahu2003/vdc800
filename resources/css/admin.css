@@ -1,0 +1,102 @@
+/* Admin dashboard shell */
+.admin-sidebar {
+    @apply bg-brand-950 text-brand-100 border-r border-white/5 shadow-xl;
+}
+
+.admin-sidebar__head {
+    @apply flex items-center gap-2 h-16 px-4 border-b border-white/10 shrink-0;
+}
+
+.admin-sidebar__brand {
+    @apply flex-1 min-w-0;
+}
+
+.admin-sidebar__badge {
+    @apply hidden sm:inline-flex text-[10px] font-bold uppercase tracking-widest text-brand-teal-300 bg-white/10 px-2 py-0.5 rounded;
+}
+
+.admin-sidebar__close {
+    @apply p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition shrink-0;
+}
+
+.admin-sidebar__nav {
+    @apply px-3 py-4 space-y-5;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255 255 255 / 0.15) transparent;
+}
+
+.admin-sidebar__section-label {
+    @apply px-3 mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-white/40;
+}
+
+.admin-sidebar__section-toggle {
+    @apply flex w-full items-center justify-between gap-2 px-3 py-1.5 mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/45 hover:text-white/70 transition;
+}
+
+.admin-sidebar__section-body {
+    @apply space-y-3 pb-1;
+}
+
+.admin-sidebar__group-label {
+    @apply px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-brand-teal-400/90 first:pt-0;
+}
+
+.admin-sidebar__links {
+    @apply space-y-0.5;
+}
+
+.admin-nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/75 transition-colors;
+    min-height: 2.75rem;
+}
+
+.admin-nav-link:hover {
+    @apply text-white bg-white/10;
+}
+
+.admin-nav-link--nested {
+    @apply py-2 text-[13px];
+}
+
+.admin-nav-link--active {
+    @apply text-white bg-white/12 ring-1 ring-white/10;
+    box-shadow: inset 3px 0 0 0 var(--color-brand-teal-400);
+}
+
+.admin-nav-link__icon {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-brand-teal-300;
+}
+
+.admin-nav-link--active .admin-nav-link__icon {
+    @apply bg-brand-teal-600/30 text-brand-teal-200;
+}
+
+.admin-nav-link__label {
+    @apply truncate;
+}
+
+.admin-sidebar__foot {
+    @apply shrink-0 border-t border-white/10 p-4 space-y-3;
+}
+
+.admin-sidebar__foot-link {
+    @apply flex items-center justify-center gap-2 w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10 hover:text-white transition;
+}
+
+.admin-sidebar__foot-meta {
+    @apply text-center text-[11px] text-white/35;
+}
+
+.admin-main-shell {
+    @apply lg:pl-[17.5rem] min-h-screen bg-brand-50/80;
+}
+
+.admin-topbar {
+    @apply sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-brand-200/80;
+}
+
+@media (min-width: 1024px) {
+    .admin-topbar {
+        padding-left: 17.5rem;
+    }
+}

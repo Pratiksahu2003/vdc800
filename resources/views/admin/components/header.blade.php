@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-30 bg-white border-b border-brand-200 lg:pl-72">
+<header class="admin-topbar">
     <div class="flex items-center justify-between h-16 px-4 sm:px-6">
         <button @click="sidebarOpen = true" class="lg:hidden p-2 text-brand-600 hover:bg-brand-100 rounded-lg">
             <i data-lucide="menu" class="w-5 h-5"></i>

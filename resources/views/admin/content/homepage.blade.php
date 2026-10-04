@@ -10,7 +10,7 @@
     </div>
 
     <div class="flex flex-wrap gap-2 border-b border-brand-200 pb-4">
-        @foreach(['hero' => 'Hero', 'intro' => 'Intro', 'sustainability' => 'Sustainability', 'infrastructure' => 'Infrastructure', 'cta' => 'Final CTA', 'benefits' => 'Benefits', 'statistics' => 'Statistics'] as $key => $label)
+        @foreach(['hero' => 'Hero', 'intro' => 'Intro', 'sustainability' => 'Sustainability', 'infrastructure' => 'Colocation band', 'cta' => 'Final CTA', 'benefits' => 'Benefits', 'statistics' => 'Statistics'] as $key => $label)
             <button type="button" @click="tab = '{{ $key }}'" :class="tab === '{{ $key }}' ? 'bg-brand-teal-600 text-white' : 'bg-white text-brand-600 hover:bg-brand-50'" class="px-4 py-2 text-sm font-medium rounded-lg border border-brand-200 transition">{{ $label }}</button>
         @endforeach
     </div>
@@ -49,9 +49,17 @@
         </div>
 
         <div x-show="tab === 'infrastructure'" x-cloak class="space-y-4">
-            @include('admin.components.input', ['name' => 'infrastructure_heading', 'label' => 'Infrastructure Heading', 'value' => $homepage->infrastructure_heading])
-            @include('admin.components.textarea', ['name' => 'infrastructure_description', 'label' => 'Infrastructure Description', 'value' => $homepage->infrastructure_description, 'rows' => 4])
-            @include('admin.components.image-upload', ['name' => 'infrastructure_image', 'label' => 'Infrastructure Image', 'existing' => $homepage->infrastructure_image])
+            <p class="text-sm text-brand-600 bg-brand-50 border border-brand-200 rounded-lg px-4 py-3">
+                Dark homepage band with image, headline, link, and the first three items from the <strong>Statistics</strong> tab below.
+            </p>
+            @include('admin.components.input', ['name' => 'infrastructure_heading', 'label' => 'Heading', 'value' => $homepage->infrastructure_heading, 'placeholder' => 'Your business located everywhere your data is.'])
+            @include('admin.components.input', ['name' => 'infrastructure_heading_emphasis', 'label' => 'Gradient word in heading', 'value' => $homepage->infrastructure_heading_emphasis, 'placeholder' => 'everywhere'])
+            @include('admin.components.textarea', ['name' => 'infrastructure_description', 'label' => 'Description', 'value' => $homepage->infrastructure_description, 'rows' => 4])
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @include('admin.components.input', ['name' => 'infrastructure_cta_text', 'label' => 'Link text', 'value' => $homepage->infrastructure_cta_text])
+                @include('admin.components.input', ['name' => 'infrastructure_cta_url', 'label' => 'Link URL', 'value' => $homepage->infrastructure_cta_url])
+            </div>
+            @include('admin.components.image-upload', ['name' => 'infrastructure_image', 'label' => 'Feature image (left)', 'existing' => $homepage->infrastructure_image])
         </div>
 
         <div x-show="tab === 'cta'" x-cloak class="space-y-4">

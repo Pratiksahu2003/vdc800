@@ -20,11 +20,11 @@ class LongFormSeoContent
         $html = self::serviceIntro($title, $category, $keywordPhrase);
         $html .= self::comparisonTable("{$title} capability matrix", $tableRows);
         $html .= self::section(
-            "Why enterprises choose VDC800 for {$title}",
+            "Why enterprises choose D³ DataCenters for {$title}",
             self::paragraphs($title, $category, [
-                "Organisations across Northern Europe select VDC800 when {$title} must combine predictable performance with verifiable SLAs. Our Nordic facilities deliver carrier-neutral connectivity, concurrent maintainability, and transparent operational reporting that satisfies both technical stakeholders and executive committees.",
+                "Organisations across Northern Europe select D³ DataCenters when {$title} must combine predictable performance with verifiable SLAs. Our Nordic facilities deliver carrier-neutral connectivity, concurrent maintainability, and transparent operational reporting that satisfies both technical stakeholders and executive committees.",
                 "Unlike generic hosting providers, we engineer {$category} offerings around measurable outcomes: latency budgets, recovery time objectives, power density headroom, and audit-ready documentation. Every deployment includes a structured onboarding workshop, architecture review, and runbook aligned to your internal change-management process.",
-                "Clients migrating from legacy facilities frequently cite three drivers: lower PUE in cool-climate sites, direct cloud on-ramps that remove unpredictable internet transit, and remote hands teams who understand enterprise change windows. {$title} at VDC800 is designed to compress time-to-production without sacrificing governance.",
+                "Clients migrating from legacy facilities frequently cite three drivers: lower PUE in cool-climate sites, direct cloud on-ramps that remove unpredictable internet transit, and remote hands teams who understand enterprise change windows. {$title} at D³ DataCenters is designed to compress time-to-production without sacrificing governance.",
                 "Our account teams publish quarterly business reviews covering capacity utilisation, incident trends, availability per workload, and roadmap items such as liquid cooling or additional cross-connects. This operating rhythm keeps {$title} aligned with growth plans rather than reactive ticket queues.",
             ])
         );
@@ -32,7 +32,7 @@ class LongFormSeoContent
         $html .= self::section(
             'Architecture and design principles',
             self::paragraphs($title, $category, [
-                "VDC800 halls implement Tier III+ topology: independent power paths, N+1 cooling, segregated security zones, and structured cabling that supports moves, adds, and changes without planned downtime. For {$title}, we map your workload profile to rack placement, power feeds, and network diversity before any equipment ships.",
+                "D³ DataCenters halls implement Tier III+ topology: independent power paths, N+1 cooling, segregated security zones, and structured cabling that supports moves, adds, and changes without planned downtime. For {$title}, we map your workload profile to rack placement, power feeds, and network diversity before any equipment ships.",
                 "Power delivery supports traditional 230V deployments and high-density configurations up to 50 kW per rack where liquid-assisted cooling is provisioned. Busway and PDU layouts are documented in as-built diagrams delivered through our customer portal, simplifying capacity planning for {$category} expansions.",
                 "Network design emphasises east-west efficiency inside the meet-me room and north-south optimisation toward public cloud regions. When {$title} requires hybrid connectivity, we model BGP policies, failover scenarios, and encryption boundaries with your network architects.",
                 "Environmental systems leverage free-air economisation for a significant portion of the year, holding facility PUE near 1.12 while maintaining ASHRAE-compliant inlet conditions. Heat rejection strategies are monitored continuously; anomalies trigger automated alerts to the network operations centre.",
@@ -78,7 +78,7 @@ class LongFormSeoContent
         $html .= self::section(
             "Industry context for {$title}",
             self::paragraphs($title, 'vertical solutions', [
-                "Digital leaders in {$title} face simultaneous pressure to innovate faster, protect sensitive data, and report environmental impact with the same rigour as financial metrics. VDC800 vertical solutions translate these pressures into an infrastructure blueprint with clear SLAs, compliance pathways, and scalability milestones.",
+                "Digital leaders in {$title} face simultaneous pressure to innovate faster, protect sensitive data, and report environmental impact with the same rigour as financial metrics. D³ DataCenters vertical solutions translate these pressures into an infrastructure blueprint with clear SLAs, compliance pathways, and scalability milestones.",
                 "Regulatory evolution across the EU continues to raise expectations for data residency, breach notification, and third-party risk management. Our {$title} reference architectures document how workloads map to geographic zones, encryption standards, and retention policies without creating operational silos.",
                 "Buyer committees increasingly include operations and risk officers who require proof that compute growth does not equate to unchecked downtime. Published PUE data and 99.999% availability targets allow {$title} organisations to align infrastructure decisions with board-level SLAs.",
                 "Talent shortages in specialised IT roles make managed capabilities attractive: remote hands, observability integration, and vendor coordination become extensions of your team rather than ad hoc escalations.",
@@ -128,13 +128,13 @@ class LongFormSeoContent
 
     public static function metaDescription(string $title, string $type, array $keywords): string
     {
-        $base = "Explore {$title} with VDC800: ".implode(', ', array_slice($keywords, 0, 3))
+        $base = "Explore {$title} with D³ DataCenters: ".implode(', ', array_slice($keywords, 0, 3))
             .". Nordic Tier III+ facilities, 99.999% uptime SLA, and expert {$type} support across Europe.";
 
         return mb_strlen($base) > 158 ? mb_substr($base, 0, 155).'...' : $base;
     }
 
-    public static function metaTitle(string $title, string $suffix = 'VDC800'): string
+    public static function metaTitle(string $title, string $suffix = 'D³ DataCenters'): string
     {
         $candidate = "{$title} | {$suffix}";
         if (mb_strlen($candidate) <= 60) {
@@ -147,7 +147,7 @@ class LongFormSeoContent
     private static function serviceIntro(string $title, string $category, string $keywords): string
     {
         return <<<HTML
-<p><strong>{$title}</strong> from VDC800 delivers enterprise-grade {$category} from Nordic data centres engineered for 99.999% availability, enterprise-grade security controls, and 24/7 operational coverage. This comprehensive guide explains how we design, deploy, and operate {$title} for organisations that cannot compromise on resilience, compliance, or performance.</p>
+<p><strong>{$title}</strong> from D³ DataCenters delivers enterprise-grade {$category} from Nordic data centres engineered for 99.999% availability, enterprise-grade security controls, and 24/7 operational coverage. This comprehensive guide explains how we design, deploy, and operate {$title} for organisations that cannot compromise on resilience, compliance, or performance.</p>
 <p>Whether you are consolidating legacy footprints, launching latency-sensitive platforms, or expanding hybrid cloud estates, our specialists align {$keywords} with measurable business outcomes. The following sections cover architecture, SLAs, security controls, operational metrics, and a practical deployment playbook you can share with technical and executive stakeholders.</p>
 HTML;
     }
@@ -157,7 +157,7 @@ HTML;
         $benefitText = implode(', ', array_slice($benefits, 0, 4));
 
         return <<<HTML
-<p>VDC800's <strong>{$title}</strong> solution combines colocation, connectivity, and managed capabilities into a vertical blueprint tuned for regulated, high-growth, and data-intensive organisations. Built on Nordic Tier III+ infrastructure, the solution addresses {$keywords} while delivering {$benefitText}.</p>
+<p>D³ DataCenters's <strong>{$title}</strong> solution combines colocation, connectivity, and managed capabilities into a vertical blueprint tuned for regulated, high-growth, and data-intensive organisations. Built on Nordic Tier III+ infrastructure, the solution addresses {$keywords} while delivering {$benefitText}.</p>
 <p>This page documents reference architectures, compliance alignment, operational models, and availability advantages so your team can evaluate fit, prepare internal business cases, and plan phased adoption with confidence.</p>
 HTML;
     }
@@ -206,7 +206,7 @@ HTML;
     {
         return <<<HTML
 <h2>Service levels and operational metrics</h2>
-<p>The table below summarises standard targets for {$title} deployments at VDC800. Custom enterprise agreements may refine thresholds while preserving core resilience principles.</p>
+<p>The table below summarises standard targets for {$title} deployments at D³ DataCenters. Custom enterprise agreements may refine thresholds while preserving core resilience principles.</p>
 <table>
     <caption>Table 2. SLA and operational targets</caption>
     <thead>
@@ -270,7 +270,7 @@ HTML;
     {
         return <<<HTML
 <h2>Operations and availability</h2>
-<p>{$title} workloads hosted at VDC800 run in Tier III+ Nordic facilities with concurrent maintainability, 24/7 NOC coverage, and published availability metrics. Customers receive operational reports suitable for internal audits, board reporting, and customer RFP questionnaires.</p>
+<p>{$title} workloads hosted at D³ DataCenters run in Tier III+ Nordic facilities with concurrent maintainability, 24/7 NOC coverage, and published availability metrics. Customers receive operational reports suitable for internal audits, board reporting, and customer RFP questionnaires.</p>
 <p>Cool-climate siting reduces mechanical cooling demand and helps hold facility PUE near 1.12. We publish facility PUE, capacity utilisation, and incident trends so stakeholders can plan growth with confidence.</p>
 <p>Choosing Nordic colocation can materially improve latency to European markets and reduce operational risk—an advantage for organisations that need predictable infrastructure while application teams continue to scale.</p>
 HTML;
@@ -282,7 +282,7 @@ HTML;
 <h2>Deployment playbook</h2>
 <ol>
     <li><strong>Discovery:</strong> Capture workload profiles, compliance drivers, connectivity requirements, and growth forecasts for {$title}.</li>
-    <li><strong>Design:</strong> Produce rack elevations, power budgets, cable maps, and failover diagrams validated by VDC800 solutions architects.</li>
+    <li><strong>Design:</strong> Produce rack elevations, power budgets, cable maps, and failover diagrams validated by D³ DataCenters solutions architects.</li>
     <li><strong>Procurement:</strong> Coordinate hardware delivery, customs clearance when needed, and secure staging in designated build rooms.</li>
     <li><strong>Installation:</strong> Execute cabling, power-up, burn-in, and logical turn-up with change tickets aligned to your maintenance windows.</li>
     <li><strong>Test:</strong> Run failover tests, latency baselines, backup restores, and monitoring integrations before production cutover.</li>
@@ -346,7 +346,7 @@ HTML;
 
         return <<<HTML
 <h2>Next steps</h2>
-<p>VDC800 partners with enterprises, public institutions, and digital natives who require {$title} without trading away availability or compliance readiness. Speak with our solutions team for a tailored workshop, site tour, or proof-of-concept architecture review.</p>
+<p>D³ DataCenters partners with enterprises, public institutions, and digital natives who require {$title} without trading away availability or compliance readiness. Speak with our solutions team for a tailored workshop, site tour, or proof-of-concept architecture review.</p>
 <p>Explore related offerings across our portfolio, review case studies on our blog, or <a href="/contact">contact us</a> to request pricing for <a href="/{$path}/{$slug}">{$title}</a>. We respond to qualified enquiries within one business day.</p>
 HTML;
     }
@@ -356,7 +356,7 @@ HTML;
     {
         $variants = [
             [
-                "Capacity planning for {$title} incorporates seasonal demand, hardware refresh cycles, and licence true-ups. VDC800 provides forward-looking power and port utilisation forecasts so finance and engineering teams share a single source of truth.",
+                "Capacity planning for {$title} incorporates seasonal demand, hardware refresh cycles, and licence true-ups. D³ DataCenters provides forward-looking power and port utilisation forecasts so finance and engineering teams share a single source of truth.",
                 "Integration with ITSM tools allows change records, work orders, and asset tags to synchronise between your CMDB and our operations platform. This reduces manual reconciliation during audits and accelerates mean time to repair when incidents occur.",
                 "For multinational programmes, we coordinate staging windows across time zones, ensuring remote hands coverage aligns with your release trains. Escalation paths are documented in bilingual runbooks where required.",
                 "Benchmarking studies show Nordic {$context} deployments often achieve lower total cost of ownership over five years when cooling advantages and power economics are modelled honestly alongside list colocation rates.",
@@ -371,7 +371,7 @@ HTML;
                 "Business continuity exercises validate failover assumptions for {$title}, including simulated utility loss and fibre path withdrawal. Findings feed into continuous improvement plans tracked at executive review cadences.",
                 "Contract structures may include availability-linked incentives tying service credits to published operational KPIs, reinforcing shared responsibility for efficient resource use.",
                 "Edge cases—such as delayed shipments, customs holds, or emergency power transfers—are handled through playbooks tested during onboarding. Customers receive single points of contact for cross-functional issues.",
-                "Long-term partnerships often evolve from single-site colocation to multi-facility active/active designs; VDC800 documents latency and replication guidance when {$title} expands across campuses.",
+                "Long-term partnerships often evolve from single-site colocation to multi-facility active/active designs; D³ DataCenters documents latency and replication guidance when {$title} expands across campuses.",
             ],
         ];
 
