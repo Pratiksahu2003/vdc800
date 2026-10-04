@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Blog — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
+@php($seo = seo_for_route('blog.index'))
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'])
 
 @section('content')
 <x-page-hero fallback="images/hero-slide-3.jpg" alt="Blog" size="md" align="center">

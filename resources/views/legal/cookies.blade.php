@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Cookie Policy — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', 'Understand how D³ DataCenters uses cookies and similar technologies on our website, and how you can manage your preferences.')
+@php($seo = seo_for_route('legal.cookies'))
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'])
 
 @section('content')
 @php

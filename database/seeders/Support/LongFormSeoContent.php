@@ -134,14 +134,24 @@ class LongFormSeoContent
         return mb_strlen($base) > 158 ? mb_substr($base, 0, 155).'...' : $base;
     }
 
-    public static function metaTitle(string $title, string $suffix = 'D³ DataCenters'): string
+    public static function metaTitle(string $title, string $suffix = 'D³ DataCenters', string $context = 'Data Centre Services'): string
     {
-        $candidate = "{$title} | {$suffix}";
-        if (mb_strlen($candidate) <= 60) {
-            return $candidate;
+        $candidate = "{$title} | {$context} | {$suffix}";
+
+        if (mb_strlen($candidate) < 60) {
+            $candidate .= ' | Nordic Tier III+ Infrastructure';
         }
 
-        return mb_substr($title, 0, 60 - mb_strlen(" | {$suffix}") - 3).'... | '.$suffix;
+        if (mb_strlen($candidate) > 70) {
+            $room = 70 - mb_strlen(" | {$context} | {$suffix}");
+            $trimmed = mb_strlen($title) > $room
+                ? mb_substr($title, 0, max(10, $room - 1)).'…'
+                : $title;
+
+            return "{$trimmed} | {$context} | {$suffix}";
+        }
+
+        return $candidate;
     }
 
     private static function serviceIntro(string $title, string $category, string $keywords): string

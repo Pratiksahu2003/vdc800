@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', settings('website.default_page_title') ?? settings('company.company_name') ?? 'D³ DataCenters')
+@php($seo = seo_for_route('home'))
+@section('title', $seo['title'])
+@section('meta_description', seo_description(settings('website.default_meta_description'), settings('company.description')))
+@section('meta_keywords', seo_keywords())
 @section('main_class', 'site-main site-main--home')
 
 @section('content')

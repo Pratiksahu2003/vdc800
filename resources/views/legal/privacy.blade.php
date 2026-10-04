@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Privacy Policy — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', 'Learn how D³ DataCenters collects, uses, and protects your personal data in accordance with GDPR and applicable privacy laws.')
+@php($seo = seo_for_route('legal.privacy'))
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'])
 
 @section('content')
 @php

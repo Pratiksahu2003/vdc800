@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Our Services — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', 'End-to-end advisory services for data centers and AI infrastructure — from opportunity to operations.')
+@php($seo = seo_for_route('services.index'))
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'])
 
 @section('content')
 <x-page-hero fallback="images/hero-datacenter.jpg" alt="Our Services" size="lg" align="center">

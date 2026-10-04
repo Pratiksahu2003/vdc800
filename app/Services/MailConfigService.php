@@ -16,36 +16,36 @@ class MailConfigService
 
         try {
             $site = SiteSetting::instance();
+
+            $mailer = $site->mail_mailer ?: (filled($site->mail_host) ? 'smtp' : null);
+            if ($mailer === null) {
+                return;
+            }
+
+            Config::set('mail.default', $mailer);
+
+            if ($mailer === 'log') {
+                self::applyFromAddress($site);
+
+                return;
+            }
+
+            if ($mailer === 'smtp' && filled($site->mail_host)) {
+                Config::set('mail.mailers.smtp.host', $site->mail_host);
+                Config::set('mail.mailers.smtp.port', (int) ($site->mail_port ?: 587));
+                Config::set('mail.mailers.smtp.username', $site->mail_username);
+                Config::set('mail.mailers.smtp.password', $site->mail_password);
+                Config::set('mail.mailers.smtp.scheme', self::schemeForEncryption($site->mail_encryption));
+
+                if (filled($site->mail_ehlo_domain)) {
+                    Config::set('mail.mailers.smtp.local_domain', $site->mail_ehlo_domain);
+                }
+            }
+
+            self::applyFromAddress($site);
         } catch (\Throwable) {
             return;
         }
-
-        $mailer = $site->mail_mailer ?: (filled($site->mail_host) ? 'smtp' : null);
-        if ($mailer === null) {
-            return;
-        }
-
-        Config::set('mail.default', $mailer);
-
-        if ($mailer === 'log') {
-            self::applyFromAddress($site);
-
-            return;
-        }
-
-        if ($mailer === 'smtp' && filled($site->mail_host)) {
-            Config::set('mail.mailers.smtp.host', $site->mail_host);
-            Config::set('mail.mailers.smtp.port', (int) ($site->mail_port ?: 587));
-            Config::set('mail.mailers.smtp.username', $site->mail_username);
-            Config::set('mail.mailers.smtp.password', $site->mail_password);
-            Config::set('mail.mailers.smtp.scheme', self::schemeForEncryption($site->mail_encryption));
-
-            if (filled($site->mail_ehlo_domain)) {
-                Config::set('mail.mailers.smtp.local_domain', $site->mail_ehlo_domain);
-            }
-        }
-
-        self::applyFromAddress($site);
     }
 
     private static function applyFromAddress(SiteSetting $site): void

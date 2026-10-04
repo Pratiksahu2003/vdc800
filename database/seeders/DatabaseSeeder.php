@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         SiteSetting::create([
             'website_name' => 'D³ DataCenters',
             'website_url' => 'http://localhost',
-            'default_page_title' => 'D³ DataCenters — Nordic Data Centres',
+            'default_page_title' => 'D³ DataCenters | Nordic Data Centres, Colocation & Cloud Connectivity',
             'default_meta_description' => 'Premium data centre infrastructure in Northern Europe. Colocation, cloud connectivity, and enterprise hosting with 99.999% uptime.',
             'default_keywords' => 'data centre, nordic, colocation, cloud connectivity, enterprise hosting',
             'timezone' => 'Europe/Oslo',
@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
             'cta_description' => 'Whether you need colocation, cloud connectivity, or a custom enterprise solution, our team is ready to help.',
             'cta_button_text' => 'Contact Our Team',
             'cta_button_url' => '/contact',
-            'meta_title' => 'About D³ DataCenters — Nordic Data Centres',
+            'meta_title' => 'About D³ DataCenters | Nordic Data Centre Engineering & Operations',
         ]);
 
         $values = [

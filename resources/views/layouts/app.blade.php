@@ -4,10 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#8cc63f">
-    <title>@yield('title', settings('website.default_page_title') ?? settings('company.company_name') ?? 'D³ DataCenters')</title>
-    <meta name="description" content="@yield('meta_description', settings('website.default_meta_description') ?? '')">
-    <meta name="keywords" content="{{ settings('website.default_keywords') ?? '' }}">
-    <meta property="og:image" content="{{ settings('website.og_image') ? setting_url(settings('website.og_image')) : logo_url() }}">
+    <title>@yield('title', seo_title(null))</title>
+    <meta name="description" content="@yield('meta_description', seo_description(null))">
+    <meta name="keywords" content="@yield('meta_keywords', seo_keywords())">
+    <meta name="robots" content="@yield('meta_robots', 'index, follow')">
+    <link rel="canonical" href="@yield('canonical_url', url()->current())">
+    <meta property="og:site_name" content="{{ settings('website.website_name') ?? settings('company.company_name') ?? 'D³ DataCenters' }}">
+    <meta property="og:title" content="@yield('title', seo_title(null))">
+    <meta property="og:description" content="@yield('meta_description', seo_description(null))">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="@yield('canonical_url', url()->current())">
+    <meta property="og:locale" content="{{ str_replace('_', '-', settings('website.default_language') ?? 'en') }}">
+    <meta property="og:image" content="@yield('og_image', settings('website.og_image') ? setting_url(settings('website.og_image')) : logo_url())">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', seo_title(null))">
+    <meta name="twitter:description" content="@yield('meta_description', seo_description(null))">
+    <meta name="twitter:image" content="@yield('og_image', settings('website.og_image') ? setting_url(settings('website.og_image')) : logo_url())">
     @include('components.favicon')
     @if(settings('website.google_tag_manager_id'))
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ settings('website.google_tag_manager_id') }}');</script>
@@ -46,5 +58,7 @@
             </div>
         </div>
     </div>
+
+    @stack('scripts')
 </body>
 </html>

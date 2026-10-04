@@ -876,3 +876,121 @@ html.eq-menu-open {
         transform: none;
     }
 }
+
+/* Projects page — multi-site map */
+.equinix-public .eq-dc-map {
+    min-height: 22rem;
+    height: clamp(22rem, 52vw, 32rem);
+    width: 100%;
+    border: 1px solid var(--color-brand-200);
+    border-radius: var(--eq-radius);
+    z-index: 0;
+}
+
+@media (min-width: 1280px) {
+    .equinix-public .eq-dc-map {
+        min-height: 32rem;
+        height: 32rem;
+    }
+}
+
+.equinix-public .eq-map-pin-wrap {
+    background: transparent;
+    border: none;
+}
+
+.equinix-public .eq-map-dc-icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 2.5rem;
+    filter: drop-shadow(0 6px 16px rgb(0 88 48 / 28%));
+}
+
+.equinix-public .eq-map-dc-icon__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.4rem;
+    background: linear-gradient(145deg, var(--color-brand-teal-600), var(--color-brand-teal-700));
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.equinix-public .eq-map-dc-icon__badge svg {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.equinix-public .eq-map-dc-icon__point {
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top: -1px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 9px solid var(--color-brand-teal-700);
+}
+
+.equinix-public .eq-map-popup-shell .leaflet-popup-content-wrapper {
+    border-radius: var(--eq-radius);
+    box-shadow: 0 12px 40px rgb(26 31 38 / 12%);
+}
+
+.equinix-public .eq-map-popup {
+    padding: 0.15rem 0.1rem;
+}
+
+.equinix-public .eq-map-popup__eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brand-teal-600);
+    margin-bottom: 0.25rem;
+}
+
+.equinix-public .eq-map-popup__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-brand-900);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.equinix-public .eq-map-popup__link {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-brand-teal-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.equinix-public .eq-dc-map-list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-brand-200);
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.equinix-public .eq-dc-map-list-item:hover,
+.equinix-public .eq-dc-map-list-item--active {
+    border-color: var(--color-brand-teal-400);
+    box-shadow: 0 8px 24px rgb(0 88 48 / 8%);
+}
+
+.equinix-public .eq-dc-map-list-item__thumb {
+    display: block;
+    width: 4.5rem;
+    height: 3.25rem;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: var(--eq-radius);
+    background: var(--color-brand-100);
+}

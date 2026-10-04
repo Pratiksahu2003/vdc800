@@ -20,7 +20,7 @@
         @include('admin.components.input', ['name' => 'name', 'label' => 'Project Name', 'value' => old('name'), 'required' => true])
         @include('admin.components.input', ['name' => 'location', 'label' => 'Location', 'value' => old('location'), 'placeholder' => 'Oslo, Norway'])
         @include('admin.components.input', ['name' => 'country', 'label' => 'Country', 'value' => old('country'), 'placeholder' => 'Norway'])
-        @include('admin.components.textarea', ['name' => 'short_description', 'label' => 'Short Description', 'value' => old('short_description'), 'rows' => 3])
+        @include('admin.components.ckeditor', ['name' => 'short_description', 'label' => 'Short Description', 'value' => old('short_description'), 'rows' => 4])
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @include('admin.components.input', ['name' => 'sort_order', 'label' => 'Sort Order', 'type' => 'number', 'value' => old('sort_order', 0)])

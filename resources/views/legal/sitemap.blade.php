@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Sitemap — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
+@php($seo = seo_for_route('legal.sitemap'))
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'])
 
 @section('content')
 <x-page-hero fallback="images/hero-datacenter.jpg" alt="Sitemap" size="md" align="center">

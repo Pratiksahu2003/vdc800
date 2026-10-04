@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
-@section('title', ($service->meta_title ?? $service->title) . ' — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', $service->meta_description ?? $service->short_description)
+@section('title', seo_entity_title($service->meta_title, $service->title, 'service'))
+@section('meta_description', seo_description($service->meta_description, $service->short_description))
+@section('meta_keywords', seo_entity_keywords('service', $service->title))
+@section('og_type', 'article')
+@if($ogImage = \App\Support\Seo::ogImage($service->og_image ?? $service->featured_image))
+@section('og_image', $ogImage)
+@endif
 
 @section('content')
 <x-page-hero :image="$service->featured_image" fallback="images/hero-datacenter.jpg" :alt="$service->title" size="lg" align="center">

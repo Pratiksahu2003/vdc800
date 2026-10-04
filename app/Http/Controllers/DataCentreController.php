@@ -10,7 +10,19 @@ class DataCentreController extends Controller
     {
         $dataCentres = DataCentre::published()->get();
 
-        return view('data-centre.index', compact('dataCentres'));
+        $mapLocations = $dataCentres
+            ->filter(fn (DataCentre $dataCentre) => filled($dataCentre->latitude) && filled($dataCentre->longitude))
+            ->map(fn (DataCentre $dataCentre) => [
+                'name' => $dataCentre->name,
+                'location' => $dataCentre->location,
+                'lat' => (float) $dataCentre->latitude,
+                'lng' => (float) $dataCentre->longitude,
+                'url' => route('data-centre.show', $dataCentre),
+                'image' => hero_image_url($dataCentre->hero_image, 'images/hero-datacenter.jpg'),
+            ])
+            ->values();
+
+        return view('data-centre.index', compact('dataCentres', 'mapLocations'));
     }
 
     public function show(DataCentre $dataCentre)

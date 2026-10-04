@@ -10,6 +10,7 @@ class DataCentre extends Model
 {
     protected $fillable = [
         'name', 'slug', 'location', 'country', 'address', 'latitude', 'longitude',
+        'map_link', 'map_embed_url', 'show_map',
         'short_description', 'full_description', 'hero_image', 'hero_video_url',
         'meta_title', 'meta_description', 'og_image',
         'cta_heading', 'cta_description', 'cta_button_text', 'cta_button_url',
@@ -22,6 +23,7 @@ class DataCentre extends Model
             'latitude' => 'decimal:7',
             'longitude' => 'decimal:7',
             'is_featured' => 'boolean',
+            'show_map' => 'boolean',
         ];
     }
 

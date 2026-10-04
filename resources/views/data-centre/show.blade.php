@@ -1,11 +1,23 @@
 @extends('layouts.app')
 
-@section('title', ($dataCentre->meta_title ?? $dataCentre->name ?? 'Project') . ' — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', $dataCentre->meta_description ?? $dataCentre->short_description)
+@section('title', seo_entity_title($dataCentre->meta_title, $dataCentre->name ?? 'Data Centre Project', 'data_centre'))
+@section('meta_description', seo_description($dataCentre->meta_description, $dataCentre->short_description))
+@section('meta_keywords', seo_entity_keywords('data_centre', $dataCentre->name ?? 'Data centre project'))
+@section('og_type', 'article')
+@if($ogImage = \App\Support\Seo::ogImage($dataCentre->og_image ?? $dataCentre->featured_image))
+@section('og_image', $ogImage)
+@endif
 
 @section('content')
+@php
+    $mapEmbed = data_centre_map_embed_url($dataCentre);
+    $mapLink = data_centre_map_link($dataCentre);
+@endphp
 <x-page-hero :image="$dataCentre->hero_image" fallback="images/hero-datacenter.jpg" :alt="$dataCentre->name" size="lg" align="center">
-    <x-public.hero-heading :title="$dataCentre->name" :description="$dataCentre->short_description">
+    <x-public.hero-heading :title="$dataCentre->name">
+        @if($dataCentre->short_description)
+            <div class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto cms-content">{!! rich_content($dataCentre->short_description) !!}</div>
+        @endif
         @if($dataCentre->location)
             <p class="text-brand-teal-400 text-xs font-bold uppercase tracking-widest mt-4">{{ $dataCentre->location }}@if($dataCentre->country), {{ $dataCentre->country }}@endif</p>
         @endif
@@ -29,16 +41,60 @@
 </x-public.section>
 @endif
 
-@if($dataCentre->full_description)
+@if($dataCentre->full_description || $dataCentre->address || $dataCentre->location)
 <x-public.section>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div class="lg:col-span-4">
             <h2 class="eq-headline-section text-brand-900 text-2xl mb-4">About the project</h2>
+            @if($dataCentre->location || $dataCentre->country)
+                <p class="text-xs font-bold uppercase tracking-widest text-brand-teal-600 mb-3">
+                    {{ $dataCentre->location }}@if($dataCentre->country && $dataCentre->location), @endif{{ $dataCentre->country }}
+                </p>
+            @endif
             @if($dataCentre->address)
-                <p class="text-sm text-brand-600"><i data-lucide="map-pin" class="w-4 h-4 inline text-brand-teal-600"></i> {{ $dataCentre->address }}</p>
+                <div class="text-sm text-brand-600 leading-relaxed cms-content">
+                    <i data-lucide="map-pin" class="w-4 h-4 inline text-brand-teal-600 -mt-0.5"></i>
+                    {!! rich_content($dataCentre->address) !!}
+                </div>
+            @endif
+            @if($mapLink)
+                <a href="{{ $mapLink }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-brand-teal-700 hover:text-brand-teal-600 transition">
+                    <i data-lucide="navigation" class="w-4 h-4"></i>
+                    Open in Google Maps
+                </a>
             @endif
         </div>
-        <div class="lg:col-span-8 cms-content">{!! rich_content($dataCentre->full_description) !!}</div>
+        @if($dataCentre->full_description)
+            <div class="lg:col-span-8 cms-content">{!! rich_content($dataCentre->full_description) !!}</div>
+        @endif
+    </div>
+</x-public.section>
+@endif
+
+@if($mapEmbed)
+<x-public.section tone="muted" padding="sm">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+        <div>
+            <p class="text-brand-teal-600 text-xs font-bold tracking-widest uppercase mb-2">Location</p>
+            <h2 class="eq-headline-section text-brand-900 text-2xl">Find this facility</h2>
+            <p class="text-brand-600 mt-2 max-w-xl">Explore the project location and get directions to the data centre site.</p>
+        </div>
+        @if($mapLink)
+            <a href="{{ $mapLink }}" target="_blank" rel="noopener noreferrer" class="eq-btn-outline shrink-0">
+                <i data-lucide="navigation" class="w-4 h-4"></i>
+                Get directions
+            </a>
+        @endif
+    </div>
+    <div class="overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-sm">
+        <iframe
+            src="{{ $mapEmbed }}"
+            title="{{ $dataCentre->name }} location map"
+            class="w-full h-[320px] sm:h-[400px] lg:h-[440px] border-0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
     </div>
 </x-public.section>
 @endif
@@ -50,7 +106,7 @@
         @foreach($features as $feature)
             <div class="border border-white/15 p-8">
                 <h3 class="text-lg font-bold text-white mb-2">{{ $feature->title }}</h3>
-                <p class="text-white/70 text-sm">{{ $feature->description }}</p>
+                <div class="text-white/70 text-sm cms-content">{!! rich_content($feature->description) !!}</div>
             </div>
         @endforeach
     </div>

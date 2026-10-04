@@ -62,7 +62,7 @@ class BlogSeeder extends Seeder
                 'body' => $this->body($title, $categories[$catIndex]['name']),
                 'featured_image' => "images/blog/blog-{$num}.jpg",
                 'author' => 'D³ DataCenters Team',
-                'meta_title' => $title . ' — D³ DataCenters Blog',
+                'meta_title' => \App\Support\Seo::entityTitle(null, $title, 'blog'),
                 'meta_description' => $this->excerpt($title),
                 'published_at' => now()->subDays(20 - $index),
                 'sort_order' => $num,

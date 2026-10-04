@@ -7,6 +7,7 @@ use App\Models\DataCentre;
 use App\Models\DataCentreFeature;
 use App\Models\DataCentreGallery;
 use App\Models\DataCentreSpecification;
+use App\Services\MapUrlResolver;
 use App\Traits\HandlesUploads;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -69,11 +70,17 @@ class DataCentreController extends Controller
             'dataCentre' => $dataCentre,
             'specifications' => $dataCentre->specifications()->get(),
             'features' => $dataCentre->features()->get(),
+            'gallery' => $dataCentre->gallery()->orderBy('sort_order')->get(),
+            'mapPreviewEmbed' => data_centre_map_embed_url($dataCentre),
         ]);
     }
 
-    public function update(Request $request, DataCentre $dataCentre)
+    public function update(Request $request, DataCentre $dataCentre, MapUrlResolver $mapUrlResolver)
     {
+        if (! $request->has('status')) {
+            $request->merge(['status' => $dataCentre->status]);
+        }
+
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
             'slug' => 'nullable|string|max:255|unique:data_centres,slug,'.$dataCentre->id,
@@ -82,6 +89,8 @@ class DataCentreController extends Controller
             'address' => 'nullable|string',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
+            'map_link' => 'nullable|string|max:2000',
+            'show_map' => 'sometimes|boolean',
             'short_description' => 'nullable|string',
             'full_description' => 'nullable|string',
             'hero_video_url' => 'nullable|url|max:255',
@@ -98,6 +107,14 @@ class DataCentreController extends Controller
         ]);
 
         $validated['is_featured'] = $request->boolean('is_featured');
+        if ($request->has('show_map')) {
+            $validated['show_map'] = $request->boolean('show_map');
+        }
+
+        if (array_key_exists('map_link', $validated)) {
+            $validated['map_link'] = $mapUrlResolver->normalizeInput($validated['map_link']);
+            $validated['map_embed_url'] = null;
+        }
 
         if (filled($validated['slug'] ?? null)) {
             $validated['slug'] = Str::slug($validated['slug']);
@@ -257,6 +274,10 @@ class DataCentreController extends Controller
 
     public function storeGallery(Request $request, DataCentre $dataCentre)
     {
+        if ($request->hasFile('images')) {
+            return $this->storeGalleryBulk($request, $dataCentre);
+        }
+
         $request->validate([
             'image' => 'required|image|max:5120',
             'caption' => 'nullable|string|max:255',
@@ -276,6 +297,30 @@ class DataCentreController extends Controller
         ]);
 
         return back()->with('success', 'Gallery image uploaded successfully.');
+    }
+
+    public function storeGalleryBulk(Request $request, DataCentre $dataCentre)
+    {
+        $request->validate([
+            'images' => 'required|array|min:1|max:24',
+            'images.*' => 'image|max:5120',
+        ]);
+
+        $nextOrder = (int) $dataCentre->gallery()->max('sort_order') + 1;
+        $count = 0;
+
+        foreach ($request->file('images') as $file) {
+            $path = $this->uploadImage($file, 'data-centre/gallery');
+            DataCentreGallery::create([
+                'data_centre_id' => $dataCentre->id,
+                'image' => $path,
+                'sort_order' => $nextOrder++,
+                'is_active' => true,
+            ]);
+            $count++;
+        }
+
+        return back()->with('success', "{$count} gallery image(s) uploaded successfully.");
     }
 
     public function destroyGallery(DataCentre $dataCentre, DataCentreGallery $gallery)

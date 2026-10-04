@@ -39,7 +39,7 @@ class ServiceSeeder extends Seeder
                     $items,
                     $keywords,
                 ),
-                'meta_title' => LongFormSeoContent::metaTitle($service['title']),
+                'meta_title' => LongFormSeoContent::metaTitle($service['title'], 'D³ DataCenters', 'Data Centre Services & Advisory'),
                 'meta_description' => LongFormSeoContent::metaDescription($service['title'], 'service', $keywords),
             ]));
         }

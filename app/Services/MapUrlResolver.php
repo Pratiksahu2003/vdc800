@@ -55,6 +55,15 @@ class MapUrlResolver
         return 'https://www.google.com/maps/search/?api=1&query='.urlencode(implode(', ', $addressParts));
     }
 
+    public function resolveEmbedFromCoordinates(float|string|null $latitude, float|string|null $longitude, int $zoom = 14): ?string
+    {
+        if ($latitude === null || $longitude === null || $latitude === '' || $longitude === '') {
+            return null;
+        }
+
+        return 'https://www.google.com/maps?q='.urlencode($latitude.','.$longitude).'&z='.$zoom.'&output=embed';
+    }
+
     public function resolveEmbedUrl(?string $mapLink = null, ?array $addressParts = null): ?string
     {
         $link = $this->resolveMapLink($mapLink, $addressParts);

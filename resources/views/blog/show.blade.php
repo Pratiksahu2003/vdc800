@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
-@section('title', ($post->meta_title ?? $post->title) . ' — Blog')
-@section('meta_description', $post->meta_description ?? $post->excerpt)
+@section('title', seo_entity_title($post->meta_title, $post->title, 'blog'))
+@section('meta_description', seo_description($post->meta_description, $post->excerpt))
+@section('meta_keywords', seo_entity_keywords('blog', $post->title))
+@section('og_type', 'article')
+@if($ogImage = \App\Support\Seo::ogImage($post->og_image ?? $post->featured_image))
+@section('og_image', $ogImage)
+@endif
 
 @section('content')
 <article>

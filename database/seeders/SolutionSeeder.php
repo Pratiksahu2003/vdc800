@@ -40,7 +40,7 @@ class SolutionSeeder extends Seeder
                     $tableRows,
                     $keywords,
                 ),
-                'meta_title' => LongFormSeoContent::metaTitle($solution['title']),
+                'meta_title' => LongFormSeoContent::metaTitle($solution['title'], 'D³ DataCenters', 'Enterprise Data Centre Solutions'),
                 'meta_description' => LongFormSeoContent::metaDescription($solution['title'], 'solution', $keywords),
             ]));
         }

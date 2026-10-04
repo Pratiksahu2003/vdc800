@@ -74,7 +74,7 @@ if (! function_exists('favicon_url')) {
             }
         }
 
-        return asset('favicon.ico');
+        return asset('Logo/favicon.png');
     }
 }
 
@@ -141,5 +141,98 @@ if (! function_exists('company_map_embed_url')) {
     function company_map_embed_url(): ?string
     {
         return app(\App\Services\MapUrlResolver::class)->resolveEmbedUrl(settings('company.map_link'));
+    }
+}
+
+if (! function_exists('data_centre_map_link')) {
+    function data_centre_map_link(\App\Models\DataCentre $dataCentre): ?string
+    {
+        if (! $dataCentre->show_map) {
+            return null;
+        }
+
+        $resolver = app(\App\Services\MapUrlResolver::class);
+
+        if (filled($dataCentre->map_link)) {
+            return $resolver->resolveMapLink($dataCentre->map_link);
+        }
+
+        if (filled($dataCentre->latitude) && filled($dataCentre->longitude)) {
+            return 'https://www.google.com/maps/search/?api=1&query='.urlencode($dataCentre->latitude.','.$dataCentre->longitude);
+        }
+
+        $parts = array_values(array_filter([
+            $dataCentre->address,
+            $dataCentre->location,
+            $dataCentre->country,
+        ]));
+
+        return $parts === [] ? null : $resolver->resolveMapLink(null, $parts);
+    }
+}
+
+if (! function_exists('seo_title')) {
+    function seo_title(?string $pageTitle): string
+    {
+        return \App\Support\Seo::title($pageTitle);
+    }
+}
+
+if (! function_exists('seo_entity_title')) {
+    function seo_entity_title(?string $storedMetaTitle, string $name, string $kind): string
+    {
+        return \App\Support\Seo::entityTitle($storedMetaTitle, $name, $kind);
+    }
+}
+
+if (! function_exists('seo_description')) {
+    function seo_description(?string $text, ?string $fallback = null): string
+    {
+        return \App\Support\Seo::description($text, $fallback);
+    }
+}
+
+if (! function_exists('seo_keywords')) {
+    function seo_keywords(?string $pageKeywords = null): string
+    {
+        return \App\Support\Seo::keywords($pageKeywords);
+    }
+}
+
+if (! function_exists('seo_for_route')) {
+    /** @return array{title: string, description: string, keywords: string} */
+    function seo_for_route(?string $routeName = null): array
+    {
+        return \App\Support\Seo::forRoute($routeName ?? optional(request()->route())->getName());
+    }
+}
+
+if (! function_exists('seo_entity_keywords')) {
+    function seo_entity_keywords(string $type, string $primaryLabel): string
+    {
+        return \App\Support\Seo::entityKeywords($type, $primaryLabel);
+    }
+}
+
+if (! function_exists('data_centre_map_embed_url')) {
+    function data_centre_map_embed_url(\App\Models\DataCentre $dataCentre): ?string
+    {
+        if (! $dataCentre->show_map) {
+            return null;
+        }
+
+        $resolver = app(\App\Services\MapUrlResolver::class);
+
+        if (filled($dataCentre->latitude) && filled($dataCentre->longitude)) {
+            return $resolver->resolveEmbedFromCoordinates($dataCentre->latitude, $dataCentre->longitude);
+        }
+
+        $parts = array_values(array_filter([
+            $dataCentre->address,
+            $dataCentre->location,
+            $dataCentre->country,
+        ]));
+
+        return $resolver->resolveEmbedUrl($dataCentre->map_link, $parts ?: null);
     }
 }

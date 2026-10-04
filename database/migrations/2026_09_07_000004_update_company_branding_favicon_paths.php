@@ -14,7 +14,7 @@ return new class extends Migration
         DB::table('company_settings')->update([
             'logo' => 'Logo/logo.png',
             'footer_logo' => 'Logo/logo.png',
-            'favicon' => 'Logo/favicon.ico',
+            'favicon' => 'Logo/favicon.png',
         ]);
     }
 

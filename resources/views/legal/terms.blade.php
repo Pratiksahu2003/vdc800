@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Terms of Service — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', 'Read the D³ DataCenters website terms of service covering acceptable use, intellectual property, liability, and governing law.')
+@php($seo = seo_for_route('legal.terms'))
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'])
 
 @section('content')
 @php

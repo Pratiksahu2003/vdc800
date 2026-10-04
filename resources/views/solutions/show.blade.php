@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
-@section('title', ($solution->meta_title ?? $solution->title) . ' — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', $solution->meta_description ?? $solution->short_description)
+@section('title', seo_entity_title($solution->meta_title, $solution->title, 'solution'))
+@section('meta_description', seo_description($solution->meta_description, $solution->short_description))
+@section('meta_keywords', seo_entity_keywords('solution', $solution->title))
+@section('og_type', 'article')
+@if($ogImage = \App\Support\Seo::ogImage($solution->og_image ?? $solution->featured_image))
+@section('og_image', $ogImage)
+@endif
 
 @section('content')
 @php

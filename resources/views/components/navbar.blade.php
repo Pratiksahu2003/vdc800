@@ -17,7 +17,7 @@
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-[var(--site-header-height)] gap-3 sm:gap-4">
                 <a href="{{ route('home') }}" class="shrink-0 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal-600" @click="closeAllMenus()">
-                    <x-logo class="h-9 sm:h-10 lg:h-11 w-auto max-w-none" />
+                    <x-logo :link="false" class="h-12 sm:h-14 lg:h-16 w-auto max-w-[min(100%,14rem)] sm:max-w-[min(100%,16rem)] lg:max-w-[min(100%,18rem)]" />
                 </a>
 
                 <div class="hidden xl:flex items-center flex-1 justify-end gap-0.5 min-w-0">

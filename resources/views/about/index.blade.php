@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
-@section('title', ($about->meta_title ?? 'About Us') . ' — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', $about->meta_description ?? settings('company.description'))
+@php($seo = seo_for_route('about.index'))
+@section('title', filled($about->meta_title) ? seo_entity_title($about->meta_title, $about->meta_title, 'about') : $seo['title'])
+@section('meta_description', seo_description($about->meta_description, settings('company.description') ?: $seo['description']))
+@section('meta_keywords', $seo['keywords'])
+@if($ogImage = \App\Support\Seo::ogImage($about->og_image ?? null))
+@section('og_image', $ogImage)
+@endif
 
 @section('content')
 <x-page-hero :image="$about->hero_image" fallback="images/about-technology.jpg" alt="About" size="lg" align="center">

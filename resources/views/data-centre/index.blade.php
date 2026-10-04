@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Projects — ' . (settings('company.company_name') ?? 'D³ DataCenters'))
-@section('meta_description', 'Explore projects and case studies — strategy, design, and infrastructure advisory.')
+@php($seo = seo_for_route('data-centre.index'))
+@section('title', $seo['title'])
+@section('meta_description', $seo['description'])
+@section('meta_keywords', $seo['keywords'])
 
 @section('content')
 <x-page-hero fallback="images/hero-datacenter.jpg" alt="Projects" size="lg" align="center">
@@ -11,6 +13,12 @@
         description="Real-world advisory across critical power, capacity planning, and data centre strategy."
     />
 </x-page-hero>
+
+@if($mapLocations->isNotEmpty())
+<x-public.section>
+    <x-public.data-centres-map :locations="$mapLocations" />
+</x-public.section>
+@endif
 
 <x-public.section tone="muted">
     @if($dataCentres->count())
@@ -23,7 +31,7 @@
                             <p class="text-xs font-bold uppercase tracking-widest text-brand-teal-600 mb-2">{{ $dataCentre->location }}</p>
                         @endif
                         <h2 class="text-lg font-bold text-brand-900 mb-2 group-hover:text-brand-teal-700 transition">{{ $dataCentre->name }}</h2>
-                        <p class="text-sm text-brand-600 line-clamp-3">{{ $dataCentre->short_description }}</p>
+                        <p class="text-sm text-brand-600 line-clamp-3">{{ Str::limit(strip_tags($dataCentre->short_description ?? ''), 160) }}</p>
                     </div>
                 </a>
             @endforeach

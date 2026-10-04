@@ -2,31 +2,60 @@
     'name',
     'label',
     'value' => '',
+    'id' => null,
     'required' => false,
     'rows' => 12,
+    'hint' => true,
 ])
 
+@php
+    $fieldId = $id ?? $name;
+@endphp
+
 <div>
-    <label for="{{ $name }}" class="block text-sm font-medium text-brand-700 mb-1">
+    <label for="{{ $fieldId }}" class="block text-sm font-medium text-brand-700 mb-1">
         {{ $label }} @if($required)<span class="text-red-500">*</span>@endif
     </label>
     <textarea
         name="{{ $name }}"
-        id="{{ $name }}"
+        id="{{ $fieldId }}"
         rows="{{ $rows }}"
         @if($required) required @endif
-        class="w-full rounded-lg border-brand-300 text-sm focus:border-brand-teal-500 focus:ring-brand-teal-500 ckeditor-field"
+        {{ $attributes->merge(['class' => 'w-full rounded-lg border-brand-300 text-sm focus:border-brand-teal-500 focus:ring-brand-teal-500 ckeditor-field']) }}
     >{{ old($name, $value) }}</textarea>
-    <p class="text-xs text-brand-500 mt-1">Rich text editor — supports headings, lists, links, images, and tables.</p>
+    @if($hint)
+        <p class="text-xs text-brand-500 mt-1">Rich text — headings, lists, links, tables, and formatting.</p>
+    @endif
+    @error($name)
+        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+    @enderror
 </div>
 
 @once
     @push('scripts')
         <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                document.querySelectorAll('.ckeditor-field').forEach((el) => {
-                    if (el.dataset.ckeditorInit) return;
+            window.initAdminCkEditors = function (root) {
+                if (typeof ClassicEditor === 'undefined') {
+                    return;
+                }
+
+                const scope = root && root.querySelectorAll ? root : document;
+                const fields = scope === document
+                    ? scope.querySelectorAll('textarea.ckeditor-field')
+                    : scope.querySelectorAll
+                        ? scope.querySelectorAll('textarea.ckeditor-field')
+                        : [scope].filter((el) => el.matches && el.matches('textarea.ckeditor-field'));
+
+                fields.forEach((el) => {
+                    if (!el || el.dataset.ckeditorInit === '1') {
+                        return;
+                    }
+
+                    if (el.offsetParent === null && scope === document) {
+                        return;
+                    }
+
                     el.dataset.ckeditorInit = '1';
 
                     ClassicEditor.create(el, {
@@ -34,13 +63,18 @@
                             'heading', '|',
                             'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
                             'insertTable', 'blockQuote', '|',
-                            'undo', 'redo'
+                            'undo', 'redo',
                         ],
                         table: {
-                            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-                        }
+                            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+                        },
                     }).catch((error) => console.error(error));
                 });
+            };
+
+            document.addEventListener('DOMContentLoaded', () => window.initAdminCkEditors());
+            window.addEventListener('admin-init-ckeditor', (event) => {
+                window.initAdminCkEditors(event.detail?.root || document);
             });
         </script>
     @endpush
