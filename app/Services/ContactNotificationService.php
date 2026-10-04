@@ -35,18 +35,28 @@ class ContactNotificationService
     /** @return array<int, string> */
     public function recipientAddresses(): array
     {
-        $raw = settings('company.contact_notification_email')
-            ?? settings('company.email')
-            ?? config('mail.from.address');
+        $notificationList = trim((string) (settings('company.contact_notification_email') ?? ''));
 
-        if (! is_string($raw) || trim($raw) === '') {
-            return [];
+        if ($notificationList !== '') {
+            return $this->parseEmailList($notificationList);
         }
 
+        $publicContact = trim((string) (settings('company.email') ?? ''));
+
+        if ($publicContact !== '') {
+            return $this->parseEmailList($publicContact);
+        }
+
+        return [];
+    }
+
+    /** @return array<int, string> */
+    private function parseEmailList(string $raw): array
+    {
         return collect(preg_split('/[\s,;]+/', $raw, -1, PREG_SPLIT_NO_EMPTY))
             ->map(fn (string $email) => trim($email))
             ->filter(fn (string $email) => filter_var($email, FILTER_VALIDATE_EMAIL))
-            ->unique()
+            ->unique(fn (string $email) => strtolower($email))
             ->values()
             ->all();
     }

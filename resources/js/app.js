@@ -3,8 +3,7 @@ import Alpine from 'alpinejs';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { createIcons, icons } from 'lucide';
-import { initScrollAnimations } from './scroll-animations';
-import { initPublicUi } from './public-ui';
+import { initAppleMotion } from './apple-motion';
 
 window.Alpine = Alpine;
 window.gsap = gsap;
@@ -226,14 +225,23 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
     current() {
         return this.slides[this.active] ?? {};
     },
+    scrollActiveTabIntoView() {
+        this.$nextTick(() => {
+            const track = this.$refs.tabTrack;
+            const tab = track?.querySelectorAll('.eq-hero__tab')?.[this.active];
+            tab?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        });
+    },
     goTo(index) {
         if (index < 0 || index >= this.slides.length) return;
         this.active = index;
         this.resetAutoplay();
+        this.scrollActiveTabIntoView();
     },
     next() {
         this.active = (this.active + 1) % this.slides.length;
         this.resetAutoplay();
+        this.scrollActiveTabIntoView();
     },
     startAutoplay() {
         this.stopAutoplay();
@@ -361,8 +369,7 @@ Alpine.start();
 
 document.addEventListener('DOMContentLoaded', () => {
     createIcons({ icons });
-    initScrollAnimations();
-    initPublicUi();
+    initAppleMotion();
 
     document.querySelectorAll('.cms-content table').forEach((table) => {
         if (table.closest('.cms-table-wrap')) {

@@ -116,7 +116,7 @@
                 {{ $homepage->final_cta_heading ?? 'Make ' . (settings('company.short_name') ?? 'D³') . ' your competitive advantage' }}
             </h2>
             <p class="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-                {{ $homepage->final_cta_description ?? 'Partner with D³ DataCenters for Nordic data centre excellence.' }}
+                {{ $homepage->final_cta_description ?? 'Partner with D³ DataCenters for Global data centre excellence.' }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="{{ route('contact.index') }}" class="eq-btn-primary">{{ $homepage->final_cta_button_text ?? 'Schedule a discovery session' }}</a>

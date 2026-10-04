@@ -30,7 +30,7 @@
     <section id="services">
         <h2>2. About Our Services</h2>
         <p>
-            {{ $company }} provides enterprise data centre infrastructure, colocation, cloud connectivity, and related managed services across Nordic facilities.
+            {{ $company }} provides enterprise data centre infrastructure, colocation, cloud connectivity, and related managed services across Global facilities.
             Information on this website is provided for general informational purposes and does not constitute a binding offer unless expressly confirmed in writing.
         </p>
     </section>

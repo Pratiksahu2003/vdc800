@@ -25,14 +25,6 @@ class NavMenuSeeder extends Seeder
         $this->seedAboutMenu();
 
         NavMenuItem::create([
-            'slug' => 'login',
-            'zone' => 'utility',
-            'label' => 'Login',
-            'route_name' => 'admin.login',
-            'sort_order' => 20,
-        ]);
-
-        NavMenuItem::create([
             'slug' => 'contact-cta',
             'zone' => 'utility',
             'label' => 'Contact',
@@ -176,7 +168,7 @@ class NavMenuSeeder extends Seeder
             'label' => 'Data Centers',
             'dropdown_layout' => 'split',
             'sort_order' => 30,
-            'promo_title' => 'Tour Nordic facilities built for Tier III+ availability.',
+            'promo_title' => 'Tour Global facilities built for Tier III+ availability.',
             'promo_cta_label' => 'Book a facility tour',
             'promo_route_name' => 'contact.index',
         ]);
@@ -196,7 +188,7 @@ class NavMenuSeeder extends Seeder
             'sidebar_key' => 'projects',
             'group_heading' => 'Projects',
             'label' => 'All projects',
-            'description' => 'Facilities and case studies across the Nordics.',
+            'description' => 'Facilities and case studies across the global regions.',
             'route_name' => 'data-centre.index',
             'sort_order' => 10,
         ]);
@@ -225,7 +217,7 @@ class NavMenuSeeder extends Seeder
             'label' => 'Blog',
             'dropdown_layout' => 'split',
             'sort_order' => 40,
-            'promo_title' => 'Insights on operations, connectivity, and Nordic infrastructure.',
+            'promo_title' => 'Insights on operations, connectivity, and Global infrastructure.',
             'promo_cta_label' => 'Read the blog',
             'promo_route_name' => 'blog.index',
         ]);
@@ -298,7 +290,7 @@ class NavMenuSeeder extends Seeder
             'label' => 'About Us',
             'dropdown_layout' => 'split',
             'sort_order' => 45,
-            'promo_title' => 'Nordic engineering excellence for mission-critical digital infrastructure.',
+            'promo_title' => 'Global engineering excellence for mission-critical digital infrastructure.',
             'promo_cta_label' => 'Meet D³ DataCenters',
             'promo_route_name' => 'about.index',
         ]);

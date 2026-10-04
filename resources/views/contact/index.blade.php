@@ -6,10 +6,6 @@
 @section('meta_keywords', $seo['keywords'])
 
 @section('content')
-@php
-    $mapLink = company_map_link();
-    $mapEmbed = company_map_embed_url();
-@endphp
 <x-page-hero fallback="images/hero-slide-2.jpg" alt="Contact" size="md" align="center">
     <x-public.hero-heading
         eyebrow="Contact"
@@ -88,8 +84,13 @@
                 </div>
 
                 {{-- Form --}}
-                <form x-show="!submitted" method="POST" action="{{ route('contact.store') }}" @submit="submitting = true" class="eq-form-panel space-y-6">
+                <form x-show="!submitted" method="POST" action="{{ route('contact.store') }}" @submit="submitting = true" class="eq-form-panel relative space-y-6">
                     @csrf
+                    <input type="hidden" name="contact_form_token" value="{{ $contactFormToken ?? '' }}">
+                    <div class="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden" aria-hidden="true">
+                        <label for="company_website">Company website</label>
+                        <input type="text" name="company_website" id="company_website" tabindex="-1" autocomplete="off">
+                    </div>
 
                     @if($errors->any())
                         <div class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">

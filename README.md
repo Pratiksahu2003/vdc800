@@ -1,4 +1,4 @@
-# D³ DataCenters — Sustainable Nordic Data Centres
+# D³ DataCenters — Sustainable Global Data Centres
 
 A full-stack marketing website and content management system for **D³ DataCenters**. Built with Laravel 13, Tailwind CSS 4, Alpine.js, and GSAP. Includes a public-facing site with mega-menu navigation, blog, data centre listings, contact forms with maps, and a complete admin panel to manage all content.
 
@@ -19,7 +19,7 @@ This project is proprietary software. Unauthorized copying, distribution, or mod
 - Embedded **Google Map** on contact page (admin-configurable map link)
 - Mega-menu navigation for Services, Solutions, and Blog
 - Auto-generated **sitemap.xml** and **robots.txt**
-- Responsive Nordic-themed UI with GSAP animations
+- Responsive Global-themed UI with GSAP animations
 
 ### Admin panel (`/admin`)
 - Dashboard with content overview

@@ -16,7 +16,7 @@
             <div class="max-w-2xl">
                 <p class="text-brand-teal-600 text-xs font-bold tracking-widest uppercase mb-2">Network map</p>
                 <h2 class="eq-headline-section text-brand-900 text-2xl sm:text-3xl">Our data centre locations</h2>
-                <p class="text-brand-600 mt-3 leading-relaxed">Explore every D³ facility across Northern Europe. Select a pin or location card to view project details.</p>
+                <p class="text-brand-600 mt-3 leading-relaxed">Explore every D³ facility across our global footprint. Select a pin or location card to view project details.</p>
             </div>
             <p class="text-sm font-semibold text-brand-500 shrink-0">{{ $markers->count() }} active sites</p>
         </div>

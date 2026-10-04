@@ -22,7 +22,7 @@ class LongFormSeoContent
         $html .= self::section(
             "Why enterprises choose D³ DataCenters for {$title}",
             self::paragraphs($title, $category, [
-                "Organisations across Northern Europe select D³ DataCenters when {$title} must combine predictable performance with verifiable SLAs. Our Nordic facilities deliver carrier-neutral connectivity, concurrent maintainability, and transparent operational reporting that satisfies both technical stakeholders and executive committees.",
+                "Organisations worldwide select D³ DataCenters when {$title} must combine predictable performance with verifiable SLAs. Our global facilities deliver carrier-neutral connectivity, concurrent maintainability, and transparent operational reporting that satisfies both technical stakeholders and executive committees.",
                 "Unlike generic hosting providers, we engineer {$category} offerings around measurable outcomes: latency budgets, recovery time objectives, power density headroom, and audit-ready documentation. Every deployment includes a structured onboarding workshop, architecture review, and runbook aligned to your internal change-management process.",
                 "Clients migrating from legacy facilities frequently cite three drivers: lower PUE in cool-climate sites, direct cloud on-ramps that remove unpredictable internet transit, and remote hands teams who understand enterprise change windows. {$title} at D³ DataCenters is designed to compress time-to-production without sacrificing governance.",
                 "Our account teams publish quarterly business reviews covering capacity utilisation, incident trends, availability per workload, and roadmap items such as liquid cooling or additional cross-connects. This operating rhythm keeps {$title} aligned with growth plans rather than reactive ticket queues.",
@@ -129,7 +129,7 @@ class LongFormSeoContent
     public static function metaDescription(string $title, string $type, array $keywords): string
     {
         $base = "Explore {$title} with D³ DataCenters: ".implode(', ', array_slice($keywords, 0, 3))
-            .". Nordic Tier III+ facilities, 99.999% uptime SLA, and expert {$type} support across Europe.";
+            .". Global Tier III+ facilities, 99.999% uptime SLA, and expert {$type} support across Europe.";
 
         return mb_strlen($base) > 158 ? mb_substr($base, 0, 155).'...' : $base;
     }
@@ -139,7 +139,7 @@ class LongFormSeoContent
         $candidate = "{$title} | {$context} | {$suffix}";
 
         if (mb_strlen($candidate) < 60) {
-            $candidate .= ' | Nordic Tier III+ Infrastructure';
+            $candidate .= ' | Global Tier III+ Infrastructure';
         }
 
         if (mb_strlen($candidate) > 70) {
@@ -157,7 +157,7 @@ class LongFormSeoContent
     private static function serviceIntro(string $title, string $category, string $keywords): string
     {
         return <<<HTML
-<p><strong>{$title}</strong> from D³ DataCenters delivers enterprise-grade {$category} from Nordic data centres engineered for 99.999% availability, enterprise-grade security controls, and 24/7 operational coverage. This comprehensive guide explains how we design, deploy, and operate {$title} for organisations that cannot compromise on resilience, compliance, or performance.</p>
+<p><strong>{$title}</strong> from D³ DataCenters delivers enterprise-grade {$category} from Global data centres engineered for 99.999% availability, enterprise-grade security controls, and 24/7 operational coverage. This comprehensive guide explains how we design, deploy, and operate {$title} for organisations that cannot compromise on resilience, compliance, or performance.</p>
 <p>Whether you are consolidating legacy footprints, launching latency-sensitive platforms, or expanding hybrid cloud estates, our specialists align {$keywords} with measurable business outcomes. The following sections cover architecture, SLAs, security controls, operational metrics, and a practical deployment playbook you can share with technical and executive stakeholders.</p>
 HTML;
     }
@@ -167,7 +167,7 @@ HTML;
         $benefitText = implode(', ', array_slice($benefits, 0, 4));
 
         return <<<HTML
-<p>D³ DataCenters's <strong>{$title}</strong> solution combines colocation, connectivity, and managed capabilities into a vertical blueprint tuned for regulated, high-growth, and data-intensive organisations. Built on Nordic Tier III+ infrastructure, the solution addresses {$keywords} while delivering {$benefitText}.</p>
+<p>D³ DataCenters's <strong>{$title}</strong> solution combines colocation, connectivity, and managed capabilities into a vertical blueprint tuned for regulated, high-growth, and data-intensive organisations. Built on Global Tier III+ infrastructure, the solution addresses {$keywords} while delivering {$benefitText}.</p>
 <p>This page documents reference architectures, compliance alignment, operational models, and availability advantages so your team can evaluate fit, prepare internal business cases, and plan phased adoption with confidence.</p>
 HTML;
     }
@@ -280,9 +280,9 @@ HTML;
     {
         return <<<HTML
 <h2>Operations and availability</h2>
-<p>{$title} workloads hosted at D³ DataCenters run in Tier III+ Nordic facilities with concurrent maintainability, 24/7 NOC coverage, and published availability metrics. Customers receive operational reports suitable for internal audits, board reporting, and customer RFP questionnaires.</p>
+<p>{$title} workloads hosted at D³ DataCenters run in Tier III+ Global facilities with concurrent maintainability, 24/7 NOC coverage, and published availability metrics. Customers receive operational reports suitable for internal audits, board reporting, and customer RFP questionnaires.</p>
 <p>Cool-climate siting reduces mechanical cooling demand and helps hold facility PUE near 1.12. We publish facility PUE, capacity utilisation, and incident trends so stakeholders can plan growth with confidence.</p>
-<p>Choosing Nordic colocation can materially improve latency to European markets and reduce operational risk—an advantage for organisations that need predictable infrastructure while application teams continue to scale.</p>
+<p>Choosing Global colocation can materially improve latency to European markets and reduce operational risk—an advantage for organisations that need predictable infrastructure while application teams continue to scale.</p>
 HTML;
     }
 
@@ -369,7 +369,7 @@ HTML;
                 "Capacity planning for {$title} incorporates seasonal demand, hardware refresh cycles, and licence true-ups. D³ DataCenters provides forward-looking power and port utilisation forecasts so finance and engineering teams share a single source of truth.",
                 "Integration with ITSM tools allows change records, work orders, and asset tags to synchronise between your CMDB and our operations platform. This reduces manual reconciliation during audits and accelerates mean time to repair when incidents occur.",
                 "For multinational programmes, we coordinate staging windows across time zones, ensuring remote hands coverage aligns with your release trains. Escalation paths are documented in bilingual runbooks where required.",
-                "Benchmarking studies show Nordic {$context} deployments often achieve lower total cost of ownership over five years when cooling advantages and power economics are modelled honestly alongside list colocation rates.",
+                "Benchmarking studies show Global {$context} deployments often achieve lower total cost of ownership over five years when cooling advantages and power economics are modelled honestly alongside list colocation rates.",
             ],
             [
                 "Observability for {$title} should span environmental sensors, power draw, network optics, and application golden signals. We provide facility feeds that complement your existing dashboards rather than forcing proprietary silos.",

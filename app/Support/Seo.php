@@ -68,7 +68,7 @@ class Seo
         }
 
         if (mb_strlen($title) < $min) {
-            $title .= ' | Premium Nordic Data Centre Infrastructure';
+            $title .= ' | Premium Global Data Centre Infrastructure';
         }
 
         return self::truncateTitle($title, $max);

@@ -21,8 +21,9 @@
 @endphp
 
 <section
-    class="eq-hero relative flex flex-col text-white overflow-hidden bg-brand-950"
+    class="eq-hero relative flex flex-col text-white bg-brand-950"
     data-eq-hero
+    style="--hero-tab-count: {{ max($slidesData->count(), 1) }}"
     x-data="heroCarousel(@js($slidesData))"
     @mouseenter="stopAutoplay()"
     @mouseleave="slides.length > 1 && startAutoplay()"
@@ -54,7 +55,7 @@
             <div class="eq-hero__layout">
                 <div class="eq-hero__content">
                     <p class="eq-hero__eyebrow" data-eq-hero-line>
-                        <span>{{ settings('company.short_name') ?? 'D³' }} DataCenters</span>
+                        <span class="eq-hero__eyebrow-brand">{{ settings('company.short_name') ?? 'D³' }} DataCenters</span>
                         <template x-if="slides.length && current().category">
                             <span class="eq-hero__eyebrow-divider" aria-hidden="true"></span>
                         </template>
@@ -62,19 +63,19 @@
                             x-show="slides.length && current().category"
                             x-cloak
                             x-text="current().category"
-                            class="text-brand-teal-300"
+                            class="eq-hero__eyebrow-category text-brand-teal-300"
                         ></span>
                     </p>
 
-                    <div class="eq-hero__title-wrap mb-5 lg:mb-6 min-h-[3.5rem] sm:min-h-[4rem] lg:min-h-[4.5rem]">
+                    <div class="eq-hero__title-wrap mb-4 sm:mb-5 lg:mb-6">
                         <template x-if="slides.length">
-                            <div>
+                            <div class="eq-hero__title-stack">
                                 <template x-for="(slide, index) in slides" :key="'hero-title-' + index">
                                     <h1
                                         x-show="active === index"
                                         x-cloak
-                                        x-transition:enter="transition ease-out duration-500"
-                                        x-transition:enter-start="opacity-0 translate-y-4"
+                                        x-transition:enter="transition ease-[cubic-bezier(0.16,1,0.3,1)] duration-700"
+                                        x-transition:enter-start="opacity-0 translate-y-5"
                                         x-transition:enter-end="opacity-100 translate-y-0"
                                         class="eq-headline-hero eq-hero__title text-white"
                                         x-text="slide.title"
@@ -90,15 +91,15 @@
                         </template>
                     </div>
 
-                    <div class="eq-hero__description-wrap mb-8 lg:mb-9 min-h-[4.25rem] sm:min-h-[4.75rem]">
+                    <div class="eq-hero__description-wrap mb-6 sm:mb-8 lg:mb-9">
                         <template x-if="slides.length">
-                            <div>
+                            <div class="eq-hero__description-stack">
                                 <template x-for="(slide, index) in slides" :key="'hero-desc-' + index">
                                     <p
                                         x-show="active === index"
                                         x-cloak
-                                        x-transition:enter="transition ease-out duration-500 delay-75"
-                                        x-transition:enter-start="opacity-0 translate-y-3"
+                                        x-transition:enter="transition ease-[cubic-bezier(0.16,1,0.3,1)] duration-700 delay-100"
+                                        x-transition:enter-start="opacity-0 translate-y-4"
                                         x-transition:enter-end="opacity-100 translate-y-0"
                                         class="eq-hero__description"
                                         x-text="slide.description"
@@ -133,7 +134,7 @@
                     </div>
 
                     @if($heroStats->isNotEmpty())
-                        <ul class="eq-hero__stats mt-10 lg:mt-12" data-eq-hero-line aria-label="Key metrics">
+                        <ul class="eq-hero__stats mt-10 lg:mt-12" aria-label="Key metrics">
                             @foreach($heroStats as $stat)
                                 <li class="eq-hero__stat">
                                     <span class="eq-hero__stat-value">{{ $stat->number }}</span>
@@ -154,7 +155,7 @@
 
     <div class="relative z-10 eq-hero__tabstrip" x-show="slides.length" x-cloak>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 eq-hero__tabstrip-inner">
-            <div class="eq-hero__tabstrip-track scrollbar-hide" role="tablist" aria-label="Hero capabilities">
+            <div class="eq-hero__tabstrip-track scrollbar-hide" role="tablist" aria-label="Hero capabilities" x-ref="tabTrack">
             <template x-for="(slide, index) in slides" :key="'eq-tab-' + index">
                 <button
                     type="button"

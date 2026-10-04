@@ -17,11 +17,11 @@ class BlogSeeder extends Seeder
         $this->seedImages();
 
         $categories = [
-            ['name' => 'Data Centre Insights', 'slug' => 'data-centre-insights', 'description' => 'Facility design, operations, and Nordic infrastructure trends.', 'sort_order' => 1],
+            ['name' => 'Data Centre Insights', 'slug' => 'data-centre-insights', 'description' => 'Facility design, operations, and global infrastructure trends.', 'sort_order' => 1],
             ['name' => 'Operations', 'slug' => 'operations', 'description' => 'Facility operations, PUE optimisation, and data centre best practices.', 'sort_order' => 2],
             ['name' => 'Cloud & Connectivity', 'slug' => 'cloud-connectivity', 'description' => 'Hybrid cloud, cross-connects, and carrier-neutral networking.', 'sort_order' => 3],
             ['name' => 'Security & Compliance', 'slug' => 'security-compliance', 'description' => 'Security frameworks, physical security, and regulatory readiness.', 'sort_order' => 4],
-            ['name' => 'Industry News', 'slug' => 'industry-news', 'description' => 'Market updates and D³ DataCenters announcements from across Northern Europe.', 'sort_order' => 5],
+            ['name' => 'Industry News', 'slug' => 'industry-news', 'description' => 'Market updates and D³ DataCenters announcements from across global regions.', 'sort_order' => 5],
         ];
 
         $categoryIds = [];
@@ -30,12 +30,12 @@ class BlogSeeder extends Seeder
         }
 
         $titles = [
-            ['Understanding Tier III+ Architecture in Nordic Facilities', 0],
+            ['Understanding Tier III+ Architecture in Global Facilities', 0],
             ['How Free-Air Cooling Cuts Data Centre Energy Use', 0],
             ['Direct Cloud On-Ramps: AWS, Azure and Google Cloud', 2],
             ['Security Compliance: What It Means for Your Workloads', 3],
             ['Oslo DC-1 Expansion Adds 15MW Capacity', 4],
-            ['PUE Benchmarks: Comparing Nordic vs European Averages', 0],
+            ['PUE Benchmarks: Comparing Global vs European Averages', 0],
             ['How We Deliver 99.999% Uptime SLAs', 1],
             ['Building Carrier-Neutral Meet-Me Rooms', 2],
             ['Biometric Access Control Best Practices', 3],
@@ -43,12 +43,12 @@ class BlogSeeder extends Seeder
             ['Capacity Reporting for Enterprise Colocation Clients', 1],
             ['Multi-Cloud Networking Without Internet Transit', 2],
             ['GDPR-Ready Infrastructure for Financial Services', 3],
-            ['D³ DataCenters Expands Nordic Interconnect Footprint', 4],
+            ['D³ DataCenters Expands Global Interconnect Footprint', 4],
             ['Remote Hands Support: What to Expect 24/7', 0],
             ['Heat Recovery Systems in Urban Data Centres', 1],
             ['Latency Optimisation for Trading Platforms', 2],
             ['Disaster Recovery Planning in Tier III+ Sites', 3],
-            ['Nordic Data Centre Market Outlook 2026', 4],
+            ['Global Data Centre Market Outlook 2026', 4],
             ['Scaling From Single Racks to Full Suites', 0],
         ];
 
@@ -95,13 +95,13 @@ class BlogSeeder extends Seeder
 
     private function excerpt(string $title): string
     {
-        return "Explore {$title} with practical guidance from D³ DataCenters infrastructure specialists operating Nordic data centres.";
+        return "Explore {$title} with practical guidance from D³ DataCenters infrastructure specialists operating Global data centres.";
     }
 
     private function body(string $title, string $category): string
     {
         return <<<HTML
-<p>{$title} is a critical topic for organisations deploying mission-critical workloads across Northern Europe. At D³ DataCenters, we combine engineering discipline with operational excellence to help enterprises make informed infrastructure decisions that balance performance, compliance, and reliability.</p>
+<p>{$title} is a critical topic for organisations deploying mission-critical workloads worldwide. At D³ DataCenters, we combine engineering discipline with operational excellence to help enterprises make informed infrastructure decisions that balance performance, compliance, and reliability.</p>
 <p>Modern data centre strategy requires more than rack space — it demands transparent metrics, resilient design, and partnerships that scale with your business. The following overview summarises key benchmarks our clients evaluate when planning colocation, cloud connectivity, and managed services in the {$category} space.</p>
 <h3>Key Metrics at a Glance</h3>
 <table>
@@ -118,7 +118,7 @@ class BlogSeeder extends Seeder
             <td>PUE</td>
             <td>1.55</td>
             <td>1.12–1.18</td>
-            <td>Nordic climate enables free-air cooling</td>
+            <td>Global climate enables free-air cooling</td>
         </tr>
         <tr>
             <td>NOC Coverage</td>

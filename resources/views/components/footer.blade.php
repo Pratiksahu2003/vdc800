@@ -1,6 +1,6 @@
 <footer class="bg-white border-t border-brand-200" data-site-footer>
     {{-- Pre-footer CTA --}}
-    <div class="eq-dark-band py-14 lg:py-16 border-b border-brand-800">
+    <div class="eq-dark-band py-14 lg:py-16 border-b border-brand-800" data-eq-footer-block>
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div>
                 <h2 class="text-2xl lg:text-3xl font-bold text-white tracking-tight max-w-xl">
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16" data-eq-footer-block>
         @if(count(settings('social_links') ?? []) > 0)
             <div class="flex flex-wrap gap-3 mb-10 pb-10 border-b border-brand-200">
                 @foreach(settings('social_links') ?? [] as $link)

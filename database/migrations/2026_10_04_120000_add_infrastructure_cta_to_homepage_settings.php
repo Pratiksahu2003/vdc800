@@ -18,7 +18,7 @@ return new class extends Migration
         DB::table('homepage_settings')->limit(1)->update([
             'infrastructure_heading' => 'Your business located everywhere your data is.',
             'infrastructure_heading_emphasis' => 'everywhere',
-            'infrastructure_description' => 'Deploy workloads in carrier-neutral Nordic facilities with Tier III+ design, direct cloud on-ramps, and 24/7 NOC coverage—so your teams stay connected without compromise.',
+            'infrastructure_description' => 'Deploy workloads in carrier-neutral Global facilities with Tier III+ design, direct cloud on-ramps, and 24/7 NOC coverage—so your teams stay connected without compromise.',
             'infrastructure_cta_text' => 'Explore D³ colocation',
             'infrastructure_cta_url' => '/projects',
         ]);

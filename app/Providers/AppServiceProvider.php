@@ -7,6 +7,9 @@ use App\Models\Service;
 use App\Models\Solution;
 use App\Services\MailConfigService;
 use App\Services\SiteSettingsService;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        RateLimiter::for('contact', function (Request $request) {
+            $perMinute = max(1, (int) config('contact.rate_limit.per_minute', 5));
+
+            return Limit::perMinute($perMinute)->by($request->ip());
+        });
+
         MailConfigService::applyFromDatabase();
 
         View::composer('*', function ($view) {
@@ -28,7 +37,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['components.navbar'], function ($view) {
             $view->with([
                 'navMainItems' => NavMenuItem::treeForZone('main'),
-                'navUtilityItems' => NavMenuItem::treeForZone('utility'),
+                'navUtilityItems' => NavMenuItem::treeForZone('utility')
+                    ->reject(fn ($item) => $item->slug === 'login' || $item->route_name === 'admin.login')
+                    ->values(),
             ]);
         });
 

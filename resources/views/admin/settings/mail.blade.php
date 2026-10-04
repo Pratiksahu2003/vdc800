@@ -38,6 +38,7 @@
                 </select>
             </div>
             @include('admin.components.input', ['name' => 'mail_ehlo_domain', 'label' => 'Sending domain (EHLO)', 'value' => old('mail_ehlo_domain', $mail->mail_ehlo_domain), 'placeholder' => 'd3.vedmint.online'])
+            <p class="text-xs text-brand-500 md:col-span-2 -mt-2">Use your domain name only (not an email address). Form notifications are configured under <strong>Company Settings → Form notification email(s)</strong>, not here.</p>
         </div>
 
         <hr class="border-brand-200">

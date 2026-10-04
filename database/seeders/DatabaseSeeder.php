@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
             'company_name' => 'D³ DataCenters',
             'short_name' => 'D³',
             'tagline' => 'IS FUTURE OF DCs',
-            'description' => 'D³ DataCenters designs, builds, and operates premium data centre facilities across Northern Europe.',
-            'about_company' => 'Founded with a vision to deliver world-class digital infrastructure, D³ DataCenters combines Nordic engineering excellence with enterprise-grade operations. Our facilities serve enterprises, cloud providers, and research institutions who demand reliability, security, and predictable performance.',
+            'description' => 'D³ DataCenters designs, builds, and operates premium data centre facilities worldwide.',
+            'about_company' => 'Founded with a vision to deliver world-class digital infrastructure, D³ DataCenters combines Global engineering excellence with enterprise-grade operations. Our facilities serve enterprises, cloud providers, and research institutions who demand reliability, security, and predictable performance.',
             'email' => 'hello@d3.vedmint.com',
             'contact_notification_email' => 'hello@d3.vedmint.com',
             'phone' => '+47 22 00 00 00',
@@ -47,9 +47,9 @@ class DatabaseSeeder extends Seeder
         SiteSetting::create([
             'website_name' => 'D³ DataCenters',
             'website_url' => 'http://localhost',
-            'default_page_title' => 'D³ DataCenters | Nordic Data Centres, Colocation & Cloud Connectivity',
-            'default_meta_description' => 'Premium data centre infrastructure in Northern Europe. Colocation, cloud connectivity, and enterprise hosting with 99.999% uptime.',
-            'default_keywords' => 'data centre, nordic, colocation, cloud connectivity, enterprise hosting',
+            'default_page_title' => 'D³ DataCenters | Global Data Centres, Colocation & Cloud Connectivity',
+            'default_meta_description' => 'Premium global data centre infrastructure. Colocation, cloud connectivity, and enterprise hosting with 99.999% uptime.',
+            'default_keywords' => 'data centre, global, colocation, cloud connectivity, enterprise hosting',
             'timezone' => 'Europe/Oslo',
             'default_language' => 'en',
         ]);
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         HomepageSetting::create([
             'hero_heading' => 'D³ DataCenters',
             'hero_subtitle' => 'IS FUTURE OF DCs',
-            'hero_description' => 'D³ DataCenters delivers enterprise-grade colocation and cloud connectivity from Nordic facilities engineered for uptime, security, and scale.',
+            'hero_description' => 'D³ DataCenters delivers enterprise-grade colocation and cloud connectivity from Global facilities engineered for uptime, security, and scale.',
             'hero_cta_text' => 'Explore Our Projects',
             'hero_cta_url' => '/projects',
             'hero_secondary_cta_text' => 'View Services',
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
             'sustainability_cta_url' => '/about',
             'infrastructure_heading' => 'Your business located everywhere your data is.',
             'infrastructure_heading_emphasis' => 'everywhere',
-            'infrastructure_description' => 'Deploy workloads in carrier-neutral Nordic facilities with Tier III+ design, direct cloud on-ramps, and 24/7 NOC coverage—so your teams stay connected without compromise.',
+            'infrastructure_description' => 'Deploy workloads in carrier-neutral Global facilities with Tier III+ design, direct cloud on-ramps, and 24/7 NOC coverage—so your teams stay connected without compromise.',
             'infrastructure_cta_text' => 'Explore D³ colocation',
             'infrastructure_cta_url' => '/projects',
             'final_cta_heading' => 'Ready to power your next chapter?',
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $statistics = [
-            ['number' => '2+', 'label' => 'Data centers', 'description' => 'Nordic campuses with room to scale.', 'sort_order' => 1],
+            ['number' => '2+', 'label' => 'Data centers', 'description' => 'Global campuses with room to scale.', 'sort_order' => 1],
             ['number' => '40+', 'label' => 'Cloud & network providers', 'description' => 'On one carrier-neutral platform.', 'sort_order' => 2],
             ['number' => '165+', 'label' => 'MW capacity', 'description' => 'Power engineered for enterprise density.', 'sort_order' => 3],
             ['number' => '1.12', 'label' => 'Average PUE', 'description' => 'Industry-leading efficiency', 'sort_order' => 4],
@@ -125,13 +125,13 @@ class DatabaseSeeder extends Seeder
             'hero_description' => 'D³ DataCenters was founded on a simple belief: digital infrastructure should be reliable, secure, and ready to scale. From our headquarters in Oslo, we design and operate data centres that prove performance and operational excellence go hand in hand.',
             'mission' => 'To deliver world-class digital infrastructure, enabling organisations to grow their digital capabilities with predictable uptime, security, and connectivity.',
             'vision' => 'A future where every byte processed in Europe is hosted in facilities that set the global standard for availability, efficiency, and operational discipline.',
-            'story' => '<p>D³ DataCenters began in 2018 when a team of Nordic engineers recognised that the explosive growth of cloud computing demanded a new class of data centre operations. Rather than accept the status quo, they set out to prove that facilities could be both powerful and precise.</p><p>Our first facility in Oslo opened in 2020, immediately achieving a PUE of 1.15 — well below the industry average. Today, we operate across Scandinavia with a pipeline of new facilities, each designed to push the boundaries of what enterprise infrastructure can achieve.</p>',
+            'story' => '<p>D³ DataCenters began in 2018 when a global team of engineers recognised that the explosive growth of cloud computing demanded a new class of data centre operations. Rather than accept the status quo, they set out to prove that facilities could be both powerful and precise.</p><p>Our first facility in Oslo opened in 2020, immediately achieving a PUE of 1.15 — well below the industry average. Today, we operate across global markets with a pipeline of new facilities, each designed to push the boundaries of what enterprise infrastructure can achieve.</p>',
             'sustainability' => 'Operational excellence is not a feature at D³ DataCenters — it is our foundation. We publish availability metrics, run 24/7 NOC coverage, and design every facility for concurrent maintainability, efficient cooling, and disciplined change control.',
             'cta_heading' => 'Join us in building the next chapter of digital infrastructure',
             'cta_description' => 'Whether you need colocation, cloud connectivity, or a custom enterprise solution, our team is ready to help.',
             'cta_button_text' => 'Contact Our Team',
             'cta_button_url' => '/contact',
-            'meta_title' => 'About D³ DataCenters | Nordic Data Centre Engineering & Operations',
+            'meta_title' => 'About D³ DataCenters | Global Data Centre Engineering & Operations',
         ]);
 
         $values = [
@@ -147,8 +147,8 @@ class DatabaseSeeder extends Seeder
 
         ContactSubmission::create([
             'name' => 'Erik Johansson',
-            'company' => 'Nordic Fintech AS',
-            'email' => 'erik.johansson@nordicfintech.no',
+            'company' => 'Global Fintech AS',
+            'email' => 'erik.johansson@globalfintech.no',
             'phone' => '+47 900 00 001',
             'project_type' => 'Colocation',
             'message' => 'We are looking for 20kW of colocation space with direct AWS connectivity. Could you provide availability and pricing for your Oslo facility?',
@@ -171,7 +171,7 @@ class DatabaseSeeder extends Seeder
                 'role' => 'Chief Technology Officer',
                 'company' => 'Mumbai FinTech Solutions',
                 'location' => 'Mumbai, India',
-                'quote' => 'D³ DataCenters gave us Nordic-grade colocation with latency that works for our European trading desks. Migration was smooth, and their team understood our RBI compliance requirements from day one.',
+                'quote' => 'D³ DataCenters gave us Global-grade colocation with latency that works for our European trading desks. Migration was smooth, and their team understood our RBI compliance requirements from day one.',
                 'rating' => 5,
                 'sort_order' => 1,
             ],

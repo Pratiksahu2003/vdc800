@@ -36,7 +36,7 @@
                 'placeholder' => 'sales@example.com, ops@example.com',
             ])
         </div>
-        <p class="text-xs text-brand-500 -mt-2 mb-4">When someone submits the Connect / Contact form, a notification is sent to these addresses (comma-separated). Falls back to the public contact email if empty.</p>
+        <p class="text-xs text-brand-500 -mt-2 mb-4">Contact form notifications go <strong>only</strong> to these addresses (comma-separated). When set, the public contact email and SMTP &ldquo;From&rdquo; address are <strong>not</strong> used as recipients. If this field is empty, notifications fall back to the public contact email above.</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @include('admin.components.input', ['name' => 'phone', 'label' => 'Phone', 'value' => $company->phone])
             @include('admin.components.input', ['name' => 'secondary_phone', 'label' => 'Secondary Phone', 'value' => $company->secondary_phone])

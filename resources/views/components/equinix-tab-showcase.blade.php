@@ -5,7 +5,7 @@
             (object) ['title' => 'AI demands distributed infrastructure', 'description' => 'Enterprise AI spans clouds, platforms and data. D³ connects them so workloads run faster, with governance built in.', 'icon' => 'cpu'],
             (object) ['title' => 'AI runs where data lives', 'description' => 'Our facilities unite connectivity and compute in one ecosystem—closer to the data and the performance your SLAs require.', 'icon' => 'database'],
             (object) ['title' => 'Sovereignty is non-negotiable', 'description' => 'Keep data where regulations demand while scaling across partners and markets from a unified platform.', 'icon' => 'shield'],
-            (object) ['title' => 'Intelligence can\'t wait', 'description' => 'Nordic-grade proximity puts critical workloads within milliseconds of the compute they need to scale.', 'icon' => 'zap'],
+            (object) ['title' => 'Intelligence can\'t wait', 'description' => 'Global-grade proximity puts critical workloads within milliseconds of the compute they need to scale.', 'icon' => 'zap'],
         ]);
     }
     $image = asset('images/home-insights-panel.png');

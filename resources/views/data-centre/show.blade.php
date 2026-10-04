@@ -18,8 +18,14 @@
         @if($dataCentre->short_description)
             <div class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto cms-content">{!! rich_content($dataCentre->short_description) !!}</div>
         @endif
-        @if($dataCentre->location)
-            <p class="text-brand-teal-400 text-xs font-bold uppercase tracking-widest mt-4">{{ $dataCentre->location }}@if($dataCentre->country), {{ $dataCentre->country }}@endif</p>
+        @if($dataCentre->location || $dataCentre->country)
+            @php
+                $heroLocation = $dataCentre->location ?? $dataCentre->country;
+                if ($dataCentre->location && $dataCentre->country && ! str_contains(strtolower($dataCentre->location), strtolower($dataCentre->country))) {
+                    $heroLocation = $dataCentre->location.', '.$dataCentre->country;
+                }
+            @endphp
+            <p class="text-brand-teal-400 text-xs font-bold uppercase tracking-widest mt-4">{{ $heroLocation }}</p>
         @endif
         <a href="{{ route('data-centre.index') }}" class="inline-flex items-center gap-2 mt-6 text-sm text-white/70 hover:text-white transition">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> All projects
@@ -41,27 +47,19 @@
 </x-public.section>
 @endif
 
-@if($dataCentre->full_description || $dataCentre->address || $dataCentre->location)
+@if($dataCentre->full_description || $dataCentre->location || $dataCentre->country)
 <x-public.section>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div class="lg:col-span-4">
             <h2 class="eq-headline-section text-brand-900 text-2xl mb-4">About the project</h2>
             @if($dataCentre->location || $dataCentre->country)
-                <p class="text-xs font-bold uppercase tracking-widest text-brand-teal-600 mb-3">
-                    {{ $dataCentre->location }}@if($dataCentre->country && $dataCentre->location), @endif{{ $dataCentre->country }}
-                </p>
-            @endif
-            @if($dataCentre->address)
-                <div class="text-sm text-brand-600 leading-relaxed cms-content">
-                    <i data-lucide="map-pin" class="w-4 h-4 inline text-brand-teal-600 -mt-0.5"></i>
-                    {!! rich_content($dataCentre->address) !!}
-                </div>
-            @endif
-            @if($mapLink)
-                <a href="{{ $mapLink }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-brand-teal-700 hover:text-brand-teal-600 transition">
-                    <i data-lucide="navigation" class="w-4 h-4"></i>
-                    Open in Google Maps
-                </a>
+                @php
+                    $aboutLocation = $dataCentre->location ?? $dataCentre->country;
+                    if ($dataCentre->location && $dataCentre->country && ! str_contains(strtolower($dataCentre->location), strtolower($dataCentre->country))) {
+                        $aboutLocation = $dataCentre->location.', '.$dataCentre->country;
+                    }
+                @endphp
+                <p class="text-xs font-bold uppercase tracking-widest text-brand-teal-600 mb-3">{{ $aboutLocation }}</p>
             @endif
         </div>
         @if($dataCentre->full_description)

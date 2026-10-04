@@ -42,7 +42,9 @@ Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:contact')
+    ->name('contact.store');
 Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
 Route::get('/terms-of-service', [LegalController::class, 'terms'])->name('legal.terms');
 Route::get('/cookie-policy', [LegalController::class, 'cookies'])->name('legal.cookies');
@@ -65,7 +67,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/settings/website', [WebsiteSettingController::class, 'update']);
         Route::get('/settings/mail', [MailSettingController::class, 'edit'])->name('settings.mail');
         Route::put('/settings/mail', [MailSettingController::class, 'update']);
-        Route::post('/settings/mail/test', [MailSettingController::class, 'sendTest'])->name('settings.mail.test');
+        Route::post('/settings/mail/test', [MailSettingController::class, 'sendTest'])
+            ->middleware('throttle:5,1')
+            ->name('settings.mail.test');
         Route::get('/settings/social-links', [SocialLinkController::class, 'index'])->name('settings.social-links');
         Route::post('/settings/social-links', [SocialLinkController::class, 'store']);
         Route::put('/settings/social-links/{socialLink}', [SocialLinkController::class, 'update'])->name('settings.social-links.update');

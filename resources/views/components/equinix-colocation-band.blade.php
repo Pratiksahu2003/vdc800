@@ -14,7 +14,7 @@
     }
 
     $description = strip_tags($homepage->infrastructure_description ?? '')
-        ?: 'Deploy workloads in carrier-neutral Nordic facilities with Tier III+ design, direct cloud on-ramps, and 24/7 NOC coverage—so your teams stay connected without compromise.';
+        ?: 'Deploy workloads in carrier-neutral Global facilities with Tier III+ design, direct cloud on-ramps, and 24/7 NOC coverage—so your teams stay connected without compromise.';
 
     $ctaText = $homepage->infrastructure_cta_text ?? 'Explore D³ colocation';
     $ctaUrl = $homepage->infrastructure_cta_url ?? route('data-centre.index');
