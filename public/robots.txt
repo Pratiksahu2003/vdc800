@@ -23,4 +23,4 @@ Disallow: /
 User-agent: CCBot
 Disallow: /
 
-Sitemap: https://www.vdc800.com/sitemap.xml
+Sitemap: https://d3.vedmint.com/sitemap.xml
