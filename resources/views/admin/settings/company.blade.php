@@ -27,7 +27,17 @@
 
         <h3 class="font-medium text-brand-900">Contact Information</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            @include('admin.components.input', ['name' => 'email', 'label' => 'Email', 'type' => 'email', 'value' => $company->email])
+            @include('admin.components.input', ['name' => 'email', 'label' => 'Public contact email', 'type' => 'email', 'value' => $company->email])
+            @include('admin.components.input', [
+                'name' => 'contact_notification_email',
+                'label' => 'Form notification email(s)',
+                'type' => 'text',
+                'value' => $company->contact_notification_email,
+                'placeholder' => 'sales@example.com, ops@example.com',
+            ])
+        </div>
+        <p class="text-xs text-brand-500 -mt-2 mb-4">When someone submits the Connect / Contact form, a notification is sent to these addresses (comma-separated). Falls back to the public contact email if empty.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @include('admin.components.input', ['name' => 'phone', 'label' => 'Phone', 'value' => $company->phone])
             @include('admin.components.input', ['name' => 'secondary_phone', 'label' => 'Secondary Phone', 'value' => $company->secondary_phone])
         </div>

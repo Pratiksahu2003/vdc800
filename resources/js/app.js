@@ -202,10 +202,23 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
         }
         video.muted = true;
         video.defaultMuted = true;
+        video.playsInline = true;
         video.volume = 0;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+
         const play = () => video.play().catch(() => {});
         play();
         video.addEventListener('canplay', play, { once: true });
+        video.addEventListener('loadeddata', play, { once: true });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                video.pause();
+            } else {
+                play();
+            }
+        });
     },
     destroy() {
         this.stopAutoplay();

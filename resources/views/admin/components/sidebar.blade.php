@@ -25,6 +25,7 @@
                 ['href' => route('admin.settings.branding'), 'label' => 'Branding', 'icon' => 'palette', 'active' => request()->routeIs('admin.settings.branding')],
                 ['href' => route('admin.settings.website'), 'label' => 'Website SEO', 'icon' => 'globe', 'active' => request()->routeIs('admin.settings.website')],
                 ['href' => route('admin.settings.social-links'), 'label' => 'Social links', 'icon' => 'share-2', 'active' => request()->routeIs('admin.settings.social-links')],
+                ['href' => route('admin.settings.mail'), 'label' => 'Email & SMTP', 'icon' => 'mail', 'active' => request()->routeIs('admin.settings.mail*')],
             ],
         ],
         [

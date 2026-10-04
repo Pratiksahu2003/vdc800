@@ -7,8 +7,14 @@
                     Tap into advisory, engineering, and delivery partners across data centre strategy, design, and execution—all connected through {{ settings('company.company_name') ?? 'D³ DataCenters' }}.
                 </p>
             </div>
-            <div class="relative aspect-[16/10] overflow-hidden eq-case-study" data-eq-parallax>
-                <img src="{{ asset('images/hero-datacenter.jpg') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
+            <div class="relative aspect-square max-w-xl lg:max-w-none lg:ml-auto overflow-hidden rounded-2xl shadow-xl shadow-brand-900/10 ring-1 ring-brand-200/80 eq-case-study" data-eq-parallax>
+                <img
+                    src="{{ asset('images/home-ecosystem.jpg') }}"
+                    alt="D³ DataCenters facilities — campus, power, cooling, and colocation halls"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                >
             </div>
         </div>
 

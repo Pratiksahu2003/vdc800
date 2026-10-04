@@ -26,6 +26,7 @@ class CompanySettingController extends Controller
             'description' => 'nullable|string',
             'about_company' => 'nullable|string',
             'email' => 'nullable|email|max:255',
+            'contact_notification_email' => 'nullable|string|max:500',
             'phone' => 'nullable|string|max:50',
             'secondary_phone' => 'nullable|string|max:50',
             'address' => 'nullable|string',

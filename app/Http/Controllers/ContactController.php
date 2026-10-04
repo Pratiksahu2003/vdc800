@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactSubmission;
+use App\Services\ContactNotificationService;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -23,7 +24,9 @@ class ContactController extends Controller
             'message' => 'required|string|max:5000',
         ]);
 
-        ContactSubmission::create($validated);
+        $submission = ContactSubmission::create($validated);
+
+        app(ContactNotificationService::class)->notifyAdmin($submission);
 
         return back()->with('success', 'Thank you for your message. We will be in touch shortly.');
     }

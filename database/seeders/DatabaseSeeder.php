@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'D³ DataCenters designs, builds, and operates premium data centre facilities across Northern Europe.',
             'about_company' => 'Founded with a vision to deliver world-class digital infrastructure, D³ DataCenters combines Nordic engineering excellence with enterprise-grade operations. Our facilities serve enterprises, cloud providers, and research institutions who demand reliability, security, and predictable performance.',
             'email' => 'hello@d3.vedmint.com',
+            'contact_notification_email' => 'hello@d3.vedmint.com',
             'phone' => '+47 22 00 00 00',
             'secondary_phone' => '+46 8 00 00 00',
             'address' => 'Akersgata 12',

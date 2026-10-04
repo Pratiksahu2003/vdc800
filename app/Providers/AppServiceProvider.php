@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\NavMenuItem;
 use App\Models\Service;
 use App\Models\Solution;
+use App\Services\MailConfigService;
 use App\Services\SiteSettingsService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        MailConfigService::applyFromDatabase();
+
         View::composer('*', function ($view) {
             $view->with('siteSettings', settings());
         });

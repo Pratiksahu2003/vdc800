@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ContactSubmissionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DataCentreController as AdminDataCentreController;
 use App\Http\Controllers\Admin\HomepageController;
+use App\Http\Controllers\Admin\MailSettingController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
@@ -62,6 +63,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/settings/branding', [BrandingController::class, 'update']);
         Route::get('/settings/website', [WebsiteSettingController::class, 'edit'])->name('settings.website');
         Route::put('/settings/website', [WebsiteSettingController::class, 'update']);
+        Route::get('/settings/mail', [MailSettingController::class, 'edit'])->name('settings.mail');
+        Route::put('/settings/mail', [MailSettingController::class, 'update']);
+        Route::post('/settings/mail/test', [MailSettingController::class, 'sendTest'])->name('settings.mail.test');
         Route::get('/settings/social-links', [SocialLinkController::class, 'index'])->name('settings.social-links');
         Route::post('/settings/social-links', [SocialLinkController::class, 'store']);
         Route::put('/settings/social-links/{socialLink}', [SocialLinkController::class, 'update'])->name('settings.social-links.update');
