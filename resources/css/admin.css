@@ -1,102 +1,173 @@
-/* Admin dashboard shell */
+/* Zoho CRM–inspired admin sidebar */
+:root {
+    --admin-sidebar-width: 16.25rem;
+    --admin-sidebar-bg: #f6f8fb;
+    --admin-sidebar-border: #e3e8ef;
+    --admin-sidebar-active: #e8f5ee;
+    --admin-sidebar-active-border: #2d9f6f;
+}
+
 .admin-sidebar {
-    @apply bg-brand-950 text-brand-100 border-r border-white/5 shadow-xl;
+    width: var(--admin-sidebar-width);
+    background: var(--admin-sidebar-bg);
+    border-right: 1px solid var(--admin-sidebar-border);
+    box-shadow: 1px 0 0 rgb(255 255 255 / 0.6) inset;
 }
 
 .admin-sidebar__head {
-    @apply flex items-center gap-2 h-16 px-4 border-b border-white/10 shrink-0;
+    @apply flex items-center justify-between gap-2 h-[3.75rem] px-4 shrink-0 bg-white border-b border-brand-200/80;
 }
 
 .admin-sidebar__brand {
-    @apply flex-1 min-w-0;
-}
-
-.admin-sidebar__badge {
-    @apply hidden sm:inline-flex text-[10px] font-bold uppercase tracking-widest text-brand-teal-300 bg-white/10 px-2 py-0.5 rounded;
+    @apply flex items-center min-w-0 py-1;
 }
 
 .admin-sidebar__close {
-    @apply p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition shrink-0;
+    @apply p-2 rounded-md text-brand-500 hover:text-brand-800 hover:bg-brand-100 transition shrink-0;
+}
+
+.admin-sidebar__search-wrap {
+    @apply px-3 pt-3 pb-2 shrink-0 bg-white border-b border-brand-200/60;
+}
+
+.admin-sidebar__search {
+    @apply flex items-center gap-2 rounded-lg border border-brand-200 bg-brand-50/80 px-3 py-2 focus-within:border-brand-teal-400 focus-within:ring-2 focus-within:ring-brand-teal-500/15 transition;
+}
+
+.admin-sidebar__search-input {
+    @apply flex-1 min-w-0 bg-transparent border-0 p-0 text-sm text-brand-800 placeholder:text-brand-400 focus:ring-0;
+}
+
+.admin-sidebar__search-clear {
+    @apply p-0.5 rounded text-brand-400 hover:text-brand-700 hover:bg-brand-200/50;
 }
 
 .admin-sidebar__nav {
-    @apply px-3 py-4 space-y-5;
+    @apply px-2 py-3 space-y-1;
     scrollbar-width: thin;
-    scrollbar-color: rgb(255 255 255 / 0.15) transparent;
+    scrollbar-color: #c5cdd8 transparent;
+}
+
+.admin-sidebar__section {
+    @apply mb-1;
 }
 
 .admin-sidebar__section-label {
-    @apply px-3 mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-white/40;
+    @apply px-3 pt-2 pb-1 text-[11px] font-semibold text-brand-500;
 }
 
-.admin-sidebar__section-toggle {
-    @apply flex w-full items-center justify-between gap-2 px-3 py-1.5 mb-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/45 hover:text-white/70 transition;
+.admin-sidebar__module {
+    @apply flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-left text-sm font-semibold text-brand-800 hover:bg-white hover:shadow-sm transition;
 }
 
-.admin-sidebar__section-body {
-    @apply space-y-3 pb-1;
+.admin-sidebar__module-icon {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white border border-brand-200/80 text-brand-teal-700;
+}
+
+.admin-sidebar__module-title {
+    @apply flex-1 truncate;
+}
+
+.admin-sidebar__module-chevron {
+    @apply w-4 h-4 text-brand-400 transition-transform duration-200 shrink-0;
+}
+
+.admin-sidebar__module-chevron.is-open {
+    transform: rotate(180deg);
+}
+
+.admin-sidebar__module-body {
+    @apply mt-0.5 ml-2 pl-3 border-l-2 border-brand-200/70 space-y-2 pb-1;
+}
+
+.admin-sidebar__subgroup {
+    @apply pt-1;
 }
 
 .admin-sidebar__group-label {
-    @apply px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-brand-teal-400/90 first:pt-0;
+    @apply px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-brand-400;
 }
 
 .admin-sidebar__links {
     @apply space-y-0.5;
 }
 
+.admin-sidebar__links--nested {
+    @apply pt-0.5;
+}
+
 .admin-nav-link {
-    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/75 transition-colors;
-    min-height: 2.75rem;
+    @apply relative flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-medium text-brand-700 transition-all;
+    min-height: 2.5rem;
 }
 
 .admin-nav-link:hover {
-    @apply text-white bg-white/10;
+    @apply bg-white text-brand-900 shadow-sm;
 }
 
 .admin-nav-link--nested {
-    @apply py-2 text-[13px];
+    @apply pl-2 py-1.5 min-h-[2.25rem];
 }
 
 .admin-nav-link--active {
-    @apply text-white bg-white/12 ring-1 ring-white/10;
-    box-shadow: inset 3px 0 0 0 var(--color-brand-teal-400);
+    @apply bg-white text-brand-teal-800 font-semibold shadow-sm;
+    box-shadow: inset 3px 0 0 0 var(--admin-sidebar-active-border);
 }
 
 .admin-nav-link__icon {
-    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-brand-teal-300;
+    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-brand-500;
 }
 
 .admin-nav-link--active .admin-nav-link__icon {
-    @apply bg-brand-teal-600/30 text-brand-teal-200;
+    @apply bg-brand-teal-50 text-brand-teal-700;
 }
 
 .admin-nav-link__label {
-    @apply truncate;
+    @apply flex-1 truncate leading-snug;
+}
+
+.admin-nav-link__active-dot {
+    @apply w-1.5 h-1.5 rounded-full bg-brand-teal-500 shrink-0;
+}
+
+.admin-sidebar__empty {
+    @apply px-3 py-6 text-center text-sm text-brand-500;
 }
 
 .admin-sidebar__foot {
-    @apply shrink-0 border-t border-white/10 p-4 space-y-3;
+    @apply shrink-0 border-t border-brand-200/80 bg-white p-3 space-y-2;
 }
 
 .admin-sidebar__foot-link {
-    @apply flex items-center justify-center gap-2 w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10 hover:text-white transition;
+    @apply flex items-center justify-center gap-2 w-full rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-teal-50 hover:border-brand-teal-200 hover:text-brand-teal-800 transition;
 }
 
 .admin-sidebar__foot-meta {
-    @apply text-center text-[11px] text-white/35;
+    @apply text-center text-[11px] text-brand-400;
+}
+
+.admin-sidebar__backdrop {
+    @apply fixed inset-0 z-40 bg-brand-900/40 backdrop-blur-[2px];
 }
 
 .admin-main-shell {
-    @apply lg:pl-[17.5rem] min-h-screen bg-brand-50/80;
+    min-height: 100vh;
+    padding-left: 0;
+    @apply bg-[#eef1f6];
+}
+
+@media (min-width: 1024px) {
+    .admin-main-shell {
+        padding-left: var(--admin-sidebar-width);
+    }
 }
 
 .admin-topbar {
-    @apply sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-brand-200/80;
+    @apply sticky top-0 z-30 bg-white border-b border-brand-200/90 shadow-sm;
 }
 
 @media (min-width: 1024px) {
     .admin-topbar {
-        padding-left: 17.5rem;
+        padding-left: var(--admin-sidebar-width);
     }
 }

@@ -83,7 +83,7 @@
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="eq-nav-backdrop hidden xl:block fixed inset-0 top-[var(--site-header-height)] z-[48]"
+        class="eq-nav-backdrop eq-nav-backdrop--ghost hidden xl:block fixed inset-0 top-[var(--site-header-height)] z-[48]"
         @click="closeMenus()"
         aria-hidden="true"
     ></div>
