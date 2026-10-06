@@ -78,9 +78,15 @@
             </div>
         </div>
 
-        <div class="mt-12 pt-8 border-t border-brand-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 text-sm text-brand-600">
+        <div class="mt-12 pt-8 border-t border-brand-200 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 text-sm text-brand-600">
             <x-logo class="h-10 w-auto opacity-90" :link="false" />
-            <p>&copy; {{ date('Y') }} {{ settings('company.company_name') ?? 'D³ DataCenters' }}. All rights reserved.</p>
+            <div class="flex flex-col gap-1.5 lg:items-end lg:text-right">
+                <p>&copy; {{ date('Y') }} {{ settings('company.company_name') ?? 'D³ DataCenters' }}. All rights reserved.</p>
+                <p class="text-brand-500">
+                    Designed and developed by
+                    <a href="https://www.vedmint.com/" target="_blank" rel="noopener noreferrer" class="font-medium text-brand-teal-700 hover:text-brand-teal-800 underline-offset-2 hover:underline">VedMint Consultancy Services</a>
+                </p>
+            </div>
         </div>
     </div>
 </footer>

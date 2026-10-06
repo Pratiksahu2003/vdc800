@@ -5,22 +5,44 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 export const MOTION_EASE = 'power3.out';
 export const MOTION_EASE_ENTER = 'power4.out';
 
+const REVEAL_START = 'top 86%';
+
 export function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function revealFromHidden(targets, vars = {}) {
-    gsap.fromTo(
-        targets,
+function markRevealed(...elements) {
+    elements.flat().forEach((el) => {
+        if (el instanceof Element) {
+            el.classList.add('eq-revealed');
+        }
+    });
+}
+
+function createRevealTween(targets, section, { stagger = 0.09, duration = 0.95 } = {}) {
+    const list = gsap.utils.toArray(targets);
+    if (!list.length) {
+        return null;
+    }
+
+    return gsap.fromTo(
+        list,
         { autoAlpha: 0, y: 28, scale: 0.985 },
         {
             autoAlpha: 1,
             y: 0,
             scale: 1,
-            duration: 0.95,
-            stagger: 0.09,
+            duration,
+            stagger: list.length > 1 ? stagger : 0,
             ease: MOTION_EASE,
-            ...vars,
+            immediateRender: false,
+            scrollTrigger: {
+                trigger: section,
+                start: REVEAL_START,
+                once: true,
+                toggleActions: 'play none none none',
+            },
+            onComplete: () => markRevealed(list, section),
         },
     );
 }
@@ -75,39 +97,17 @@ function collectSectionTargets(section) {
 }
 
 function initScrollReveals(root) {
-    const sections = gsap.utils.toArray(root.querySelectorAll('[data-eq-reveal]'));
-
-    sections.forEach((section) => {
+    gsap.utils.toArray(root.querySelectorAll('[data-eq-reveal]')).forEach((section) => {
         const targets = collectSectionTargets(section);
         const useSectionFallback = targets.length === 1 && targets[0] === section;
 
         if (useSectionFallback) {
-            gsap.set(section, { autoAlpha: 0, y: 32 });
-            ScrollTrigger.create({
-                trigger: section,
-                start: 'top 88%',
-                once: true,
-                onEnter: () => {
-                    gsap.to(section, {
-                        autoAlpha: 1,
-                        y: 0,
-                        duration: 0.95,
-                        ease: MOTION_EASE,
-                    });
-                },
-            });
+            createRevealTween(section, section, { stagger: 0, duration: 0.95 });
             return;
         }
 
-        gsap.set(section, { autoAlpha: 1, y: 0, clearProps: 'transform' });
-        gsap.set(targets, { autoAlpha: 0, y: 24, scale: 0.985 });
-
-        ScrollTrigger.create({
-            trigger: section,
-            start: 'top 86%',
-            once: true,
-            onEnter: () => revealFromHidden(targets),
-        });
+        section.classList.add('eq-reveal-host');
+        createRevealTween(targets, section);
     });
 }
 
@@ -128,6 +128,7 @@ function initPageHero(root) {
                 stagger: 0.11,
                 ease: MOTION_EASE_ENTER,
                 delay: 0.15,
+                onComplete: () => markRevealed(items),
             },
         );
     });
@@ -148,6 +149,7 @@ function initPageHero(root) {
                     start: 'top top',
                     end: 'bottom top',
                     scrub: 0.85,
+                    invalidateOnRefresh: true,
                 },
             },
         );
@@ -166,7 +168,10 @@ function initHomeHero(root) {
     const stats = hero.querySelector('.eq-hero__stats');
 
     gsap
-        .timeline({ defaults: { ease: MOTION_EASE_ENTER } })
+        .timeline({
+            defaults: { ease: MOTION_EASE_ENTER },
+            onComplete: () => markRevealed(hero),
+        })
         .from(lines, { y: 44, autoAlpha: 0, duration: 1.05, stagger: 0.09 })
         .from(ctas, { y: 22, autoAlpha: 0, duration: 0.8, stagger: 0.06 }, '-=0.5')
         .from(stats?.children ?? [], { y: 16, autoAlpha: 0, duration: 0.75, stagger: 0.06 }, '-=0.35');
@@ -186,16 +191,21 @@ function initHomeHero(root) {
 
 function initParallax(root) {
     root.querySelectorAll('[data-eq-parallax]').forEach((el) => {
-        gsap.to(el, {
-            yPercent: 14,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: el.closest('section') ?? el,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.65,
+        gsap.fromTo(
+            el,
+            { yPercent: 0 },
+            {
+                yPercent: 14,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: el.closest('section') ?? el,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 0.65,
+                    invalidateOnRefresh: true,
+                },
             },
-        });
+        );
     });
 }
 
@@ -254,31 +264,75 @@ function initChromeEntrances() {
 
     const footer = document.querySelector('[data-site-footer]');
     if (footer) {
-        const blocks = footer.querySelectorAll('[data-eq-footer-block]');
+        const blocks = gsap.utils.toArray(footer.querySelectorAll('[data-eq-footer-block]'));
         if (blocks.length) {
-            gsap.set(blocks, { autoAlpha: 0, y: 28 });
-            ScrollTrigger.create({
-                trigger: footer,
-                start: 'top 92%',
-                once: true,
-                onEnter: () => revealFromHidden(blocks, { stagger: 0.12 }),
-            });
+            gsap.fromTo(
+                blocks,
+                { autoAlpha: 0, y: 28, scale: 0.985 },
+                {
+                    autoAlpha: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.9,
+                    stagger: 0.12,
+                    ease: MOTION_EASE,
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: footer,
+                        start: REVEAL_START,
+                        once: true,
+                        toggleActions: 'play none none none',
+                    },
+                    onComplete: () => markRevealed(blocks),
+                },
+            );
         }
     }
 }
 
 function resetMotionHidden(root) {
-    root.querySelectorAll('[data-eq-reveal]').forEach((el) => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-    });
-    document.querySelectorAll('[data-eq-footer-block]').forEach((el) => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
+    document.documentElement.classList.remove('eq-motion-js');
+    root.querySelectorAll('[data-eq-reveal], [data-eq-footer-block]').forEach((el) => {
+        el.classList.add('eq-revealed');
+        el.style.opacity = '';
+        el.style.transform = '';
     });
 }
 
+function syncScrollTriggers() {
+    requestAnimationFrame(() => {
+        ScrollTrigger.refresh(true);
+    });
+}
+
+function bindScrollRefresh() {
+    window.addEventListener('load', syncScrollTriggers, { once: true });
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            syncScrollTriggers();
+        }
+    });
+
+    let resizeTimer = null;
+    window.addEventListener(
+        'resize',
+        () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(syncScrollTriggers, 200);
+        },
+        { passive: true },
+    );
+}
+
+let motionInitialized = false;
+
 export function initAppleMotion() {
+    if (motionInitialized) {
+        syncScrollTriggers();
+        return;
+    }
+    motionInitialized = true;
+
     const root = document.querySelector('[data-public-ui]') ?? document.querySelector('main.site-main');
 
     if (!root) {
@@ -290,6 +344,9 @@ export function initAppleMotion() {
         return;
     }
 
+    document.documentElement.classList.add('eq-motion-js');
+    bindScrollRefresh();
+
     initChromeEntrances();
     initHomeHero(root);
     initPageHero(root);
@@ -297,5 +354,5 @@ export function initAppleMotion() {
     initParallax(root);
     initStatCounters(document);
 
-    ScrollTrigger.refresh();
+    syncScrollTriggers();
 }

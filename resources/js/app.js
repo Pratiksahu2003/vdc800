@@ -183,16 +183,38 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
     progress: 0,
     timer: null,
     duration: 5000,
+    heroVisible: true,
     init() {
         try {
             this.slides = typeof slidesJson === 'string' ? JSON.parse(slidesJson) : slidesJson;
         } catch {
             this.slides = [];
         }
-        this.$nextTick(() => this.ensureMutedPlayback());
+        this.$nextTick(() => {
+            this.ensureMutedPlayback();
+            this.observeHeroVisibility();
+        });
         if (this.slides.length > 1) {
             this.startAutoplay();
         }
+    },
+    observeHeroVisibility() {
+        if (typeof IntersectionObserver === 'undefined') {
+            return;
+        }
+        this._heroObserver?.disconnect();
+        this._heroObserver = new IntersectionObserver(
+            (entries) => {
+                this.heroVisible = entries.some((entry) => entry.isIntersecting);
+                if (!this.heroVisible) {
+                    this.stopAutoplay();
+                } else if (this.slides.length > 1) {
+                    this.startAutoplay();
+                }
+            },
+            { root: null, threshold: 0.12 },
+        );
+        this._heroObserver.observe(this.$el);
     },
     ensureMutedPlayback() {
         const video = this.$refs.heroVideo;
@@ -221,6 +243,7 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
     },
     destroy() {
         this.stopAutoplay();
+        this._heroObserver?.disconnect();
     },
     current() {
         return this.slides[this.active] ?? {};
@@ -229,7 +252,23 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
         this.$nextTick(() => {
             const track = this.$refs.tabTrack;
             const tab = track?.querySelectorAll('.eq-hero__tab')?.[this.active];
-            tab?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (!track || !tab) {
+                return;
+            }
+
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            if (maxScroll <= 0) {
+                return;
+            }
+
+            const tabOffset = tab.offsetLeft + tab.offsetWidth / 2;
+            const target = tabOffset - track.clientWidth / 2;
+            const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+
+            track.scrollTo({
+                left: Math.max(0, Math.min(maxScroll, target)),
+                behavior,
+            });
         });
     },
     goTo(index) {
@@ -239,6 +278,9 @@ Alpine.data('heroCarousel', (slidesJson = '[]') => ({
         this.scrollActiveTabIntoView();
     },
     next() {
+        if (!this.heroVisible) {
+            return;
+        }
         this.active = (this.active + 1) % this.slides.length;
         this.resetAutoplay();
         this.scrollActiveTabIntoView();
