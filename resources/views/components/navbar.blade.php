@@ -226,7 +226,7 @@
                     <i data-lucide="chevron-down" class="w-4 h-4 transition-transform" :class="mobileServicesOpen && 'rotate-180'"></i>
                 </button>
                 <div x-show="mobileServicesOpen" x-cloak x-transition class="mt-2 space-y-4 pl-1">
-                    @forelse($navServicesByCategory ?? [] as $category => $categoryServices)
+                    @forelse(($navServicesByCategory ?? []) as $category => $categoryServices)
                         <div>
                             <p class="text-xs font-bold text-brand-900 uppercase tracking-wide mb-2">{{ $category }}</p>
                             <div class="space-y-1.5 pl-2 border-l-2 border-brand-teal-100">
