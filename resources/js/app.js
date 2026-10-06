@@ -314,6 +314,7 @@ Alpine.data('siteNav', () => ({
     activeMenu: null,
     mobileOpen: false,
     navScrolled: false,
+    closeTimer: null,
     init() {
         const onScroll = () => {
             this.navScrolled = window.scrollY > 8;
@@ -326,20 +327,53 @@ Alpine.data('siteNav', () => ({
                 this.mobileOpen = false;
                 document.documentElement.classList.remove('eq-menu-open');
             } else {
+                this.cancelClose();
                 this.activeMenu = null;
             }
         };
         window.addEventListener('resize', onResize, { passive: true });
+        this._onPointerMove = (event) => this.handlePointerMove(event);
+        window.addEventListener('pointermove', this._onPointerMove, { passive: true });
+    },
+    handlePointerMove(event) {
+        if (!this.activeMenu || this.mobileOpen) return;
+        if (!window.matchMedia('(min-width: 1280px)').matches) return;
+
+        const target = event.target;
+        const inside = target instanceof Element
+            && target.closest('[data-nav-dropdown], .eq-nav-mega-panel');
+
+        if (inside) {
+            this.cancelClose();
+            return;
+        }
+
+        this.scheduleClose();
+    },
+    scheduleClose() {
+        if (this.closeTimer) return;
+        this.closeTimer = setTimeout(() => {
+            this.closeTimer = null;
+            this.closeMenus();
+        }, 160);
+    },
+    cancelClose() {
+        if (!this.closeTimer) return;
+        clearTimeout(this.closeTimer);
+        this.closeTimer = null;
     },
     openMenu(key) {
+        this.cancelClose();
         this.activeMenu = key;
         this.mobileOpen = false;
         document.documentElement.classList.remove('eq-menu-open');
     },
     toggleMenu(key) {
+        this.cancelClose();
         this.activeMenu = this.activeMenu === key ? null : key;
     },
     closeMenus() {
+        this.cancelClose();
         this.activeMenu = null;
     },
     toggleMobileMenu() {
@@ -360,34 +394,54 @@ Alpine.data('reviewsSlider', (reviewsJson = '[]') => ({
     reviews: [],
     active: 0,
     timer: null,
-    duration: 6000,
+    duration: 6500,
+    perView: 1,
+    _onResize: null,
     init() {
         try {
-            this.reviews = typeof reviewsJson === 'string' ? JSON.parse(reviewsJson) : reviewsJson;
+            this.reviews = typeof reviewsJson === 'string' ? JSON.parse(reviewsJson) : (reviewsJson ?? []);
         } catch {
             this.reviews = [];
         }
-        if (this.reviews.length > 1) {
-            this.startAutoplay();
-        }
+        this.perView = this.calcPerView();
+        this._onResize = () => {
+            const next = this.calcPerView();
+            if (next === this.perView) return;
+            this.perView = next;
+            if (this.active > this.maxIndex) this.active = this.maxIndex;
+        };
+        window.addEventListener('resize', this._onResize);
+        if (this.reviews.length > 1) this.startAutoplay();
     },
     destroy() {
         this.stopAutoplay();
+        if (this._onResize) window.removeEventListener('resize', this._onResize);
     },
-    current() {
-        return this.reviews[this.active] ?? {};
+    calcPerView() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 768) return 2;
+        return 1;
+    },
+    get maxIndex() {
+        return Math.max(0, this.reviews.length - this.perView);
+    },
+    get pages() {
+        return Array.from({ length: this.maxIndex + 1 }, (_, index) => index);
+    },
+    get trackStyle() {
+        const shift = this.active * (100 / this.perView);
+        return `transform: translate3d(-${shift}%, 0, 0)`;
     },
     goTo(index) {
-        if (index < 0 || index >= this.reviews.length) return;
-        this.active = index;
+        this.active = Math.max(0, Math.min(index, this.maxIndex));
         this.resetAutoplay();
     },
     next() {
-        this.active = (this.active + 1) % this.reviews.length;
+        this.active = this.active >= this.maxIndex ? 0 : this.active + 1;
         this.resetAutoplay();
     },
     prev() {
-        this.active = (this.active - 1 + this.reviews.length) % this.reviews.length;
+        this.active = this.active <= 0 ? this.maxIndex : this.active - 1;
         this.resetAutoplay();
     },
     startAutoplay() {
@@ -401,9 +455,7 @@ Alpine.data('reviewsSlider', (reviewsJson = '[]') => ({
         }
     },
     resetAutoplay() {
-        if (this.reviews.length > 1) {
-            this.startAutoplay();
-        }
+        if (this.maxIndex > 0) this.startAutoplay();
     },
 }));
 

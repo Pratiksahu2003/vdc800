@@ -23,7 +23,7 @@
     @mouseenter="openMenu(@js($menuKey))"
 >
     <div class="eq-nav-mega-panel">
-        <div class="eq-nav-mega @if($showSidebar) eq-nav-mega--split @endif">
+        <div class="eq-nav-mega eq-nav-mega--split @if($showSidebar) eq-nav-mega--has-sidebar @endif">
             @if($split && $sidebarTabs->isNotEmpty())
                 @if($showSidebar)
                     <aside class="eq-nav-mega__sidebar" aria-label="Menu categories">
