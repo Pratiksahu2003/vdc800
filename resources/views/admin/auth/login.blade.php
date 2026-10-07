@@ -67,6 +67,10 @@
         </div>
 
         <p class="text-center text-brand-500 text-xs mt-6">&copy; {{ date('Y') }} VDC800. All rights reserved.</p>
+        <p class="text-center text-brand-500 text-xs mt-2">
+            Designed and Developed by
+            <a href="https://www.vedmint.com" target="_blank" rel="noopener noreferrer" class="text-brand-teal-600 hover:text-brand-teal-700 font-medium transition underline-offset-2 hover:underline">Vedmint Consultancy Services</a>
+        </p>
     </div>
 </body>
 </html>

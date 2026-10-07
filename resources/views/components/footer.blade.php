@@ -9,7 +9,7 @@
                     <p class="text-brand-500 text-sm lg:text-base mt-2 max-w-lg leading-relaxed">{{ Str::limit(settings('company.description'), 180) }}</p>
                     @if(count(settings('social_links') ?? []) > 0)
                         <div class="flex flex-wrap gap-2 mt-5">
-                            @foreach(settings('social_links') ?? [] as $link)
+                            @foreach((settings('social_links') ?? []) as $link)
                                 @if($link['is_active'] ?? false)
                                     <a href="{{ $link['url'] }}" target="_blank" rel="noopener noreferrer" title="{{ $link['platform'] }}"
                                         class="w-8 h-8 rounded-full border border-brand-200 flex items-center justify-center text-brand-600 hover:text-brand-teal-600 hover:border-brand-teal-300 hover:bg-brand-teal-50 transition">
@@ -152,7 +152,7 @@
             <div>
                 <h4 class="text-brand-900 font-bold text-sm lg:text-base mb-3">Services</h4>
                 <ul class="space-y-2">
-                    @forelse($footerServices ?? [] as $service)
+                    @forelse(($footerServices ?? []) as $service)
                         <li>
                             <a href="{{ route('services.show', $service) }}" class="text-sm text-brand-600 hover:text-brand-red-500 transition">{{ $service->title }}</a>
                         </li>
@@ -169,7 +169,7 @@
             <div>
                 <h4 class="text-brand-900 font-bold text-sm lg:text-base mb-3">Solutions</h4>
                 <ul class="space-y-2">
-                    @forelse($footerSolutions ?? [] as $solution)
+                    @forelse(($footerSolutions ?? []) as $solution)
                         <li>
                             <a href="{{ route('solutions.show', $solution) }}" class="text-sm text-brand-600 hover:text-brand-red-500 transition">{{ $solution->title }}</a>
                         </li>
@@ -237,13 +237,13 @@
                 <a href="{{ route('blog.index') }}" class="text-brand-500 hover:text-brand-red-500 transition">Blog</a>
                 <span class="text-brand-300 select-none">·</span>
                 <a href="{{ route('services.index') }}" class="text-brand-500 hover:text-brand-red-500 transition">Services</a>
-                @foreach($sitemapServices ?? [] as $service)
+                @foreach(($sitemapServices ?? []) as $service)
                     <span class="text-brand-300 select-none">·</span>
                     <a href="{{ route('services.show', $service) }}" class="text-brand-500 hover:text-brand-red-500 transition">{{ $service->title }}</a>
                 @endforeach
                 <span class="text-brand-300 select-none">·</span>
                 <a href="{{ route('solutions.index') }}" class="text-brand-500 hover:text-brand-red-500 transition">Solutions</a>
-                @foreach($sitemapSolutions ?? [] as $solution)
+                @foreach(($sitemapSolutions ?? []) as $solution)
                     <span class="text-brand-300 select-none">·</span>
                     <a href="{{ route('solutions.show', $solution) }}" class="text-brand-500 hover:text-brand-red-500 transition">{{ $solution->title }}</a>
                 @endforeach
@@ -268,24 +268,30 @@
                     @endif
                 </div>
 
-                <div class="flex flex-wrap items-center justify-center gap-4">
-                    <button
-                        type="button"
-                        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-                        class="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-red-500 font-medium transition"
-                    >
-                        <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
-                        Back to Top
-                    </button>
-                    <a href="{{ route('contact.index') }}" class="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-red-500 font-medium transition">
-                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                        Get Quote
-                    </a>
-                    <span class="hidden sm:inline text-brand-300">|</span>
-                    <a href="{{ route('legal.privacy') }}" class="text-brand-500 hover:text-brand-red-500 transition">Privacy</a>
-                    <a href="{{ route('legal.terms') }}" class="text-brand-500 hover:text-brand-red-500 transition">Terms</a>
-                    <a href="{{ route('legal.cookies') }}" class="text-brand-500 hover:text-brand-red-500 transition">Cookies</a>
-                    <a href="{{ route('legal.sitemap') }}" class="text-brand-500 hover:text-brand-red-500 transition">Sitemap</a>
+                <div class="flex flex-col items-center sm:items-end gap-2.5">
+                    <div class="flex flex-wrap items-center justify-center sm:justify-end gap-4">
+                        <button
+                            type="button"
+                            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                            class="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-red-500 font-medium transition"
+                        >
+                            <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+                            Back to Top
+                        </button>
+                        <a href="{{ route('contact.index') }}" class="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-red-500 font-medium transition">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                            Get Quote
+                        </a>
+                        <span class="hidden sm:inline text-brand-300">|</span>
+                        <a href="{{ route('legal.privacy') }}" class="text-brand-500 hover:text-brand-red-500 transition">Privacy</a>
+                        <a href="{{ route('legal.terms') }}" class="text-brand-500 hover:text-brand-red-500 transition">Terms</a>
+                        <a href="{{ route('legal.cookies') }}" class="text-brand-500 hover:text-brand-red-500 transition">Cookies</a>
+                        <a href="{{ route('legal.sitemap') }}" class="text-brand-500 hover:text-brand-red-500 transition">Sitemap</a>
+                    </div>
+                    <p class="text-brand-500 text-xs text-center sm:text-right">
+                        Designed and Developed by
+                        <a href="https://www.vedmint.com" target="_blank" rel="noopener noreferrer" class="text-brand-teal-600 hover:text-brand-teal-700 font-medium transition underline-offset-2 hover:underline">Vedmint Consultancy Services</a>
+                    </p>
                 </div>
             </div>
         </div>
