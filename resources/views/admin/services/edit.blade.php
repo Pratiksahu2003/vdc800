@@ -29,8 +29,8 @@
             </select>
             <p class="text-xs text-brand-500 mt-1">Used to group this service in the navigation submenu.</p>
         </div>
-        @include('admin.components.textarea', ['name' => 'short_description', 'label' => 'Short Description', 'value' => $service->short_description, 'rows' => 2])
-        @include('admin.components.textarea', ['name' => 'full_description', 'label' => 'Full Description', 'value' => $service->full_description, 'rows' => 6])
+        @include('admin.components.ckeditor', ['name' => 'short_description', 'label' => 'Short Description', 'value' => $service->short_description, 'rows' => 4])
+        @include('admin.components.ckeditor', ['name' => 'full_description', 'label' => 'Full Description', 'value' => $service->full_description, 'rows' => 12])
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @include('admin.components.input', ['name' => 'icon', 'label' => 'Lucide Icon', 'value' => $service->icon])
@@ -49,7 +49,7 @@
         <h3 class="font-medium text-brand-900">SEO</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @include('admin.components.input', ['name' => 'meta_title', 'label' => 'Meta Title', 'value' => $service->meta_title])
-            @include('admin.components.textarea', ['name' => 'meta_description', 'label' => 'Meta Description', 'value' => $service->meta_description, 'rows' => 2])
+            @include('admin.components.ckeditor', ['name' => 'meta_description', 'label' => 'Meta Description', 'value' => $service->meta_description, 'rows' => 4, 'hint' => false])
         </div>
 
         <div>

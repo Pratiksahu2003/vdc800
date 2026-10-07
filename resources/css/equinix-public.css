@@ -1091,6 +1091,18 @@ html.eq-menu-open {
     @apply text-sm text-brand-600 hover:text-brand-teal-700 transition;
 }
 
+.eq-footer-bar {
+    @apply bg-brand-50;
+}
+
+.eq-footer-bar__link {
+    @apply text-brand-600 hover:text-brand-teal-700 transition-colors;
+}
+
+.eq-footer-bar__link:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-teal-600 rounded-sm;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;

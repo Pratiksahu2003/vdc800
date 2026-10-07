@@ -8,7 +8,7 @@
 @section('content')
 <x-page-hero fallback="images/hero-datacenter.jpg" alt="Projects" size="lg" align="center">
     <x-public.hero-heading
-        eyebrow="Projects &amp; case studies"
+        eyebrow="Projects & case studies"
         title="Work that moves infrastructure forward"
         description="Real-world advisory across critical power, capacity planning, and data centre strategy."
     />

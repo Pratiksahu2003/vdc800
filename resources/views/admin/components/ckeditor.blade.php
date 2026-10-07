@@ -68,11 +68,29 @@
                         table: {
                             contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
                         },
-                    }).catch((error) => console.error(error));
+                    })
+                        .then((editor) => {
+                            el.ckeditorInstance = editor;
+                        })
+                        .catch((error) => console.error(error));
+                });
+            };
+
+            window.syncAdminCkEditors = function (root) {
+                const scope = root && root.querySelectorAll ? root : document;
+                const fields = scope.querySelectorAll('textarea.ckeditor-field');
+
+                fields.forEach((el) => {
+                    if (el.ckeditorInstance) {
+                        el.ckeditorInstance.updateSourceElement();
+                    }
                 });
             };
 
             document.addEventListener('DOMContentLoaded', () => window.initAdminCkEditors());
+            document.addEventListener('submit', (event) => {
+                window.syncAdminCkEditors(event.target);
+            }, true);
             window.addEventListener('admin-init-ckeditor', (event) => {
                 window.initAdminCkEditors(event.detail?.root || document);
             });

@@ -9,7 +9,7 @@
 <x-page-hero fallback="images/hero-slide-3.jpg" alt="Blog" size="md" align="center">
     <x-public.hero-heading
         eyebrow="Resources"
-        title="Insights &amp; news"
+        title="Insights & news"
         description="Expert perspectives on data centres, cloud infrastructure, and digital innovation."
     />
 </x-page-hero>

@@ -34,7 +34,6 @@ class SitemapGenerator
         $this->add($urls, route('legal.privacy'), now(), 'yearly', '0.3');
         $this->add($urls, route('legal.terms'), now(), 'yearly', '0.3');
         $this->add($urls, route('legal.cookies'), now(), 'yearly', '0.3');
-        $this->add($urls, route('legal.sitemap'), now(), 'monthly', '0.5');
 
         Service::published()->get(['slug', 'updated_at'])->each(function (Service $service) use (&$urls) {
             $this->add($urls, route('services.show', $service), $service->updated_at, 'weekly', '0.8');

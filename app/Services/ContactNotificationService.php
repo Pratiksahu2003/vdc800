@@ -14,7 +14,7 @@ class ContactNotificationService
         $recipients = $this->recipientAddresses();
 
         if ($recipients === []) {
-            Log::warning('Contact form submitted but no notification email is configured.', [
+            $this->logSafely('warning', 'Contact form submitted but no notification email is configured.', [
                 'submission_id' => $submission->id,
             ]);
 
@@ -24,7 +24,7 @@ class ContactNotificationService
         try {
             Mail::to($recipients)->send(new ContactFormSubmittedNotification($submission));
         } catch (\Throwable $exception) {
-            Log::error('Failed to send contact form notification email.', [
+            $this->logSafely('error', 'Failed to send contact form notification email.', [
                 'submission_id' => $submission->id,
                 'recipients' => $recipients,
                 'message' => $exception->getMessage(),
@@ -48,6 +48,16 @@ class ContactNotificationService
         }
 
         return [];
+    }
+
+    /** @param  array<string, mixed>  $context */
+    private function logSafely(string $level, string $message, array $context = []): void
+    {
+        try {
+            Log::log($level, $message, $context);
+        } catch (\Throwable) {
+            // Never fail the contact form because log files are misconfigured.
+        }
     }
 
     /** @return array<int, string> */

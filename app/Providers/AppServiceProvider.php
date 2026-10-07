@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\NavMenuItem;
 use App\Models\Service;
 use App\Models\Solution;
 use App\Services\MailConfigService;
+use App\Services\NavMenuService;
 use App\Services\SiteSettingsService;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -35,11 +35,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer(['components.navbar'], function ($view) {
+            $navMenu = app(NavMenuService::class);
             $view->with([
-                'navMainItems' => NavMenuItem::treeForZone('main'),
-                'navUtilityItems' => NavMenuItem::treeForZone('utility')
-                    ->reject(fn ($item) => $item->slug === 'login' || $item->route_name === 'admin.login')
-                    ->values(),
+                'navMainItems' => $navMenu->mainItems(),
+                'navUtilityItems' => $navMenu->utilityItems(),
             ]);
         });
 
@@ -53,8 +52,6 @@ class AppServiceProvider extends ServiceProvider
                     ->orderByDesc('updated_at')
                     ->limit(7)
                     ->get(['id', 'title', 'slug']),
-                'sitemapServices' => Service::published()->get(['id', 'title', 'slug']),
-                'sitemapSolutions' => Solution::published()->get(['id', 'title', 'slug']),
             ]);
         });
     }

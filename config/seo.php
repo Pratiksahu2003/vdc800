@@ -79,11 +79,6 @@ return [
             'description' => 'How D³ DataCenters uses cookies and similar technologies, and how you can manage your preferences.',
             'keywords' => 'cookie policy, cookies, website tracking, D³ DataCenters',
         ],
-        'legal.sitemap' => [
-            'title' => 'HTML Sitemap | All D³ DataCenters Services, Projects & Blog Pages',
-            'description' => 'HTML sitemap of D³ DataCenters — services, solutions, projects, blog, legal pages, and contact.',
-            'keywords' => 'sitemap, site navigation, D³ DataCenters pages',
-        ],
     ],
 
     'entity_keywords' => [

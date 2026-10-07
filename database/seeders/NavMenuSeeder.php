@@ -335,17 +335,6 @@ class NavMenuSeeder extends Seeder
             'sort_order' => 11,
         ]);
 
-        NavMenuItem::create([
-            'parent_id' => $parent->id,
-            'zone' => 'main',
-            'sidebar_key' => 'company',
-            'group_heading' => 'Company',
-            'label' => 'Sitemap',
-            'description' => 'Find every page on D³ DataCenters.',
-            'route_name' => 'legal.sitemap',
-            'sort_order' => 12,
-        ]);
-
         $legalLinks = [
             ['label' => 'Privacy policy', 'description' => 'How we collect, use, and protect your data.', 'route' => 'legal.privacy'],
             ['label' => 'Terms of service', 'description' => 'Terms governing use of our website and services.', 'route' => 'legal.terms'],

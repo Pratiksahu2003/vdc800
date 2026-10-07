@@ -25,7 +25,6 @@
             <a href="{{ route('legal.privacy') }}" class="eq-filter-chip">Privacy</a>
             <a href="{{ route('legal.terms') }}" class="eq-filter-chip">Terms</a>
             <a href="{{ route('legal.cookies') }}" class="eq-filter-chip">Cookies</a>
-            <a href="{{ route('legal.sitemap') }}" class="eq-filter-chip">Sitemap</a>
         </div>
     </div>
 </x-public.section>

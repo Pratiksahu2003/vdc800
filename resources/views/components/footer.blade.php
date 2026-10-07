@@ -1,3 +1,8 @@
+@php
+    $companyName = settings('company.company_name') ?? 'D³ DataCenters';
+    $foundedYear = settings('company.founded_year') ?: date('Y');
+@endphp
+
 <footer class="bg-white border-t border-brand-200" data-site-footer>
     {{-- Pre-footer CTA --}}
     <div class="eq-dark-band py-14 lg:py-16 border-b border-brand-800" data-eq-footer-block>
@@ -73,16 +78,41 @@
                     <li><a href="{{ route('legal.privacy') }}">Privacy</a></li>
                     <li><a href="{{ route('legal.terms') }}">Terms</a></li>
                     <li><a href="{{ route('legal.cookies') }}">Cookie preferences</a></li>
-                    <li><a href="{{ route('legal.sitemap') }}">Sitemap</a></li>
                 </ul>
             </div>
         </div>
+    </div>
 
-        <div class="mt-12 pt-8 border-t border-brand-200 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 text-sm text-brand-600">
-            <x-logo class="h-10 w-auto opacity-90" :link="false" />
-            <div class="flex flex-col gap-1.5 lg:items-end lg:text-right">
-                <p>&copy; {{ date('Y') }} {{ settings('company.company_name') ?? 'D³ DataCenters' }}. All rights reserved.</p>
-                <p class="text-brand-500">
+    {{-- Bottom strip (reference layout) --}}
+    <div class="eq-footer-bar border-t border-brand-200" data-eq-footer-block>
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-7 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div class="eq-footer-bar__legal min-w-0">
+                <p class="text-sm text-brand-700 leading-snug">
+                    &copy; {{ date('Y') }} <span class="font-semibold text-brand-900">{{ $companyName }}</span>. All rights reserved.
+                </p>
+                <p class="text-xs text-brand-500 mt-1">Serving clients worldwide since {{ $foundedYear }}</p>
+            </div>
+
+            <div class="flex flex-col gap-2 lg:items-end lg:text-right">
+                <nav class="eq-footer-bar__actions flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-brand-600 lg:justify-end" aria-label="Footer utilities">
+                    <button
+                        type="button"
+                        class="eq-footer-bar__link inline-flex items-center gap-1.5"
+                        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                    >
+                        <i data-lucide="arrow-up" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+                        Back to Top
+                    </button>
+                    <a href="{{ route('contact.index') }}" class="eq-footer-bar__link inline-flex items-center gap-1.5">
+                        <i data-lucide="message-circle" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+                        Get Quote
+                    </a>
+                    <span class="hidden sm:inline text-brand-300 select-none" aria-hidden="true">|</span>
+                    <a href="{{ route('legal.privacy') }}" class="eq-footer-bar__link">Privacy</a>
+                    <a href="{{ route('legal.terms') }}" class="eq-footer-bar__link">Terms</a>
+                    <a href="{{ route('legal.cookies') }}" class="eq-footer-bar__link">Cookies</a>
+                </nav>
+                <p class="text-xs text-brand-500">
                     Designed and developed by
                     <a href="https://www.vedmint.com/" target="_blank" rel="noopener noreferrer" class="font-medium text-brand-teal-700 hover:text-brand-teal-800 underline-offset-2 hover:underline">VedMint Consultancy Services</a>
                 </p>

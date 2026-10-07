@@ -48,7 +48,6 @@ Route::post('/contact', [ContactController::class, 'store'])
 Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
 Route::get('/terms-of-service', [LegalController::class, 'terms'])->name('legal.terms');
 Route::get('/cookie-policy', [LegalController::class, 'cookies'])->name('legal.cookies');
-Route::get('/sitemap', [LegalController::class, 'sitemap'])->name('legal.sitemap');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', fn () => redirect()->route('admin.dashboard'));
